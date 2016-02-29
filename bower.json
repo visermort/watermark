@@ -1,0 +1,13 @@
+{
+  "name": "witermark",
+  "version": "0.0.2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "jquery": "2.1.3",
+    "blueimp-file-upload": "fileupload#~9.12.1"
+  }
+}
