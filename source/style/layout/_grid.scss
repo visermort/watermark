@@ -4,7 +4,7 @@ body {
 	width: 100%;
 }
 body {
-	background: url(/images/background.jpg) no-repeat center center fixed;
+	background: url(../../images/background.jpg) no-repeat center center fixed;
 	background-size: cover;
 }
 .wrapper {
@@ -12,6 +12,7 @@ body {
 	width: 100%;
 	min-width: $innerWidth;
 	position: relative;
+	margin-top: 60px;
 }
 .wrapper:after {
 	content: '';
@@ -25,11 +26,13 @@ body {
 .main-bar {
 	float: left;
 	width: $innerWidth - $sideBarWidth;
+	height: $innerHeight;
 	background: rgba(46,54,65,.64);
 }
 .side-bar {
 	float: right;
 	width: $sideBarWidth;
+	height: $innerHeight;
 	background: #fff;
 }
 .footer {

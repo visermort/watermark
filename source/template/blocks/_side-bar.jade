@@ -5,11 +5,13 @@ div.side-bar__container
       
       div.image-upload
           label(for="image-upload").image-upload__label Исходное изображение
-          label(for="image-upload")
-            div.image-upload__txt
-            div.image-upload__ico
+          //label(for="image-upload")
+            //div.image-upload__txt
+          div.image-upload__ico
+              //input(type="" name="image-upload-text").image-upload__text
               input(type="file" name="image-upload")#image-upload.image-upload__input
-      
+              button(type="submit" name='submit')#image-upload-button.image-upload__button
+                  img(src="images/iCloud_down.png" alt="submit")
       div.watermark
           label(for="watermark").watermark__label Водяной знак
           label(for="watermark")
