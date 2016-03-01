@@ -1,26 +1,39 @@
 // -----------------------------------------
-  // Layout Breakpoints
-// -----------------------------------------
-$gridGutter: 10;
-$breakpoints: (
-  'medium': (min-width: 800px),
-  'large': (min-width: 1000px),
-  'huge': (min-width: 1200px),
-);
-
-
-// -----------------------------------------
-  // Font Sizes
-// -----------------------------------------
-$baseTextSize: 16px;
-
-
-// -----------------------------------------
   // Font Families
 // -----------------------------------------
-$baseFont: Helvetica, Arial, sans-serif;
+$alternative: Arial, 'sans-serif'; //- Альтернативные шрифты
 
+$roboto_black: 'robotoblack', $alternative;
+$roboto_black-italic: 'robotoblack_italic', $alternative;
+
+$roboto_bold: 'robotobold', $alternative;
+$roboto_bold_italic: 'robotobold_italic', $alternative;
+
+$roboto_condensed-regular: 'roboto_condensedregular', $alternative;
+$roboto_condensed-italic: 'roboto_condenseditalic', $alternative;
+$roboto_condensed-bold: 'roboto_condensedbold', $alternative;
+$roboto_condensed-bold_italic: 'roboto_condensedbold_italic', $alternative;
+$roboto_condensed-light: 'roboto_condensedlight', $alternative;
+$roboto_condensed-light_italic: 'roboto_condensedlight_italic', $alternative;
+
+$roboto_light: 'robotolight', $alternative;
+$roboto_light_italic: 'robotolight_italic', $alternative;
+
+$roboto_medium: 'robotomedium', $alternative;
+$roboto_medium_italic: 'robotomedium_italic', $alternative;
+
+$roboto_thin: 'robotothin', $alternative;
+$roboto_thin_italic: 'robotothin_italic', $alternative;
 // -----------------------------------------
-  // Color
+  // Default Font
 // -----------------------------------------
-$baseTextColor: #262626;
+$font-size: 14px; //----- Default Font Sizes
+$font-color: #2e3641; //----- Default Font Color
+$font-family: $roboto_light; //----- Default Font Family
+// -----------------------------------------
+  // GRID
+// -----------------------------------------
+$innerWidth: 960px;
+$sideBarWidth: 260px;
+$footerHeight: 30px;
+$colorOrange: #f97e76;

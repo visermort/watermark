@@ -1,0 +1,61 @@
+div.side-bar__container
+
+  h2.side-bar__title Настройки
+  div.side-bar__block
+      
+      div.image-upload
+          label(for="image-upload").image-upload__label Исходное изображение
+          label(for="image-upload")
+            div.image-upload__txt
+            div.image-upload__ico
+              input(type="file" name="image-upload")#image-upload.image-upload__input
+      
+      div.watermark
+          label(for="watermark").watermark__label Водяной знак
+          label(for="watermark")
+            div.watermark__txt
+            div.watermark__ico
+              input(type="file" name="watermark")#watermark.watermark__input
+
+  div.side-bar__block
+
+      div.position
+          div.position__top
+              label.position__label Положение
+              ul.position__list
+                  li.position__item.view-1
+                      a(href="#").position__link view 1
+                  li.position__item.view-2
+                      a(href="#").position__link view 2
+
+          div.position__bottom
+              ul.position__list
+                  li.position_item.top-left
+                    a(href='#').position_link top left
+                  li.position_item.top
+                    a(href='#').position_link top middel
+                  li.position_item.top-right
+                    a(href='#').position_link top right
+                  li.position_item.center-left
+                    a(href='#').position_link center left
+                  li.position_itemcente
+                    a(href='#').position_link center middel
+                  li.position_item.center-right
+                    a(href='#').position_link center right
+                  li.position_item.bottom-left
+                    a(href='#').position_link bottom left
+                  li.position_item.bottom
+                    a(href='#').position_link bottom middel
+                  li.position_item.bottom-right
+                      a(href='#').position_link bottom right
+
+  div.side-bar__block
+      div.transparency
+          div.transparency__top
+              label.transparency__label Прозрачность
+          div.transparency__bottom
+
+  div.side-bar__block
+      div.inputs
+          button.inputs__reset Сброс
+          button.inputs__download Скачать
