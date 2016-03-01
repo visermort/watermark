@@ -28,14 +28,14 @@ $.path.task.forEach(function(taskPath) {
 $.dev = true;
 
 $.gulp.task('default', $.gulp.series(
-  'clean',
+//  'clean',
   $.gulp.parallel(
     'sass',
     'jade',
     'js.foundation',
-    'js.process',
-    'copy.images',
-    'copy.fonts'
+    'js.process'
+//    'copy.images',
+//    'copy.fonts'
   ),
   $.gulp.parallel(
     'watch',
