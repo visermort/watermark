@@ -4,14 +4,14 @@ div.info-menu
             - var lang = ['РУС', 'ENG']
             - var lang_suffix = ['ru', 'en']
             each val, index in lang
-                li(class="lang__item_#{lang_suffix[val]}")
+                li(class="lang__item item__#{lang_suffix[val]}")
                     a(href="#").lang__link= val
 
     div.social
-        a(href="#").social__title= Like
+        a(href="#").social__title Like
         ul.social__list
             - var social = ['Facebook', 'Twitter', 'Vkontakte']
             - var social_suffix = ['fb', 'tw', 'vk']
             each val, index in social
-                li(class="social__item social__#{social_suffix[index]}")
-                    a(href="#").social__link= val
+                li(class="social__item social__item_#{social_suffix[index]}")
+                    a(href="#" class="social__link social__#{social_suffix[index]}")= val

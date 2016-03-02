@@ -1,0 +1,11 @@
+.main-bar__title {
+	font: 36px/36px "Segoe UI Light";
+	color: #fff;
+	margin: 15px 20px;
+}
+.main-bar__content {
+	width: $innerWidth - $sideBarWidth - 50px;
+	margin: 60px auto 0;
+	height: 535px;
+	background: #fff;
+}

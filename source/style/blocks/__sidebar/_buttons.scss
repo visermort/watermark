@@ -1,0 +1,37 @@
+.side-bar__block {
+	@include clearfix();
+	padding: 0 10px;
+}
+.inputs__reset,
+.inputs__download {
+	color: #f1f1f5;
+	font-family: Roboto;
+	font-size: 18px;
+	font-weight: 500;
+}
+.inputs__reset {
+	float: left;
+	width: 99px;
+	height: 42px;
+	background-color: #c1cfd9;
+	border-radius: 2px;
+	border: none;
+	outline: none;
+	&:hover{
+		background-image: linear-gradient(to top, #c1cfd9 0%, #9eaab3 100%);
+		border: 1px solid #a6b2bb;
+	}
+}
+.inputs__download {
+	float: right;
+	width: 99px;
+	height: 42px;
+	background-color: #f97e76;
+	border-radius: 2px;
+	border: none;
+	outline: none;
+	&:hover {
+		background-image: linear-gradient(to top, #f97e76 0%, #e3736c 100%);
+		border: 1px solid #e3736c;
+	}
+}

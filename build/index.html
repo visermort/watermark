@@ -23,19 +23,19 @@
       <div class="info-menu"> 
         <div class="lang">
           <ul class="lang__list">
-            <li class="lang__item_undefined"><a href="#" class="lang__link">РУС</a></li>
-            <li class="lang__item_undefined"><a href="#" class="lang__link">ENG</a></li>
+            <li class="lang__item item__undefined"><a href="#" class="lang__link">РУС</a></li>
+            <li class="lang__item item__undefined"><a href="#" class="lang__link">ENG</a></li>
           </ul>
         </div>
-        <div class="social"><a href="#" class="social__title"></a>
+        <div class="social"><a href="#" class="social__title">Like</a>
           <ul class="social__list">
-            <li class="social__item social__fb"><a href="#" class="social__link">Facebook</a></li>
-            <li class="social__item social__tw"><a href="#" class="social__link">Twitter</a></li>
-            <li class="social__item social__vk"><a href="#" class="social__link">Vkontakte</a></li>
+            <li class="social__item social__item_fb"><a href="#" class="social__link social__fb">Facebook</a></li>
+            <li class="social__item social__item_tw"><a href="#" class="social__link social__tw">Twitter</a></li>
+            <li class="social__item social__item_vk"><a href="#" class="social__link social__vk">Vkontakte</a></li>
           </ul>
         </div>
       </div>
-      <div class="inner clearfix">
+      <div class="inner content clearfix">
         <div class="main-bar">
           <div class="main-bar__container">
             <h1 class="main-bar__title">Генератор водяных знаков</h1>
@@ -45,20 +45,19 @@
         <div class="side-bar">
           <div class="side-bar__container">
             <h2 class="side-bar__title">Настройки</h2>
-            <div class="side-bar__block">
+            <div class="side-bar__upload">
               <div class="image-upload">
                 <label for="image-upload" class="image-upload__label">Исходное изображение</label>
-                <!--label(for="image-upload")//div.image-upload__txt
-                -->
-                <div class="image-upload__ico">
-                  <input type="" name="image-upload-text" class="image-upload__text">
-                  <input type="file" name="image-upload" id="image-upload" class="image-upload__input">
-                  <button type="submit" name="submit" id="image-upload-button" class="image-upload__button"><img src="images/iCloud_down.png" alt="submit"></button>
-                </div>
+                <label for="image-upload" class="image-upload__wrapper">
+                  <div class="image-upload__txt"></div>
+                  <div class="image-upload__ico">
+                    <input type="file" name="image-upload" id="image-upload" class="image-upload__input">
+                  </div>
+                </label>
               </div>
               <div class="watermark">
                 <label for="watermark" class="watermark__label">Водяной знак</label>
-                <label for="watermark">
+                <label for="watermark" class="watermark__wrapper">
                   <div class="watermark__txt"></div>
                   <div class="watermark__ico">
                     <input type="file" name="watermark" id="watermark" class="watermark__input">
@@ -66,31 +65,51 @@
                 </label>
               </div>
             </div>
-            <div class="side-bar__block">
+            <div class="side-bar__position">
               <div class="position">
                 <div class="position__top">
                   <label class="position__label">Положение</label>
-                  <ul class="position__list">
-                    <li class="position__item view-1"><a href="#" class="position__link">view 1</a></li>
-                    <li class="position__item view-2"><a href="#" class="position__link">view 2</a></li>
+                  <ul class="view__list">
+                    <li class="view__item view__item-1"><a href="#" class="view__link view-1">view 1</a></li>
+                    <li class="view__item view__item-2"><a href="#" class="view__link view-2">view 2</a></li>
                   </ul>
                 </div>
                 <div class="position__bottom">
                   <ul class="position__list">
-                    <li class="position_item top-left"><a href="#" class="position_link">top left</a></li>
-                    <li class="position_item top"><a href="#" class="position_link">top middel</a></li>
-                    <li class="position_item top-right"><a href="#" class="position_link">top right</a></li>
-                    <li class="position_item center-left"><a href="#" class="position_link">center left</a></li>
-                    <li class="position_itemcente"><a href="#" class="position_link">center middel</a></li>
-                    <li class="position_item center-right"><a href="#" class="position_link">center right</a></li>
-                    <li class="position_item bottom-left"><a href="#" class="position_link">bottom left</a></li>
-                    <li class="position_item bottom"><a href="#" class="position_link">bottom middel</a></li>
-                    <li class="position_item bottom-right"><a href="#" class="position_link">bottom right</a></li>
+                    <li class="position__item top-left">1<a href="#" class="position__link">top left</a></li>
+                    <li class="position__item top">2<a href="#" class="position__link">top middel</a></li>
+                    <li class="position__item top-right">3<a href="#" class="position__link">top right</a></li>
+                    <li class="position__item center-left">4<a href="#" class="position__link">center left</a></li>
+                    <li class="position__item cente">5<a href="#" class="position__link">center middel</a></li>
+                    <li class="position__item center-right">6<a href="#" class="position__link">center right</a></li>
+                    <li class="position__item bottom-left">7<a href="#" class="position__link">bottom left</a></li>
+                    <li class="position__item bottom">8<a href="#" class="position__link">bottom middel</a></li>
+                    <li class="position__item bottom-right">9<a href="#" class="position__link">bottom right</a></li>
                   </ul>
+                  <div class="axis__up">
+                    <div class="axis__x-a"> <a href="#" class="axis__l">горизантально</a></div>
+                    <div class="axis__x-b">
+                      <input type="text" name="axis-x" class="axis__x-input">
+                    </div>
+                    <ul class="axis__x-c">
+                      <li class="axis__x-item_up"><a href="#" class="axis__link arrow__x-up">arrow up</a></li>
+                      <li class="axis__x-item_down"><a href="#" class="axis__link arrow__x-down">arrow down</a></li>
+                    </ul>
+                  </div>
+                  <div class="axis__down">
+                    <div class="axis__y-a">горизантально</div>
+                    <div class="axis__y-b">
+                      <input type="text" name="axis-y" class="axis__y-input">
+                    </div>
+                    <ul class="axis__y-c">
+                      <li class="axis__y-item_up"><a href="#" class="axis__link arrow__y-up">arrow up</a></li>
+                      <li class="axis__y-item_down"><a href="#" class="axis__link arrow__y-down">arrow down</a></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="side-bar__block">
+            <div class="side-bar__transparency">
               <div class="transparency">
                 <div class="transparency__top">
                   <label class="transparency__label">Прозрачность</label>

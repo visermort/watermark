@@ -2,17 +2,25 @@ html,
 body {
 	height: 100%;
 	width: 100%;
+	font: 14px/16px $roboto_light;
 }
 body {
-	background: url(../../images/background.jpg) no-repeat center center fixed;
+	background: url(/assets/images/background.jpg) no-repeat center center fixed;
 	background-size: cover;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+*{
+	box-sizing: border-box;
 }
 .wrapper {
 	height: 100%;
 	width: 100%;
 	min-width: $innerWidth;
 	position: relative;
-	margin-top: 60px;
 }
 .wrapper:after {
 	content: '';
@@ -22,6 +30,9 @@ body {
 .inner {
 	width: $innerWidth;
 	margin: 0 auto;
+}
+.content {
+	padding-top: 50px;
 }
 .main-bar {
 	float: left;
