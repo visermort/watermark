@@ -49,7 +49,6 @@ div.side-bar__container
                         a(href='#').position__link bottom middel
                     li.position__item.bottom-right 9
                       a(href='#').position__link bottom right
-           
 
                 .axis__up
                     .axis__x-a 
@@ -71,12 +70,12 @@ div.side-bar__container
                         li.axis__y-item_down
                             a(href='#').axis__link.arrow__y-down arrow down
 
-
     div.side-bar__transparency
         div.transparency
             div.transparency__top
                 label.transparency__label Прозрачность
             div.transparency__bottom
+                input(type="range" name="transparency__range" min="0" max="100" step="1" value="0").transparency__range
 
     div.side-bar__block
         div.inputs

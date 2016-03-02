@@ -23,8 +23,7 @@
 		height: 19px;
 		display: block;
 		@include transform-to-center();
-		background-repeat: no-repeat;
-		background-image: url('/assets/images/spritesheet.png');
+		background: url('../images/spritesheet.png') no-repeat;
 	}
 }
 .view-1:before {
@@ -104,8 +103,7 @@
 // }
 
 .axis__up,
-.axis__down,
- {
+.axis__down{
 	float: right;
 	@include clearfix();
 	@include text-hide();
@@ -129,7 +127,7 @@
 
 	position: absolute;
 	background-repeat: no-repeat;
-    background: url('/assets/images/spritesheet.png');
+    background: url('../images/spritesheet.png');
 }
  .axis__x-a:before{
  	right: 0;
@@ -193,7 +191,7 @@
 	    position: absolute;
 	    background-repeat: no-repeat;
 	    @include transform-to-center();
-	    background: url('/assets/images/spritesheet.png');
+	    background: url('../images/spritesheet.png');
 	}
 }
 .arrow__x-up:before,

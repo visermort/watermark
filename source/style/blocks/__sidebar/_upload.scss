@@ -63,7 +63,7 @@
             position: absolute;
             width: 22px;
             height: 17px;
-            background: url('/assets/images/spritesheet.png');
+            background: url('../images/spritesheet.png');
             background-repeat: no-repeat;
             background-position: nth($download, 3) nth($download, 4);
             @include transform-to-center();

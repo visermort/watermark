@@ -44,7 +44,7 @@
 	}
 
 	&__title {
-		@extend .info-blocks;
+		//@extend .info-blocks;
 		background: #d5d3d1;
 		float: right;
 		width: 43px;
@@ -71,7 +71,7 @@
 		content: '';
 		display: block;
 		@include transform-to-center();
-		background-image: url('/assets/images/spritesheet.png');
+		background-image: url('../images/spritesheet.png');
 		background-repeat: no-repeat;
 	}
 	&__title:before {
