@@ -1,61 +1,84 @@
 div.side-bar__container
 
-  h2.side-bar__title Настройки
-  div.side-bar__block
-      
-      div.image-upload
-          label(for="image-upload").image-upload__label Исходное изображение
-          label(for="image-upload")
-            div.image-upload__txt
-            div.image-upload__ico
-              input(type="file" name="image-upload")#image-upload.image-upload__input
-      
-      div.watermark
-          label(for="watermark").watermark__label Водяной знак
-          label(for="watermark")
-            div.watermark__txt
-            div.watermark__ico
-              input(type="file" name="watermark")#watermark.watermark__input
+    h2.side-bar__title Настройки
+    
+    div.side-bar__upload
+        
+        div.image-upload
+            label(for="image-upload").image-upload__label Исходное изображение
+            label(for="image-upload").image-upload__wrapper
+                div.image-upload__txt
+                div.image-upload__ico
+                    input(type="file" name="image-upload" id="image-upload").image-upload__input
 
-  div.side-bar__block
+        div.watermark
+            label(for="watermark").watermark__label Водяной знак
+            label(for="watermark").watermark__wrapper
+                div.watermark__txt
+                div.watermark__ico
+                    input(type="file" name="watermark" id="watermark").watermark__input
 
-      div.position
-          div.position__top
-              label.position__label Положение
-              ul.position__list
-                  li.position__item.view-1
-                      a(href="#").position__link view 1
-                  li.position__item.view-2
-                      a(href="#").position__link view 2
+    div.side-bar__position
 
-          div.position__bottom
-              ul.position__list
-                  li.position_item.top-left
-                    a(href='#').position_link top left
-                  li.position_item.top
-                    a(href='#').position_link top middel
-                  li.position_item.top-right
-                    a(href='#').position_link top right
-                  li.position_item.center-left
-                    a(href='#').position_link center left
-                  li.position_itemcente
-                    a(href='#').position_link center middel
-                  li.position_item.center-right
-                    a(href='#').position_link center right
-                  li.position_item.bottom-left
-                    a(href='#').position_link bottom left
-                  li.position_item.bottom
-                    a(href='#').position_link bottom middel
-                  li.position_item.bottom-right
-                      a(href='#').position_link bottom right
+        div.position
+            div.position__top
+                label.position__label Положение
+                ul.view__list
+                    li.view__item.view__item-1
+                        a(href="#").view__link.view-1 view 1
+                    li.view__item.view__item-2
+                        a(href="#").view__link.view-2 view 2
 
-  div.side-bar__block
-      div.transparency
-          div.transparency__top
-              label.transparency__label Прозрачность
-          div.transparency__bottom
+            div.position__bottom
+                ul.position__list
+                    li.position__item.top-left 1
+                        a(href='#').position__link top left
+                    li.position__item.top 2
+                        a(href='#').position__link top middel
+                    li.position__item.top-right 3
+                        a(href='#').position__link top right
+                    li.position__item.center-left 4
+                        a(href='#').position__link center left
+                    li.position__item.cente 5
+                        a(href='#').position__link center middel
+                    li.position__item.center-right 6
+                        a(href='#').position__link center right
+                    li.position__item.bottom-left 7
+                        a(href='#').position__link bottom left
+                    li.position__item.bottom 8
+                        a(href='#').position__link bottom middel
+                    li.position__item.bottom-right 9
+                      a(href='#').position__link bottom right
+           
 
-  div.side-bar__block
-      div.inputs
-          button.inputs__reset Сброс
-          button.inputs__download Скачать
+                .axis__up
+                    .axis__x-a 
+                        a(href='#').axis__l горизантально
+                    .axis__x-b
+                        input(type="text" name="axis-x").axis__x-input
+                    ul.axis__x-c
+                        li.axis__x-item_up
+                            a(href='#').axis__link.arrow__x-up arrow up
+                        li.axis__x-item_down
+                            a(href='#').axis__link.arrow__x-down arrow down
+                .axis__down
+                    .axis__y-a горизантально
+                    .axis__y-b
+                        input(type="text" name="axis-y").axis__y-input
+                    ul.axis__y-c
+                        li.axis__y-item_up
+                            a(href='#').axis__link.arrow__y-up arrow up
+                        li.axis__y-item_down
+                            a(href='#').axis__link.arrow__y-down arrow down
+
+
+    div.side-bar__transparency
+        div.transparency
+            div.transparency__top
+                label.transparency__label Прозрачность
+            div.transparency__bottom
+
+    div.side-bar__block
+        div.inputs
+            button.inputs__reset Сброс
+            button.inputs__download Скачать

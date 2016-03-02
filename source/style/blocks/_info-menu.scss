@@ -1,4 +1,106 @@
+
 .info-menu {
 	position: absolute;
 	top: 100px;
+}
+.lang {
+	&__list {
+		
+	}
+	&__item {
+		width: 43px;
+		height: (69px/2);
+		background: #d5d3d1;
+	}
+	&__link {
+		width: 43px;
+		height: (69px/2);
+		display: block;
+		color: #8e9298;
+		text-align: center;
+		text-decoration: none;
+		padding-top: (69px/4)-10px;
+		font: 20px/20px "Segoe UI Light";
+		
+		&:hover {
+			color: #444a53;
+		}
+	}
+	&__item:not(:first-child) {
+		border-top: 1px solid #a6a8ac;
+		box-sizing: border-box;
+	}
+}
+.social {
+	//-
+	margin-top: 18px;
+	width: 86px;
+	margin-left: -43px;
+	@include clearfix();
+	@include text-hide();
+
+	&:hover{
+		margin-left: 0;
+	}
+
+	&__title {
+		@extend .info-blocks;
+		background: #d5d3d1;
+		float: right;
+		width: 43px;
+		height: 41px;
+		position: relative;
+	}
+	&__list {
+		float: left;
+		width: 43px;
+	}
+	&__item {
+		width: 43px;
+		height: (124px/3);
+		background: #d5d3d1;
+	}
+	&__link {
+		width: 43px;
+		height: (124px/3);
+		display: block;
+		position: relative;
+	}
+	&__title:before,
+	&__link:before {
+		content: '';
+		display: block;
+		@include transform-to-center();
+		background-image: url('/assets/images/spritesheet.png');
+		background-repeat: no-repeat;
+	}
+	&__title:before {
+		width: nth($like, 5); height: nth($like, 6);
+		background-position: nth($like, 3) nth($like, 4);
+	}
+	&__fb:before {
+		width: nth($fb, 5); height: nth($fb, 6);
+		background-position: nth($fb, 3) nth($fb, 4);
+	}
+	&__vk:before {
+		width: nth($vk, 5); height: nth($vk, 6);
+		background-position: nth($vk, 3) nth($vk, 4);
+	}
+	&__tw:before {
+		width: nth($tw, 5); height: nth($tw, 6);
+		background-position: nth($tw, 3) nth($tw, 4);
+	}
+
+	&__item_fb:hover &__fb:before {
+		width: nth($fb-hover, 5); height: nth($fb-hover, 6);
+		background-position: nth($fb-hover, 3) nth($fb-hover, 4);
+	}
+	&__item_vk:hover &__vk:before {
+		width: nth($vk-hover, 5); height: nth($vk-hover, 6);
+		background-position: nth($vk-hover, 3) nth($vk-hover, 4);
+	}
+	&__item_tw:hover &__tw:before {
+		width: nth($tw-hover, 5); height: nth($tw-hover, 6);
+		background-position: nth($tw-hover, 3) nth($tw-hover, 4);
+	}
 }

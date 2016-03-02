@@ -1,0 +1,73 @@
+.side-bar__upload {
+    padding: 0 20px 26px 20px;;
+    border-bottom: 1px solid #f97e76;
+    position: relative;
+}
+.side-bar__upload:after,
+.side-bar__position:after,
+.side-bar__transparency:after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-right: 1px solid #f97e76;
+  border-bottom: 1px solid #f97e76;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: rotate(45deg) translateX(-50%);
+}
+.image-upload__input,
+.watermark__input {
+  display: none;
+}
+.image-upload,
+.watermark {
+    margin-top: 37px;
+
+    &__label {
+      font: 14px/14px $roboto_light;
+      color: #2e3641;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      display: block;
+      cursor: pointer;
+    }
+    &__wrapper {
+        @include clearfix();
+        @include text-hide();
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+    &__txt {
+      display: inline-block;
+      border: 1px solid #9eb2c0;
+      border-right: none;
+      height: 27px;
+      width: 181px;
+      @include border-radius(5px 0 0 5px);
+    }    
+    &__ico {
+        display: inline-block;
+        position: relative;
+        border-left: none;
+        height: 27px;
+        width: 39px;
+        background: $colorOrange;
+        @include border-radius(0 5px 5px 0);
+
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 22px;
+            height: 17px;
+            background: url('/assets/images/spritesheet.png');
+            background-repeat: no-repeat;
+            background-position: nth($download, 3) nth($download, 4);
+            @include transform-to-center();
+        }
+    }
+}
+.watermark { margin-top: 22px; }
