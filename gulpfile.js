@@ -9,7 +9,8 @@ var $ = {
     foundation: require('./gulp/path.foundation'),
     app: require('./gulp/path.app'),
     images: require('./gulp/path.images'),
-    fonts: require('./gulp/path.fonts')
+    fonts: require('./gulp/path.fonts'),
+    php: require('./gulp/path.php')
   },
   gulp: require('gulp'),
   rimraf: require('rimraf'),
@@ -28,17 +29,18 @@ $.path.task.forEach(function(taskPath) {
 $.dev = true;
 
 $.gulp.task('default', $.gulp.series(
-//  'clean',
-  $.gulp.parallel(
-    'sass',
-    'jade',
-    'js.foundation',
-    'js.process'
-//    'copy.images',
-//    'copy.fonts'
-  ),
-  $.gulp.parallel(
-    'watch',
-    'serve'
-  )
+    $.gulp.parallel(
+        'sass',
+        'jade',
+        'js.foundation',
+        'js.process'
+    ),
+    $.gulp.parallel(
+        'watch',
+        'serve'
+    )
 ));
+
+$.gulp.task('clean', $.gulp.series('clean'));
+
+$.gulp.task('copy', $.gulp.parallel('copy.images'));
