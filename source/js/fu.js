@@ -57,7 +57,8 @@
                         console.log('Файл слишком большой');
                     } else {
                         var $this = $(this);
-
+                        $(".main-bar__watermark")[0].style.top = '0px';
+                        $(".main-bar__watermark")[0].style.left = '0px';
                         data
                             .process(function () {
                             return $this.fileupload('process', data);
