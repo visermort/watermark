@@ -23,7 +23,7 @@
 
             $(item).fileupload({
 
-                url: 'php/',
+                url: 'assets/php/index.php',
                 disableImageResize: false,
                 process:[
                     {
