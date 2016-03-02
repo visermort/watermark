@@ -1,223 +1,269 @@
 .side-bar__position {
-	padding: 5px 5px 5px 5px;
-	border-bottom: 1px solid #f97e76;
-	position: relative;
+  padding: 5px 5px 5px 5px;
+  border-bottom: 1px solid #f97e76;
+  position: relative;
 }
+
 .view {
-	&__list {
-		float: right;
-		@include text-hide();
-	}
-	&__item {
-		@include inline-block(top);
-	}
+  &__list {
+    float: right;
+    @include text-hide();
+  }
+  &__item {
+    @include inline-block(top);
+  }
 }
+
 .view__link {
-	width: 29px;
-	height: 29px;
-	display: block;
-	position: relative;
-	&:before {
-		content: '';
-		width: 19px;
-		height: 19px;
-		display: block;
-		@include transform-to-center();
-		background: url('../images/spritesheet.png') no-repeat;
-	}
+  width: 29px;
+  height: 29px;
+  display: block;
+  position: relative;
+  &:before {
+    content: '';
+    width: 19px;
+    height: 19px;
+    display: block;
+    @include transform-to-center();
+    background: url('../images/spritesheet.png') no-repeat;
+  }
 }
+
 .view-1:before {
-	width: nth($view-1, 5); height: nth($view-1, 6);
-	background-position: nth($view-1, 3) nth($view-1, 4);
+  width: nth($view-1, 5);
+  height: nth($view-1, 6);
+  background-position: nth($view-1, 3) nth($view-1, 4);
 }
+
 .view__item-1:hover .view-1:before {
-	width: nth($view-1-hover, 5); height: nth($view-1-hover, 6);
-	background-position: nth($view-1-hover, 3) nth($view-1-hover, 4);
+  width: nth($view-1-hover, 5);
+  height: nth($view-1-hover, 6);
+  background-position: nth($view-1-hover, 3) nth($view-1-hover, 4);
 }
+
 .view-2:before {
-	width: nth($view-2, 5); height: nth($view-2, 6);
-	background-position: nth($view-2, 3) nth($view-2, 4);
+  width: nth($view-2, 5);
+  height: nth($view-2, 6);
+  background-position: nth($view-2, 3) nth($view-2, 4);
 }
+
 .view__item-2:hover .view-2:before {
-	width: nth($view-2-hover, 5); height: nth($view-2-hover, 6);
-	background-position: nth($view-2-hover, 3) nth($view-2-hover, 4);
+  width: nth($view-2-hover, 5);
+  height: nth($view-2-hover, 6);
+  background-position: nth($view-2-hover, 3) nth($view-2-hover, 4);
 }
+
 .position {
-	&__top {
-		@include clearfix();
-	}
-	&__label {
-		font: 14px/15px $roboto_light;
-		color: #2e3641;
-    	letter-spacing: 1px;
-    	padding: 13px 15px;
-    	display: block;
-    	float: left;
-	}
-	&__top {
+  &__top {
+    @include clearfix();
+  }
+  &__label {
+    font: 14px/15px $roboto_light;
+    color: #2e3641;
+    letter-spacing: 1px;
+    padding: 13px 15px;
+    display: block;
+    float: left;
+  }
+  &__top {
 
-	}
-	&__bottom {
-		padding: 25px 16px;
-		@include clearfix();
-	}
-	$boxSize: 103px;
-	&__list {
-		float: left;
-		@include text-hide();
-		width: $boxSize;
-		height: $boxSize;
-		border-top: 1px solid #9eb2c0;			
+  }
+  &__bottom {
+    padding: 25px 16px;
+    @include clearfix();
+  }
+  $boxSize: 103px;
+  &__list {
+    position: relative;
+    float: left;
+    @include text-hide();
+    width: $boxSize;
+    height: $boxSize;
+    border-top: 1px solid #9eb2c0;
+    @include border-radius(2px);
+    &:before, &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      transform: translate(0, -50%);
+      border-top: 10px solid #f97e76;
+      width: $boxSize;
+      height: $boxSize;
+    }
+    &:after {
+      top: 0;
+      left: 0;
+      transform: translate(-50%, 0);
+      border-top: 0;
+      border-right: 10px solid #f97e76;
+    }
+  }
 
-	}
-	&__item {
-		@include inline-block(top);
-		border-right: 1px solid #9eb2c0;
-		border-bottom: 1px solid #9eb2c0;
-		&:nth-child(3n+1) {
-			border-left: 1px solid #9eb2c0;
-		}
-	}
+  &__item {
+    @include inline-block(top);
+    border-right: 1px solid #9eb2c0;
+    border-bottom: 1px solid #9eb2c0;
+    background: #dbe1e8;
+    &:nth-child(3n+1) {
+      border-left: 1px solid #9eb2c0;
+    }
+  }
 
-	&__link {
-		width: ($boxSize - 4) / 3;
-		height: ($boxSize - 4) / 3;
-		display: block;
-		position: relative;
-		background: #dbe1e8;
-		&:hover {
-			background: #f97e76;
-		}
-	}
+  &__link {
+    width: ($boxSize - 4) / 3;
+    height: ($boxSize - 4) / 3;
+    display: block;
+    position: relative;
+    &:hover {
+      background: #f97e76;
+    }
+  }
 }
-
-// .axis__list {
-// 	float: right;
-// }
-// .axis__item {
-// 	@include inline-block();
-// 	@include text-hide();
-// 	width: 25px;
-// 	height: 25px;
-// 	display: block;
-// }
 
 .axis__up,
-.axis__down{
-	float: right;
-	@include clearfix();
-	@include text-hide();
-}
 .axis__down {
-	margin-top: 13px;
+  float: right;
+  @include clearfix();
+  @include text-hide();
 }
+
+.axis__down {
+  margin-top: 13px;
+}
+
 .axis__x-a,
-.axis__y-a  {
-	width:45px;
-	height: 45px;
-	// display: block;
-	// @include inline-block();
-	float: left;
-	position: relative;
+.axis__y-a {
+  width: 45px;
+  height: 45px;
+  // display: block;
+  // @include inline-block();
+  float: left;
+  position: relative;
 }
+
 .axis__x-a:before,
 .axis__y-a:before {
-	content: '';
-	display: block;
+  content: '';
+  display: block;
 
-	position: absolute;
-	background-repeat: no-repeat;
-    background: url('../images/spritesheet.png');
+  position: absolute;
+  background-repeat: no-repeat;
+  background: url('../images/spritesheet.png');
 }
- .axis__x-a:before{
- 	right: 0;
- 	top: 50%;
- 	transform: translate(-50%, -50%);
-	width: nth($arrows-vertical, 5);
-    height: nth($arrows-vertical, 6);
-    background-position: nth($arrows-vertical, 3) nth($arrows-vertical, 4);
+
+.axis__x-a:before {
+  right: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: nth($arrows-vertical, 5);
+  height: nth($arrows-vertical, 6);
+  background-position: nth($arrows-vertical, 3) nth($arrows-vertical, 4);
 }
+
 .axis__y-a:before {
-	right: 0;
- 	top: 50%;
- 	transform: translate(0, -50%);
-    width: nth($arrows-horizontal, 5);
-    height: nth($arrows-horizontal, 6);
-    background-position: nth($arrows-horizontal, 3) nth($arrows-horizontal, 4);
+  right: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: nth($arrows-horizontal, 5);
+  height: nth($arrows-horizontal, 6);
+  background-position: nth($arrows-horizontal, 3) nth($arrows-horizontal, 4);
 }
+
 .axis__x-b,
 .axis__y-b {
-	width:45px;
-	height: 45px;
-	display: block;
-	float: left;
-	margin-left: 6px; 
+  width: 45px;
+  height: 45px;
+  display: block;
+  float: left;
+  margin-left: 6px;
 }
+
 .axis__x-input,
 .axis__y-input {
-	width:45px;
-	height: 45px;
-	border: 1px solid #ccc;
-	@include border-radius(5px);
-	outline: none;
-	padding: 8px;
-	font-family: "Segoe UI";
-	font-size: 24px;
-	color: #444a53;
+  width: 45px;
+  height: 45px;
+  border: 1px solid #ccc;
+  @include border-radius(5px);
+  outline: none;
+  padding: 8px;
+  font-family: $roboto_light;
+
+  font-size: 24px;
+  color: #444a53;
 }
+
 .axis__x-c,
 .axis__y-c {
-	width:13px;
-	height: 45px;
-	display: block;
-	float: left;
-	margin-left: 6px;
-	position: relative;
+  width: 13px;
+  height: 45px;
+  display: block;
+  float: left;
+  margin-left: 6px;
+  position: relative;
 }
-.axis__link { position: absolute }
+
+.axis__link {
+  position: absolute
+}
+
 .arrow__x-up,
-.arrow__y-up { top: 0 }
+.arrow__y-up {
+  top: 0
+}
+
 .arrow__x-down,
-.arrow__y-down { bottom: 0 }
+.arrow__y-down {
+  bottom: 0
+}
+
 .arrow__x-up,
 .arrow__x-down,
 .arrow__y-up,
 .arrow__y-down {
-	width:13px;
-	height: 8px;
-	&:before {
-	    content: '';
-	    display: block;
-	    position: absolute;
-	    background-repeat: no-repeat;
-	    @include transform-to-center();
-	    background: url('../images/spritesheet.png');
-	}
+  width: 13px;
+  height: 8px;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background-repeat: no-repeat;
+    @include transform-to-center();
+    background: url('../images/spritesheet.png');
+  }
 }
+
 .arrow__x-up:before,
 .arrow__y-up:before {
-    width: nth($st-sa, 5);
-    height: nth($st-sa, 6);
-    background-position: nth($st-sa, 3) nth($st-sa, 4);
+  width: nth($st-sa, 5);
+  height: nth($st-sa, 6);
+  background-position: nth($st-sa, 3) nth($st-sa, 4);
 }
+
 .arrow__x-down:before,
 .arrow__y-down:before {
-    width: nth($st-sd, 5);
-    height: nth($st-sd, 6);
-    background-position: nth($st-sd, 3) nth($st-sd, 4);
+  width: nth($st-sd, 5);
+  height: nth($st-sd, 6);
+  background-position: nth($st-sd, 3) nth($st-sd, 4);
 }
+
 .axis__x-item_up:hover .arrow__x-up:before {
-	background-position: nth($st-sa-hover, 3) nth($st-sa-hover, 4);
+  background-position: nth($st-sa-hover, 3) nth($st-sa-hover, 4);
 }
+
 .axis__x-item_down:hover .arrow__x-down:before {
-	background-position: nth($st-sd-hover, 3) nth($st-sd-hover, 4);
+  background-position: nth($st-sd-hover, 3) nth($st-sd-hover, 4);
 }
+
 .axis__y-item_up:hover .arrow__y-up:before {
-	background-position: nth($st-sa-hover, 3) nth($st-sa-hover, 4);
+  background-position: nth($st-sa-hover, 3) nth($st-sa-hover, 4);
 }
+
 .axis__y-item_down:hover .arrow__y-down:before {
-	background-position: nth($st-sd-hover, 3) nth($st-sd-hover, 4);
+  background-position: nth($st-sd-hover, 3) nth($st-sd-hover, 4);
 }
+
 // .arrow-x-up,
 // .arrow-x-down,
 // .arrow-y-up,

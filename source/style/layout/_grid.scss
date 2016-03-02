@@ -37,13 +37,14 @@ ul {
 .main-bar {
 	float: left;
 	width: $innerWidth - $sideBarWidth;
-	height: $innerHeight;
+	min-height: $innerHeight;
+	padding-bottom: 25px;
 	background: rgba(46,54,65,.64);
 }
 .side-bar {
 	float: right;
 	width: $sideBarWidth;
-	height: $innerHeight;
+	min-height: $innerHeight;
 	background: #fff;
 }
 .footer {

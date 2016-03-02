@@ -1,5 +1,6 @@
 @mixin border-radius($border) {
     border-radius: $border;
+
 }
 @mixin transform-to-center() {
     top: 50%;
@@ -16,6 +17,7 @@
 	display: inline-block;
     vertical-align: $align;
 }
+
 @mixin clearfix() {
     &:before,
     &:after {

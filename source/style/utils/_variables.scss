@@ -1,29 +1,30 @@
 // -----------------------------------------
   // Font Families
 // -----------------------------------------
-$alternative: Arial, sans-serif; //- Альтернативные шрифты
+$alternative: "Arial", 'sans-serif'; //- Альтернативные шрифты
 
-$roboto_black: "robotoblack" + ", " + $alternative;
-$roboto_black-italic: "robotoblack_italic" + ", " + $alternative;
+$roboto_black: "robotoblack", $alternative;
+$roboto_black-italic: "robotoblack_italic", $alternative;
 
-$roboto_bold: "robotobold" + ", " + $alternative;
-$roboto_bold_italic: "robotobold_italic" + ", " + $alternative;
+$roboto_bold: "robotobold", $alternative;
+$roboto_bold_italic: "robotobold_italic", $alternative;
 
-$roboto_condensed-regular: "roboto_condensedregular" + ", " + $alternative;
-$roboto_condensed-italic: "roboto_condenseditalic" + ", " + $alternative;
-$roboto_condensed-bold: "roboto_condensedbold" + ", " + $alternative;
-$roboto_condensed-bold_italic: "roboto_condensedbold_italic" + ", " + $alternative;
-$roboto_condensed-light: "roboto_condensedlight" + ", " + $alternative;
-$roboto_condensed-light_italic: "roboto_condensedlight_italic" + ", " + $alternative;
+$roboto_condensed-regular: "roboto_condensedregular", $alternative;
+$roboto_condensed-italic: "roboto_condenseditalic", $alternative;
+$roboto_condensed-bold: "roboto_condensedbold", $alternative;
+$roboto_condensed-bold_italic: "roboto_condensedbold_italic", $alternative;
+$roboto_condensed-light: "roboto_condensedlight", $alternative;
+$roboto_condensed-light_italic: "roboto_condensedlight_italic", $alternative;
 
-$roboto_light: "robotolight" + ", " + $alternative;
-$roboto_light_italic: "robotolight_italic" + ", " + $alternative;
+//$roboto_light: "robotolight";
+$roboto_light: "robotolight", $alternative;
+$roboto_light_italic: "robotolight_italic", $alternative;
 
-$roboto_medium: "robotomedium" + ", " + $alternative;
-$roboto_medium_italic: "robotomedium_italic" + ", " + $alternative;
+$roboto_medium: "robotomedium";
+$roboto_medium_italic: "robotomedium_italic", $alternative;
 
-$roboto_thin: "robotothin" + ", " + $alternative;
-$roboto_thin_italic: "robotothin_italic" + ", " + $alternative;
+$roboto_thin: "robotothin", $alternative;
+$roboto_thin_italic: "robotothin_italic", $alternative;
 // -----------------------------------------
   // Default Font
 // -----------------------------------------

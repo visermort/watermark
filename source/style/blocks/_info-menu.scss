@@ -20,7 +20,8 @@
 		text-align: center;
 		text-decoration: none;
 		padding-top: (69px/4)-10px;
-		font: 20px/20px "Segoe UI Light";
+		font: 20px/20px $roboto_light;
+
 		
 		&:hover {
 			color: #444a53;
