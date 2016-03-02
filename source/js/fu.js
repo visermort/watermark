@@ -8,7 +8,7 @@
     attachEvents();
 
     function init() {
-        forms = ['#img-upload', '#watermark-upload'];
+        forms = ['#image-upload__form', '#watermark__form'];
         fileUpload();
     }
 
@@ -19,11 +19,19 @@
 
         $.each(forms, function(index, item) {
 
-            var image = $(item).find('.test-img');
+            var mainImg = $('.main-bar__main-img'),
+                watermark = $('.main-bar__watermark'),
+                current;
+
+            if (item == '#image-upload__form') {
+                current = mainImg;
+            } else if (item == '#watermark__form') {
+                current = watermark;
+            }
 
             $(item).fileupload({
 
-                url: 'php/',
+                url: 'assets/php/',
                 disableImageResize: false,
                 process:[
                     {
@@ -63,7 +71,7 @@
                 done: function (e, data) {
                     var upload = data.result.files[0];
 
-                    image
+                    current
                         .attr('src', upload.url)
                         .show();
                 }
