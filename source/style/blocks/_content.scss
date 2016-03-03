@@ -1,7 +1,8 @@
 .main-bar__title {
 	font: 36px/36px $roboto_light;
 	color: #fff;
-	margin: 15px 20px;
+	margin: 17px 21px;
+	letter-spacing: -1.4px;
 }
 .main-bar__content {
 	width: $innerWidth - $sideBarWidth - 50px;
@@ -9,6 +10,7 @@
 	height: 535px;
 	background: #fff;
 	position: relative;
+	overflow: hidden;
 }
 
 .main-bar__main-img {
@@ -27,6 +29,7 @@
 	display: none;
 	max-width: 650px;
 	max-height: 535px;
+	cursor: pointer;
 }
 .main-bar__main-img {
 

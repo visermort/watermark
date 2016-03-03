@@ -1,12 +1,17 @@
 @mixin border-radius($border) {
+    -moz-border-radius: $border;
+    -webkit-border-radius: $border;
     border-radius: $border;
-
 }
 @mixin transform-to-center() {
+    position: absolute;
     top: 50%;
     left: 50%;
-    position: absolute;
-    transform: translate(-50%,-50%);
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    -moz-transform: translateY(-50%) translateX(-50%);
+    -ms-transform: translateY(-50%) translateX(-50%);
+    -o-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
 }
 @mixin text-hide() {
 	font: 0/0 serif;
@@ -28,7 +33,11 @@
         clear: both;
     }
 }
-
+@mixin box-sizing($box) {
+    -moz-box-sizing: $box;
+    -webkit-box-sizing: $box;
+    box-sizing: $box;
+}
 @mixin center {
     position: absolute;
     top: 50%;
@@ -38,4 +47,11 @@
     -ms-transform: translateY(-50%) translateX(-50%);
     -o-transform: translateY(-50%) translateX(-50%);
     transform: translateY(-50%) translateX(-50%);
+}
+@mixin range (){
+    border: 7px solid #dbe1e8;
+    border-radius: 50%;
+    background-color: #9eb2c0;
+    box-shadow: 1px 2px 2px rgba(0,0,0,0.38);
+    cursor: pointer;
 }

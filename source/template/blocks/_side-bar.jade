@@ -27,36 +27,39 @@ div.side-bar__container
                 label.position__label Положение
                 ul.view__list
                     li.view__item.view__item-1
-                        a(href="#").view__link.view-1 view 1
+                        a(href="#" attr="random").view__link.view-1 view 1
                     li.view__item.view__item-2
-                        a(href="#").view__link.view-2 view 2
+                        a(href="#" attr="custom").view__link.view-2.active-custom view 2
 
-            div.position__bottom
-                ul.position__list
-                    li.position__item.top-left 1
-                        a(href='#').position__link top left
-                    li.position__item.top 2
-                        a(href='#').position__link top middel
-                    li.position__item.top-right 3
-                        a(href='#').position__link top right
-                    li.position__item.center-left 4
-                        a(href='#').position__link center left
-                    li.position__item.cente 5
-                        a(href='#').position__link center middel
-                    li.position__item.center-right 6
-                        a(href='#').position__link center right
-                    li.position__item.bottom-left 7
-                        a(href='#').position__link bottom left
-                    li.position__item.bottom 8
-                        a(href='#').position__link bottom middel
-                    li.position__item.bottom-right 9
-                      a(href='#').position__link bottom right
+            div.position__bottom.view__random
+                div.pos-div
+                    ul.position__list
+                        li.position__item 1
+                            a(href='#').position__link.top-left top left
+                        li.position__item 2
+                            a(href='#').position__link.top top middel
+                        li.position__item 3
+                            a(href='#').position__link.top-right top right
+                        li.position__item 4
+                            a(href='#').position__link.center-left center left
+                        li.position__item 5
+                            a(href='#').position__link.center center middel
+                        li.position__item 6
+                            a(href='#').position__link.center-right center right
+                        li.position__item 7
+                            a(href='#').position__link.bottom-left bottom left
+                        li.position__item 8
+                            a(href='#').position__link.bottom bottom middel
+                        li.position__item 9
+                          a(href='#').position__link.bottom-right bottom right
+                    div.pos-div__axis.pos-div__y
+                    div.pos-div__axis.pos-div__x
 
                 .axis__up
                     .axis__x-a 
                         a(href='#').axis__l горизантально
                     .axis__x-b
-                        input(type="text" name="axis-x").axis__x-input
+                        input(type="text" name="axis-x" value='0').axis__x-input
                     ul.axis__x-c
                         li.axis__x-item_up
                             a(href='#').axis__link.arrow__x-up arrow up
@@ -65,7 +68,7 @@ div.side-bar__container
                 .axis__down
                     .axis__y-a горизантально
                     .axis__y-b
-                        input(type="text" name="axis-y").axis__y-input
+                        input(type="text" name="axis-y" value='0').axis__y-input
                     ul.axis__y-c
                         li.axis__y-item_up
                             a(href='#').axis__link.arrow__y-up arrow up
@@ -75,9 +78,9 @@ div.side-bar__container
     div.side-bar__transparency
         div.transparency
             div.transparency__top
-                label.transparency__label Прозрачность
+                div.transparency__header Прозрачность
             div.transparency__bottom
-                input(type="range" name="transparency__range" min="0" max="100" step="1" value="0").transparency__range
+                div(class="slider" data-min="0" data-max="1")
 
     div.side-bar__block
         div.inputs
