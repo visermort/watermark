@@ -10,6 +10,7 @@
 	height: 535px;
 	background: #fff;
 	position: relative;
+	overflow: hidden;
 }
 
 .main-bar__main-img {
@@ -28,6 +29,7 @@
 	display: none;
 	max-width: 650px;
 	max-height: 535px;
+	cursor: pointer;
 }
 .main-bar__main-img {
 
