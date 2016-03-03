@@ -37,7 +37,6 @@
     &__wrapper {
         @include clearfix();
         @include text-hide();
-        box-sizing: border-box;
         cursor: pointer;
     }
     &__txt {

@@ -1,8 +1,6 @@
 (function() {
   'use strict';
 
-$(document).ready(function() {
-
 	$('.axis__x-input').on('keyup', function(){
 		
 		var $this = $(this).val();
@@ -37,6 +35,24 @@ $(document).ready(function() {
 		console.log(rmActive);
 	});
 
-});
+
+
+
+    $('#image-upload').on('change', function() {
+        console.log('poject file change is active');
+
+        var $this = $(this),
+            file_name = $this.val();
+
+        console.log($this.val());
+
+	    // if (!/(\.bmp|\.gif|\.jpg|\.jpeg|\.png)$/i.test(file_name)) {
+	    //     alert('Вы пытаетесь загрузить файл который не является картинкой!');
+	    //     document.getElementById('image_p').value = '';
+	    //     return false;
+	    // }
+
+        $('.image-upload__txt').text($this.val());
+    });
 
 })();

@@ -147,9 +147,9 @@ $boxSize: 103px;
   outline: none;
   padding: 8px;
   font-family: $roboto_light;
-
-  font-size: 24px;
+  font-size: 16px;
   color: #444a53;
+  text-align: center;
 }
 
 .axis__x-c,
@@ -242,6 +242,9 @@ $boxSize: 103px;
             &:hover {
               background: #f97e76;
             }
+        }
+        &__link-active {
+          background: #f97e76;
         }
     }
 
