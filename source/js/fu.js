@@ -15,6 +15,8 @@
     function attachEvents() {
     }
 
+
+
     function fileUpload () {
 
         $.each(forms, function(index, item) {
@@ -31,7 +33,7 @@
 
             $(item).fileupload({
 
-                url: 'assets/php/',
+                url: 'assets/php/fileupload.php',
                 disableImageResize: false,
                 process:[
                     {
@@ -71,13 +73,48 @@
 
                 done: function (e, data) {
                     var upload = data.result.files[0];
-
+                    console.log(e.target.id, upload.url);
                     current
                         .attr('src', upload.url)
                         .show();
+                    var jsonData = { 'formId': e.target.id , 'fileUlr' : upload.url };
+                    $.ajax({ //данные о загруженном файле снова отправляем на сервер
+                        url : 'assets/php/writesession.php',
+                        type:"POST",
+                        dataType: "json",
+                        data: jsonData
+                    }).done( function(response) {
+                            console.log(response);
+                        } )
+                        .fail ( function(response) {
+                            console.log(response);
+                        } );
+
                 }
             });
         });
     }
 
 })();
+
+
+
+$(document).ready(function (){
+    $('.inputs__download').on('click',function(e){
+            e.preventDefault();
+            console.log('Команда серверу на склейку');
+            var jsonData = { watemarkTop: 0 , watemarkLeft: 0 }; //сюда ещё данные - прозрачность и всё такое
+            console.log(jsonData);
+            $.ajax({ //данные о загруженном файле снова отправляем на сервер
+                url : 'assets/php/filedownload.php',
+                type:"POST",
+                dataType: "json",
+                data: jsonData
+            }).done( function(response) {
+                    console.log(response);
+                } )
+                .fail ( function(response) {
+                    console.log(response);
+                } );
+    });
+});
