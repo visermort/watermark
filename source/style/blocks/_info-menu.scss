@@ -1,7 +1,8 @@
 
 .info-menu {
 	position: absolute;
-	top: 100px;
+	z-index: 99999;
+	top: 94px;
 }
 .lang {
 	&__list {

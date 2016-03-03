@@ -9,5 +9,8 @@
   "dependencies": {
     "jquery": "2.1.3",
     "blueimp-file-upload": "fileupload#~9.12.1"
+  },
+  "devDependencies": {
+    "jquery": "^2.2.1"
   }
 }
