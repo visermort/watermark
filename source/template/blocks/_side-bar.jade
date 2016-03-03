@@ -75,9 +75,9 @@ div.side-bar__container
     div.side-bar__transparency
         div.transparency
             div.transparency__top
-                label.transparency__label Прозрачность
+                div.transparency__header Прозрачность
             div.transparency__bottom
-                input(type="range" name="transparency__range" min="0" max="100" step="1" value="0").transparency__range
+                div(class="slider" data-min="0" data-max="1")
 
     div.side-bar__block
         div.inputs
