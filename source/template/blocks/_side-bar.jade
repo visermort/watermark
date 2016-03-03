@@ -5,18 +5,20 @@ div.side-bar__container
     div.side-bar__upload
         
         div.image-upload
-            label(for="image-upload").image-upload__label Исходное изображение
-            label(for="image-upload").image-upload__wrapper
-                div.image-upload__txt
-                div.image-upload__ico
-                    input(type="file" name="image-upload" id="image-upload").image-upload__input
+            form(class="image-upload__form" id="image-upload__form" action="#" method="POST" enctype="multipart/form-data")
+                label(for="image-upload").image-upload__label Исходное изображение
+                label(for="image-upload").image-upload__wrapper
+                    div.image-upload__txt
+                    div.image-upload__ico
+                        input(type="file" name="files[]" id="image-upload" multiple).image-upload__input
 
         div.watermark
-            label(for="watermark").watermark__label Водяной знак
-            label(for="watermark").watermark__wrapper
-                div.watermark__txt
-                div.watermark__ico
-                    input(type="file" name="watermark" id="watermark").watermark__input
+            form(class="watermark__form" id="watermark__form" action="#" method="POST" enctype="multipart/form-data")
+                label(for="watermark").watermark__label Водяной знак
+                label(for="watermark").watermark__wrapper
+                    div.watermark__txt
+                    div.watermark__ico
+                        input(type="file" name="files[]" id="watermark" multiple).watermark__input
 
     div.side-bar__position
 

@@ -8,4 +8,29 @@
 	margin: 60px auto 0;
 	height: 535px;
 	background: #fff;
+	position: relative;
+}
+
+.main-bar__main-img {
+	display: none;
+	max-width: 650px;
+	max-height: 535px;
+	position: relative;
+
+}
+.main-bar__img-main{
+	display: block;
+	@include center;
+}
+
+.main-bar__watermark {
+	display: none;
+	max-width: 650px;
+	max-height: 535px;
+}
+.main-bar__main-img {
+
+}
+.main-bar__watermark {
+	position: absolute;
 }
