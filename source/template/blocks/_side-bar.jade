@@ -27,30 +27,33 @@ div.side-bar__container
                 label.position__label Положение
                 ul.view__list
                     li.view__item.view__item-1
-                        a(href="#").view__link.view-1 view 1
+                        a(href="#" attr="random").view__link.view-1 view 1
                     li.view__item.view__item-2
-                        a(href="#").view__link.view-2 view 2
+                        a(href="#" attr="custom").view__link.view-2.active-custom view 2
 
-            div.position__bottom
-                ul.position__list
-                    li.position__item.top-left 1
-                        a(href='#').position__link top left
-                    li.position__item.top 2
-                        a(href='#').position__link top middel
-                    li.position__item.top-right 3
-                        a(href='#').position__link top right
-                    li.position__item.center-left 4
-                        a(href='#').position__link center left
-                    li.position__item.cente 5
-                        a(href='#').position__link center middel
-                    li.position__item.center-right 6
-                        a(href='#').position__link center right
-                    li.position__item.bottom-left 7
-                        a(href='#').position__link bottom left
-                    li.position__item.bottom 8
-                        a(href='#').position__link bottom middel
-                    li.position__item.bottom-right 9
-                      a(href='#').position__link bottom right
+            div.position__bottom.view__random
+                div.pos-div
+                    ul.position__list
+                        li.position__item.top-left 1
+                            a(href='#').position__link top left
+                        li.position__item.top 2
+                            a(href='#').position__link top middel
+                        li.position__item.top-right 3
+                            a(href='#').position__link top right
+                        li.position__item.center-left 4
+                            a(href='#').position__link center left
+                        li.position__item.cente 5
+                            a(href='#').position__link center middel
+                        li.position__item.center-right 6
+                            a(href='#').position__link center right
+                        li.position__item.bottom-left 7
+                            a(href='#').position__link bottom left
+                        li.position__item.bottom 8
+                            a(href='#').position__link bottom middel
+                        li.position__item.bottom-right 9
+                          a(href='#').position__link bottom right
+                    div.pos-div__axis.pos-div__y
+                    div.pos-div__axis.pos-div__x
 
                 .axis__up
                     .axis__x-a 

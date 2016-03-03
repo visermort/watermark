@@ -14,12 +14,15 @@ ul {
 	list-style: none;
 }
 *{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
 .wrapper {
-	height: 100%;
+	min-height: 100%;
 	width: 100%;
 	min-width: $innerWidth;
+	margin-top: -$footerHeight;
 	position: relative;
 }
 .wrapper:after {
@@ -52,5 +55,4 @@ ul {
 	position: absolute;
 	height: $footerHeight;
 	min-width: $innerWidth;
-	margin-top: -$footerHeight;
 }
