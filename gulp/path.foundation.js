@@ -10,6 +10,6 @@ module.exports = [
   './bower_components/blueimp-file-upload/js/jquery.fileupload-process.js',
   './bower_components/blueimp-file-upload/js/jquery.fileupload-image.js',
   './bower_components/blueimp-file-upload/js/jquery.fileupload-validate.js',
-  './bower_components/blueimp-file-upload/js/jquery.fileupload-ui.js'
-
+  './bower_components/blueimp-file-upload/js/jquery.fileupload-ui.js',
+  './bower_components/jquery-ui/jquery-ui.js'
 ];
