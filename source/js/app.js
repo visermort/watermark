@@ -1,20 +1,20 @@
 (function() {
-  'use strict';
+	'use strict';
 
-$(document).ready(function() {
-
-	$('.axis__x-input').on('keyup', function(){
+	// $('#image-upload').on('change', function(){
+	// 	var $this = $(this),
+	// 		imgPath = $this.val(),
+	// 		input = $('.image-upload__ico').parent($this);
 		
-		var $this = $(this).val();
-
-		console.log($this);
+	// 	// console.log($this);
+	// 	// console.log(imgPath);
+	// 	// console.log(input);
 		
-		$('.pos-div__x').css({'height': $this});
-
-	});
+	// 	$('.image-upload__txt').text(imgPath);
+	// });
 
 	$('.view__link').on('click', function(event){
-		
+
 		event.preventDefault();
 		var $this = $(this),
 			attr = $this.attr('attr'),
@@ -36,7 +36,5 @@ $(document).ready(function() {
 		
 		console.log(rmActive);
 	});
-
-});
 
 })();
