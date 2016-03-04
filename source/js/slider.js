@@ -17,7 +17,8 @@
 		    	min = min || $slider.data('min'),
 		    	max = max || $slider.data('max'),
 		    	step = step || .01,
-		    	value = value || 1;
+		    	value = value || -1,
+		    	opacity;
 
 		    	$slider.slider({
 		    		min: min,
@@ -27,7 +28,8 @@
 		      		step: step,
 
 		      		slide: function( event, ui ) {
-		        		$target.css('opacity', ui.value);
+		      			opacity = -ui.value;	      			
+		        		$target.css('opacity', opacity);
 		      		}
 		    	});
 	    	}
@@ -38,3 +40,4 @@
 })();
 
 sliderModule.sliderInit('.slider', '.main-bar__watermark');
+

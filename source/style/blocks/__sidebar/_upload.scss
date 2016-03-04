@@ -47,6 +47,12 @@
       height: 27px;
       width: 181px;
       @include border-radius(5px 0 0 5px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: rgb(158, 178, 192);
+      padding-left: 5px;
+      white-space: nowrap;
+      font: 12px/27px $roboto_light;
     }    
     &__ico {
         display: inline-block;
