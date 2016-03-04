@@ -1,18 +1,20 @@
 (function() {
-  'use strict';
+	'use strict';
 
-	$('.axis__x-input').on('keyup', function(){
+	// $('#image-upload').on('change', function(){
+	// 	var $this = $(this),
+	// 		imgPath = $this.val(),
+	// 		input = $('.image-upload__ico').parent($this);
 		
-		var $this = $(this).val();
-
-		console.log($this);
+	// 	// console.log($this);
+	// 	// console.log(imgPath);
+	// 	// console.log(input);
 		
-		$('.pos-div__x').css({'height': $this});
-
-	});
+	// 	$('.image-upload__txt').text(imgPath);
+	// });
 
 	$('.view__link').on('click', function(event){
-		
+
 		event.preventDefault();
 		var $this = $(this),
 			attr = $this.attr('attr'),
@@ -34,25 +36,5 @@
 		
 		console.log(rmActive);
 	});
-
-
-
-
-    $('#image-upload').on('change', function() {
-        console.log('poject file change is active');
-
-        var $this = $(this),
-            file_name = $this.val();
-
-        console.log($this.val());
-
-	    // if (!/(\.bmp|\.gif|\.jpg|\.jpeg|\.png)$/i.test(file_name)) {
-	    //     alert('Вы пытаетесь загрузить файл который не является картинкой!');
-	    //     document.getElementById('image_p').value = '';
-	    //     return false;
-	    // }
-
-        $('.image-upload__txt').text($this.val());
-    });
 
 })();
