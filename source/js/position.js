@@ -29,7 +29,7 @@ var module= (function () {
             heightMiniPicture = miniPicture.height(),
             widthMiniPicture = miniPicture.width();
 
-        miniPicture.css({'top': 0, 'left': 0});
+        //miniPicture.css({'top': 0, 'left': 0});
 
         switch (position){
             case 'top-left':
@@ -77,7 +77,7 @@ var module= (function () {
                 _clearActive();
                 $this.addClass('position__link-active');
                 break;
-            default: miniPicture.css({'top': 0, 'left': 0});
+            default: miniPicture.css({'top': miniPicture.position().top, 'left': miniPicture.position().left});
         }
 
         _showPosition();
@@ -128,6 +128,7 @@ var module= (function () {
             topPosition = $('.axis__y-input')[0].value;
         self.style.top = topPosition + 'px';
         if(topPosition > heightMainPicture-heightMiniPicture){
+            $('.axis__y-input')[0].value = heightMainPicture-heightMiniPicture;
             self.style.top = heightMainPicture-heightMiniPicture + 'px';
         } else {
             self.style.top = topPosition + 'px';
@@ -149,6 +150,7 @@ var module= (function () {
             widthMiniPicture = miniPicture.width(),
             leftPosition = $('.axis__x-input')[0].value;
         if(leftPosition > widthMainPicture-widthMiniPicture){
+            $('.axis__x-input')[0].value = widthMainPicture-widthMiniPicture;
             self.style.left = widthMainPicture-widthMiniPicture + 'px';
         } else {
             self.style.left = leftPosition + 'px';
@@ -198,12 +200,32 @@ var module= (function () {
 
                 if(Math.floor(e.pageX - mainPictureLeft -shiftX) <= 0){
                     miniPicture.style.left = '0px';
+                    miniPicture.style.top = Math.floor(e.pageY - mainPictureTop - shiftY) + 'px';
+                    _showPosition()
+                    if(Math.floor(e.pageY - mainPictureTop - shiftY) <= 0){
+                        miniPicture.style.top = '0px';
+                        _showPosition();}
+                    if(Math.floor(e.pageY - mainPictureTop - shiftY) >= heightMainPicture - heightMiniPicture){
+                        miniPicture.style.top = heightMainPicture - heightMiniPicture + 'px';
+                        _showPosition();}
                 } else if(Math.floor(e.pageY - mainPictureTop - shiftY) <= 0){
                     miniPicture.style.top = '0px';
+                    miniPicture.style.left = Math.floor(e.pageX - mainPictureLeft -shiftX) + 'px';
+                    _showPosition()
+                    if(Math.floor(e.pageX - mainPictureLeft -shiftX) >= widthMainPicture - widthMiniPicture){
+                        miniPicture.style.left = widthMainPicture-widthMiniPicture + 'px';
+                        _showPosition();}
                 } else if(Math.floor(e.pageX - mainPictureLeft -shiftX) >= widthMainPicture - widthMiniPicture){
                     miniPicture.style.left = widthMainPicture-widthMiniPicture + 'px';
+                    miniPicture.style.top = Math.floor(e.pageY - mainPictureTop - shiftY) + 'px';
+                    _showPosition()
+                    if(Math.floor(e.pageY - mainPictureTop - shiftY) >= heightMainPicture - heightMiniPicture){
+                        miniPicture.style.top = heightMainPicture - heightMiniPicture + 'px';
+                        _showPosition();}
                 } else if(Math.floor(e.pageY - mainPictureTop - shiftY) >= heightMainPicture - heightMiniPicture){
                     miniPicture.style.top = heightMainPicture - heightMiniPicture + 'px';
+                    miniPicture.style.left = Math.floor(e.pageX - mainPictureLeft -shiftX) + 'px';
+                    _showPosition();
                 } else {
                 miniPicture.style.left = Math.floor(e.pageX - mainPictureLeft -shiftX) + 'px';
                 miniPicture.style.top = Math.floor(e.pageY - mainPictureTop - shiftY) + 'px';
@@ -216,7 +238,7 @@ var module= (function () {
                moveAt(e);
 
         }
-            miniPicture.onmouseup = function () {
+            document.onmouseup = function () {
                 document.onmousemove = self.onmouseup = null;
             }
         };
