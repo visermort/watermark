@@ -73,7 +73,7 @@
 
                 done: function (e, data) {
                     var upload = data.result.files[0];
-                    console.log(e.target.id, upload.url);
+//                    console.log(e.target.id, upload.url);
                     current
                         .attr('src', upload.url)
                         .show();
@@ -84,10 +84,14 @@
                         dataType: "json",
                         data: jsonData
                     }).done( function(response) {
-                            console.log(response);
+                            console.log(response['status'],response['message']);
+                            if(!response['status']) {
+                                console.log(response['message']);//это сообщение нужно вывести в popup - какая-то ошибка
+                            }
                         } )
                         .fail ( function(response) {
                             console.log(response);
+                            //так же вывести в popup сообщение  - ошибка работы с удалённым сервером
                         } );
 
                 }
@@ -98,23 +102,3 @@
 })();
 
 
-
-$(document).ready(function (){
-    $('.inputs__download').on('click',function(e){
-            e.preventDefault();
-            console.log('Команда серверу на склейку');
-            var jsonData = { watemarkTop: 0 , watemarkLeft: 0 }; //сюда ещё данные - прозрачность и всё такое
-            console.log(jsonData);
-            $.ajax({ //данные о загруженном файле снова отправляем на сервер
-                url : 'assets/php/filedownload.php',
-                type:"POST",
-                dataType: "json",
-                data: jsonData
-            }).done( function(response) {
-                    console.log(response);
-                } )
-                .fail ( function(response) {
-                    console.log(response);
-                } );
-    });
-});

@@ -52,4 +52,4 @@ $mainImage -> overlay($watermarkImage, 'top left', $opacity, $left, $top ) ->  s
 
 exit( json_encode(array( 'status' => true ,
     'url' =>$settings['phpPath'].$newFileName ,
-    'message' => 'Склейка изображения выполнена, файл отдан на скачивание' )));
+    'message' => 'Склейка изображения выполнена' )));
