@@ -5,8 +5,11 @@ $(document).ready(function (){
         e.preventDefault();
         console.log('Команда серверу на склейку');
         var jsonData = {//сюда ещё данные - прозрачность, пропорции, и всё такое
-            watemarkTop: 0 ,
-            watemarkLeft: 0
+            top: $('.axis__y-input')[0].value ,
+            left: $('.axis__x-input')[0].value,
+            opacity: $('.main-bar__watermark').css('opacity'),
+            watemarkWidth: $('.main-bar__watermark')[0].width,
+            imgWidth: $('.main-bar__main-img')[0].width
         };
         console.log(jsonData);
         $.ajax({

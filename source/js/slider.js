@@ -16,7 +16,7 @@
 	    		$target = $(target),
 		    	min = min || $slider.data('min'),
 		    	max = max || $slider.data('max'),
-		    	step = step || .1,
+		    	step = step || .01,
 		    	value = value || 1;
 
 		    	$slider.slider({
