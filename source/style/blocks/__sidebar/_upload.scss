@@ -33,19 +33,25 @@
       margin-bottom: 8px;
       display: block;
       cursor: pointer;
+      @include clearfix();
     }
     &__wrapper {
         @include clearfix();
         @include text-hide();
-        box-sizing: border-box;
         cursor: pointer;
     }
+    &__txt,
+    &__ico {
+        float: left;
+        height: 27px;
+        font: 12px/14px $roboto_light;
+        color: #2e3641;
+        border: 1px solid #9eb2c0;
+    }
     &__txt {
-      display: inline-block;
-      border: 1px solid #9eb2c0;
       border-right: none;
-      height: 27px;
       width: 181px;
+      padding: ((27px / 2) - 7px) 15px;
       @include border-radius(5px 0 0 5px);
       overflow: hidden;
       text-overflow: ellipsis;
@@ -55,10 +61,8 @@
       font: 12px/27px $roboto_light;
     }    
     &__ico {
-        display: inline-block;
         position: relative;
         border-left: none;
-        height: 27px;
         width: 39px;
         background: $colorOrange;
         @include border-radius(0 5px 5px 0);
