@@ -77,6 +77,7 @@
                     current
                         .attr('src', upload.url)
                         .show();
+
                     var jsonData = { 'formId': e.target.id , 'fileUlr' : upload.url };
                     $.ajax({ //данные о загруженном файле снова отправляем на сервер
                         url : 'assets/php/writesession.php',
@@ -93,7 +94,6 @@
                             console.log(response);
                             //так же вывести в popup сообщение  - ошибка работы с удалённым сервером
                         } );
-
                 }
             });
         });
