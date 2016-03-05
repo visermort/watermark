@@ -4,14 +4,15 @@ div.info-menu
             - var lang = ['РУС', 'ENG']
             - var lang_suffix = ['ru', 'en']
             each val, index in lang
-                li(class="lang__item item__#{lang_suffix[val]}")
-                    a(href="#").lang__link= val
+                li(class="lang__item item__#{lang_suffix[index]}")
+                    a(href="#" lang="#{lang_suffix[index]}").lang__link= val
 
     div.social
         a(href="#").social__title Like
         ul.social__list
+            - var links = ['http://www.facebook.com/sharer.php?u=http://watermark.technofreedom.ru','http://twitter.com/home?status=http://watermark.technofreedom.ru','http://vk.com/share.php?url=http://watermark.technofreedom.ru']
             - var social = ['Facebook', 'Twitter', 'Vkontakte']
             - var social_suffix = ['fb', 'tw', 'vk']
             each val, index in social
                 li(class="social__item social__item_#{social_suffix[index]}")
-                    a(href="#" class="social__link social__#{social_suffix[index]}")= val
+                    a(href="#{links[index]}" target="_blank" class="social__link social__#{social_suffix[index]}")= val

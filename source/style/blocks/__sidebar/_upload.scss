@@ -51,12 +51,11 @@
     &__txt {
       border-right: none;
       width: 181px;
-      padding: ((27px / 2) - 7px) 15px;
       @include border-radius(5px 0 0 5px);
       overflow: hidden;
       text-overflow: ellipsis;
       color: rgb(158, 178, 192);
-      padding-left: 5px;
+      padding-left: 10px;
       white-space: nowrap;
       font: 12px/27px $roboto_light;
     }    
