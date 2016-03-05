@@ -6,6 +6,8 @@ include ('lib/abeautifulsite/SimpleImage.php');
 include ('settings.php');
 
 
+
+
 session_start(); //обращение к сессии
 
 if (!$_SESSION or !$_SESSION['imageFile'] or !$_SESSION['watermarkFile']) {
@@ -54,8 +56,10 @@ $mainImage -> overlay($watermarkImage, 'top left', $opacity, $left, $top ) ->  s
 
 //getFileToDownload($newFileName);
 
+header("content-type: application/json");
 exit( json_encode(array( 'status' => true ,
-    'url' =>$settings['phpPath'].$newFileName ,
+    'url' => $settings['phpPath'].$newFileName ,
+    'fullUrl' => $_SERVER['HTTP_ORIGIN'].'/'.$settings['phpPath'].$newFileName ,
     'message' => 'Склейка изображения выполнена', //далее это всё выводим для отладки
     'with' =>  $imageWidth,
     'watermarkwidth' => $watemarkWidth,
