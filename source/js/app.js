@@ -1,18 +1,61 @@
 (function() {
 	'use strict';
+	
+	function getCookie(name) {
+		var r = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
+		if (r) return r[2];
+		else return "";
+	}
+	function setCookie(lang_attr) {
+		return document.cookie = "lang" + "=" + lang_attr;
+	}
 
-	// $('#image-upload').on('change', function(){
-	// 	var $this = $(this),
-	// 		imgPath = $this.val(),
-	// 		input = $('.image-upload__ico').parent($this);
-		
-	// 	// console.log($this);
-	// 	// console.log(imgPath);
-	// 	// console.log(input);
-		
-	// 	$('.image-upload__txt').text(imgPath);
-	// });
+	function setLang(lang_attr) {
+		var arr = ['main-bar__title','side-bar__title','image-upload__label','watermark__label','image-upload__txt','watermark__txt','position__label','transparency__header','inputs__reset','inputs__download','copyright'],	
+			arr_ru = ['Генератор водяных знаков','Настройки','Исходное изображение','Водяной знак','Выберите изображение','Выберите водяной знак','Положение','Прозрачность','Сброс','Скачать','© 2016, Это мой сайт, пожалуйста, не копируйте и не воруйте его'],
+			arr_en = ['Watermarks generator','Settings','Original image','Watermark','Select a image','select a watermark','Place','Transparency','Reset','Download','© 2016 This is my site, do not even think to steal it'],
+			lang = (lang_attr == 'ru') ? arr_ru : arr_en;
 
+		jQuery.each( arr, function( index, value  ) {
+			$( "." + value ).text( lang[index]);
+		});
+	}
+
+	var langFromCookie = getCookie("lang");
+
+	if (langFromCookie){ setLang(langFromCookie) }
+
+	console.log(langFromCookie);
+
+
+	$('.lang__link').on('click', function(event){
+		
+		event.preventDefault();
+
+		var $this = $(this),
+			lang_attr = $this.attr('lang');
+
+		// if( lang_attr != langFromCookie ) {
+			setLang(lang_attr);
+			setCookie(lang_attr);
+		// }
+
+	});
+
+
+	//----- социальные сети
+	$('.social__link').on('click', function(event) {
+		event.preventDefault();
+		
+		var $this = $(this),
+			url = $this.attr('href');
+
+		var newWin = window.open(url, "hello", "width=836,height=445");
+
+		console.log(url);
+	});
+
+	//----- переключатель режима позицианирование по осям x & y
 	$('.view__link').on('click', function(event){
 
 		event.preventDefault();
