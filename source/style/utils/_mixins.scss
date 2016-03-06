@@ -55,3 +55,47 @@
     box-shadow: 1px 2px 2px rgba(0,0,0,0.38);
     cursor: pointer;
 }
+
+@mixin sprite-icon() {
+    //-- Переменная для класса в котором будетр храниться кнопка
+    $contaiter-element: 'social__item_';
+    //-- Переменная для класса кнопки
+    $content-element: 'social__';
+    //-- Массив с именами для классов кнопки
+    $icons: ('fb', 'tw', 'vk'); 
+    //-- Переменная с массивами данные о спрайтах
+    //-- данные создаются плагином "gilp.spritesmith"
+    $icons-variable: ($fb, $tw, $vk);
+    //-- Переменная с массивами данные о спрайтах
+    //-- картинки которые будут отображаться при наведение мышки на кнопку
+    $icons-variable-hover: ($fb-hover, $tw-hover, $vk-hover);
+
+    //-- Саздаем класс для вывода картинки
+    $i: 1;
+    @each $val in $icons-variable {
+      //-- назначаем имя класс - значение беется из массива
+      $class-name: nth($icons, $i);
+      .#{$content-element}#{$class-name}:before {
+        //-- указываем ширину картинки - 5 элемент в массива
+        width: nth($val, 5); 
+        //-- указываем высоту а картинки - 6 элемент в массива
+        height: nth($val, 6);
+         //-- определяем местоположение картинки по осям X & Y
+        //-- значения берем из масива - 3й и 4й элемент
+        background-position: nth($val, 3) nth($val, 4);
+      }
+      $i: $i + 1;
+    }
+    //-- Саздаем класс для вывода картинки при "ховер" эфекте
+    $b: 1;
+    @each $val in $icons-variable-hover {
+      //-- назначаем имя класс - значение беется из массива
+      $class-name: nth($icons, $b);
+      .#{$contaiter-element}#{$class-name}:hover .#{$content-element}#{$class-name}:before {
+         //-- определяем местоположение картинки по осям X & Y
+        //-- значения берем из масива - 3й и 4й элемент
+        background-position: nth($val, 3) nth($val, 4);
+      }
+      $b: $b + 1;
+    }
+}

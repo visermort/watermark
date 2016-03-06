@@ -16,7 +16,10 @@ $(document).ready(function (){
             url : 'assets/php/filedownload.php',
             type:"POST",
             dataType: "json",
-            data: jsonData
+            data: jsonData,
+            beforeSend: function() {
+                $('.loading').show();
+            };
         }).done( function(response) {
                 console.log(response);
                 var url = response['url'],
