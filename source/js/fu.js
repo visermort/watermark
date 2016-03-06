@@ -53,6 +53,7 @@
                 ],
 
                 add: function(e, data) {
+
                     if (!~data.files[0].type.indexOf('image')) {
                         console.log('Загрузите картинку');
                     } else if (data.files[0].size > 4000000) {
@@ -84,28 +85,31 @@
                     current
                         .attr('src', upload.url)
                         .show();
-                    var jsonData = { 'formId': e.target.id , 'fileUlr' : upload.url };
-                    $.ajax({ //данные о загруженном файле снова отправляем на сервер
-                        url : 'assets/php/writesession.php',
-                        type:"POST",
-                        dataType: "json",
-                        data: jsonData
-                    }).done( function(response) {
-                            console.log(response['status'],response['message']);
-                            if(!response['status']) {
-                                console.log(response['message']);//это сообщение нужно вывести в popup - какая-то ошибка
-                            }
-                        } )
-                        .fail ( function(response) {
-                            console.log(response);
-                            //так же вывести в popup сообщение  - ошибка работы с удалённым сервером
-                        } );
 
+                    current.get(0).onload = function() {
+                        watermarkSize.change(mainImg, watermark);
+                    }; 
+                    // //запись в сессию больше не делаем
+                    //var jsonData = { 'formId': e.target.id , 'fileUlr' : upload.url };
+                    //
+                    //$.ajax({ //данные о загруженном файле снова отправляем на сервер
+                    //    url : 'assets/php/writesession.php',
+                    //    type:"POST",
+                    //    dataType: "json",
+                    //    data: jsonData
+                    //}).done(function(response) {
+                    //        console.log(response['status'],response['message']);
+                    //        if (!response['status']) {
+                    //            console.log(response['message']);//это сообщение нужно вывести в popup - какая-то ошибка
+                    //        }
+                    //}).fail (function(response) {
+                    //    console.log(response);
+                    //    //так же вывести в popup сообщение  - ошибка работы с удалённым сервером
+                    //});
                 }
             });
         });
     }
 
 })();
-
 

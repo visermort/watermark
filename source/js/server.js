@@ -9,7 +9,9 @@ $(document).ready(function (){
             left: $('.axis__x-input')[0].value,
             opacity: $('.main-bar__watermark').css('opacity'),
             watemarkWidth: $('.main-bar__watermark')[0].width,
-            imgWidth: $('.main-bar__main-img')[0].width
+            imgWidth: $('.main-bar__main-img')[0].width,
+            watermarkPath: $('.main-bar__watermark').attr('src'),
+            imgPath: $('.main-bar__main-img').attr('src')
         };
         console.log(jsonData);
         $.ajax({
@@ -19,15 +21,17 @@ $(document).ready(function (){
             data: jsonData,
             beforeSend: function() {
                 $('.loading').show();
-            };
+            }
         }).done( function(response) {
-            $('.loading').hide();
+                $('.loading').hide();
                 console.log(response);
-                var url = response['url'],
-                    fullUrl = response['fullUrl'];
-                console.log(url);//путь к картинке - нужно вывести её на показ в слой
+                var url = response['url'];
+                    //,fullUrl = response['fullUrl']
+                console.log(url);//путь к картинке
                 window.downloadFile(url);
+
                 //в этом месте нужно выводить
+
             } )
             .fail ( function(response) {
                 console.log(response); //вывести в popup сообщение  - ошибка работы с удалённым сервером
