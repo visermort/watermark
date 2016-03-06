@@ -21,14 +21,13 @@ $(document).ready(function (){
                 $('.loading').show();
             };
         }).done( function(response) {
+            $('.loading').hide();
                 console.log(response);
                 var url = response['url'],
                     fullUrl = response['fullUrl'];
                 console.log(url);//путь к картинке - нужно вывести её на показ в слой
                 window.downloadFile(url);
                 //в этом месте нужно выводить
-
-
             } )
             .fail ( function(response) {
                 console.log(response); //вывести в popup сообщение  - ошибка работы с удалённым сервером
