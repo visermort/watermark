@@ -21,8 +21,9 @@ $(document).ready(function (){
             data: jsonData,
             beforeSend: function() {
                 $('.loading').show();
-            };
+            }
         }).done( function(response) {
+                $('.loading').hide();
                 console.log(response);
                 var url = response['url'];
                     //,fullUrl = response['fullUrl']
