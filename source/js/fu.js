@@ -72,7 +72,14 @@
                     }
                 },
 
+                beforeSend: function() {
+                    $('.loading').show();
+                },
+
                 done: function (e, data) {
+                    
+                    $('.loading').hide();
+
                     var upload = data.result.files[0];
 //                    console.log(e.target.id, upload.url);
                     current

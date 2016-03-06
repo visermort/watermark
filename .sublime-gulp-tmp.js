@@ -15,8 +15,6 @@ var $ = {
   gulp: require('gulp'),
   rimraf: require('rimraf'),
   browserSync: require('browser-sync').create(),
-  sprite: require('gulp.spritesmith'),
-  merge: require('merge-stream'),
   gp: require('gulp-load-plugins')({
     rename: {
       'gulp-replace-task': 'replace'
@@ -46,3 +44,5 @@ $.gulp.task('default', $.gulp.series(
 $.gulp.task('clean', $.gulp.series('clean'));
 
 $.gulp.task('copy', $.gulp.parallel('copy.images'));
+
+/**/;module.exports = gulp;
