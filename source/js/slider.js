@@ -29,7 +29,7 @@
 
 		      		slide: function( event, ui ) {
 		      			opacity = -ui.value;
-						$('.main-bar__watermark').css('opacity', opacity);
+		        		$('.main-bar__watermark').css('opacity', opacity);
 		      		}
 		    	});
 	    	}

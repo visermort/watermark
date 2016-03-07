@@ -70,9 +70,17 @@
                     }
                 },
 
+                beforeSend: function() {
+                    $('.loading').show();
+                },
+
                 done: function (e, data) {
+                    
+                    $('.loading').hide();
+
                     var upload = data.result.files[0];
 //                    console.log(e.target.id, upload.url);
+
                     if(current ==  mainImg){
                         current
                             .attr('src', upload.url)
@@ -102,11 +110,34 @@
                             //так же вывести в popup сообщение  - ошибка работы с удалённым сервером
                         } );
 
+                    current
+                        .attr('src', upload.url)
+                        .show();
+
+                    current.get(0).onload = function() {
+                        watermarkSize.change(mainImg, watermark);
+                    }; 
+                    // //запись в сессию больше не делаем
+                    //var jsonData = { 'formId': e.target.id , 'fileUlr' : upload.url };
+                    //
+                    //$.ajax({ //данные о загруженном файле снова отправляем на сервер
+                    //    url : 'assets/php/writesession.php',
+                    //    type:"POST",
+                    //    dataType: "json",
+                    //    data: jsonData
+                    //}).done(function(response) {
+                    //        console.log(response['status'],response['message']);
+                    //        if (!response['status']) {
+                    //            console.log(response['message']);//это сообщение нужно вывести в popup - какая-то ошибка
+                    //        }
+                    //}).fail (function(response) {
+                    //    console.log(response);
+                    //    //так же вывести в popup сообщение  - ошибка работы с удалённым сервером
+                    //});
                 }
             });
         });
     }
 
 })();
-
 

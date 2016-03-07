@@ -9,22 +9,31 @@ $(document).ready(function (){
             left: $('.axis__x-input')[0].value,
             opacity: $('.main-bar__watermark').css('opacity'),
             watemarkWidth: $('.main-bar__watermark')[0].width,
-            imgWidth: $('.main-bar__main-img')[0].width
+            imgWidth: $('.main-bar__main-img')[0].width,
+            watermarkPath: $('.main-bar__watermark').attr('src'),
+            imgPath: $('.main-bar__main-img').attr('src'),
+            intervalVert : 20,
+            intervalHor : 20,
+            tiled: 0
         };
         console.log(jsonData);
         $.ajax({
             url : 'assets/php/filedownload.php',
             type:"POST",
             dataType: "json",
-            data: jsonData
+            data: jsonData,
+            beforeSend: function() {
+                $('.loading').show();
+            }
         }).done( function(response) {
+                $('.loading').hide();
                 console.log(response);
-                var url = response['url'],
-                    fullUrl = response['fullUrl'];
-                console.log(url);//путь к картинке - нужно вывести её на показ в слой
+                var url = response['url'];
+                    //,fullUrl = response['fullUrl']
+                console.log(url);//путь к картинке
                 window.downloadFile(url);
-                //в этом месте нужно выводить
 
+                //в этом месте нужно выводить
 
             } )
             .fail ( function(response) {

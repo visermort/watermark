@@ -1,11 +1,13 @@
-$boxSize: 103px;
+$axisInputSize: 45px;
+$borderColor: #9eb2c0;
+$cellSize: 34px;
+$wrapSize: 102px;
 
 .side-bar__position {
   padding: 5px 5px 5px 5px;
   border-bottom: 1px solid #f97e76;
   position: relative;
 }
-
 .view {
   &__list {
     float: right;
@@ -15,7 +17,6 @@ $boxSize: 103px;
     @include inline-block(top);
   }
 }
-
 .view__link {
   width: 29px;
   height: 29px;
@@ -76,9 +77,6 @@ $boxSize: 103px;
         display: block;
         float: left;
       }
-      &__top {
-
-      }
       &__bottom {
         padding: 25px 16px;
         @include clearfix();
@@ -90,98 +88,105 @@ $boxSize: 103px;
         @include border-radius(5px);
         overflow: hidden;
       }
-
-    &__item {
-        @include inline-block(top);
-        width: ($boxSize) / 3;
-        height: ($boxSize) / 3;
-        border: 1px solid #9eb2c0;
-        // border-right: 1px solid #9eb2c0;
-        // border-bottom: 1px solid #9eb2c0;
-        background: #dbe1e8;
-        // &:nth-child(3n+1) {
-        //     border-left: 1px solid #9eb2c0;
-        // }
-    }
-
-    &__link {
-        
-    }
 }
-.axis__up,
-.axis__down {
+
+.position__wrap {
+  float: left;
+  width: $wrapSize;
+  border: 1px solid $borderColor;
+  @include border-radius(3px);
+  overflow: hidden;
+}
+.position__table {
+  background: #dbe1e8;
+  width: 100%;
+  border-top: none;
+}
+.position__row {
+  &:not(:first-child) {
+    border-top: 1px solid $borderColor;
+  }
+}
+.position__cell {
+  @include text-hide();
+  width: $cellSize;
+  height: $cellSize;
+  position: relative;
+  &:not(:first-child) {
+    border-left: 1px solid $borderColor;
+  }
+}
+//------
+//------
+.position__axis {
+  //--- #1
   float: right;
-  @include clearfix();
+  width: 106px;
+  margin-left: 10px;
   @include text-hide();
 }
-
-.axis__down {
-  margin-top: 13px;
+.position__axis-up,
+.position__axis-down {
+  @include clearfix();
+  //--- #2
 }
-
-.axis__x-a,
-.axis__y-a {
-  width: 45px;
-  height: 45px;
-  // display: block;
-  // @include inline-block();
+.position__axis-down {
+  margin-top: 14px;
+}
+.position__axis_x-a,
+.position__axis_x-b,
+.position__axis_x-c,
+.position__axis_y-a,
+.position__axis_y-b,
+.position__axis_y-c  {
+  //--- #3
   float: left;
+}
+.position__axis_x-a,
+.position__axis_y-a {
+  width: 29px;
+    height: 45px;
   position: relative;
 }
 
-.axis__x-b,
-.axis__y-b {
-  width: 45px;
-  height: 45px;
+.position__axis_x-c,
+.position__axis_y-c {
   display: block;
-  float: left;
-  margin-left: 6px;
+  position: relative;
+  width: 13px;
+  height: 45px;
+  margin-left: 10px;
 }
-
+.position__axis_x-a:before,
+.position__axis_y-a:before {
+  color: #333;
+  font-size: 16px;
+  font-family: $roboto_light;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+}
 .axis__x-input,
 .axis__y-input {
-  width: 45px;
-  height: 45px;
-  border: 1px solid #ccc;
-  @include border-radius(5px);
+  float: left;
+  width: $axisInputSize;
+  height: $axisInputSize;
   outline: none;
-  padding: 8px;
+  border: 1px solid $borderColor;
+  @include border-radius(3px);
   font-family: $roboto_light;
   font-size: 16px;
   color: #444a53;
   text-align: center;
+  padding: 8px;
+  margin-left: 9px;
 }
-
-.axis__x-c,
-.axis__y-c {
-  width: 13px;
-  height: 45px;
-  display: block;
-  float: left;
-  margin-left: 6px;
-  position: relative;
-}
-
 .axis__link {
-  position: absolute
-}
-
-.arrow__x-up,
-.arrow__y-up {
-  top: 0
-}
-
-.arrow__x-down,
-.arrow__y-down {
-  bottom: 0
-}
-
-.arrow__x-up,
-.arrow__x-down,
-.arrow__y-up,
-.arrow__y-down {
+  display: block;
   width: 13px;
   height: 8px;
+  position: relative;
   &:before {
     content: '';
     display: block;
@@ -191,44 +196,37 @@ $boxSize: 103px;
     background: url('../images/spritesheet.png');
   }
 }
-
+.axis__x_arrow-up,
+.axis__y_arrow-up {
+  position: absolute;
+  top: 0;
+}
+.axis__x_arrow-down,
+.axis__y_arrow-down {
+  position: absolute;
+  bottom: 0;
+}
 .arrow__x-up:before,
 .arrow__y-up:before {
   width: nth($st-sa, 5);
   height: nth($st-sa, 6);
   background-position: nth($st-sa, 3) nth($st-sa, 4);
 }
-
 .arrow__x-down:before,
 .arrow__y-down:before {
   width: nth($st-sd, 5);
   height: nth($st-sd, 6);
   background-position: nth($st-sd, 3) nth($st-sd, 4);
 }
-
-.axis__x-item_up:hover .arrow__x-up:before {
+.axis__x_arrow-up:hover .arrow__x-up:before,
+.axis__y_arrow-up:hover .arrow__y-up:before {
   background-position: nth($st-sa-hover, 3) nth($st-sa-hover, 4);
 }
-
-.axis__x-item_down:hover .arrow__x-down:before {
+.axis__x_arrow-down:hover .arrow__x-down:before,
+.axis__y_arrow-down:hover .arrow__y-down:before {
   background-position: nth($st-sd-hover, 3) nth($st-sd-hover, 4);
 }
-
-.axis__y-item_up:hover .arrow__y-up:before {
-  background-position: nth($st-sa-hover, 3) nth($st-sa-hover, 4);
-}
-
-.axis__y-item_down:hover .arrow__y-down:before {
-  background-position: nth($st-sd-hover, 3) nth($st-sd-hover, 4);
-}
-
-.pos-div {
-    width: $boxSize;
-    height: $boxSize;
-    float: left;
-}
-//----- VIEW RANDOM -----
-//-----------------------
+// ----- random -----
 .view__random {
     .pos-div__axis {
         display: none;
@@ -290,32 +288,62 @@ $boxSize: 103px;
             width: 1px;
             height: ($boxSize)-2px;
         }
+  .pos-div__axis {
+    display: none;
+  }
+  .position__link {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .position__cell:hover {
+    background: #f97e76;
     }
-    .axis__x-a:before,
-    .axis__y-a:before {
+    .position__axis_x-a:before,
+    .position__axis_y-a:before {
       content: '';
       display: block;
-
       position: absolute;
       background-repeat: no-repeat;
       background: url('../images/spritesheet.png');
-    }
-    .axis__x-a:before {
       right: 0;
       top: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateY(-50%);
+    }
+    .position__axis_x-a:before {
       width: nth($arrows-vertical, 5);
       height: nth($arrows-vertical, 6);
       background-position: nth($arrows-vertical, 3) nth($arrows-vertical, 4);
     }
-    .axis__y-a:before {
-      right: 0;
-      top: 50%;
-      transform: translate(0, -50%);
+    .position__axis_y-a:before {
       width: nth($arrows-horizontal, 5);
       height: nth($arrows-horizontal, 6);
       background-position: nth($arrows-horizontal, 3) nth($arrows-horizontal, 4);
     }
 }
-//----- VIEW CUSTOM - END  -----
-//-----------------------------
+// ----- custom -----
+.view__custom {
+  .position__wrap {
+    position: relative;
+  }
+  .pos-div__x {
+    position: absolute;
+    height: $cellSize * 3;
+    width: 5px;
+    background: #f97e76;
+    @include transform-to-center();
+  }
+  .pos-div__y {
+    position: absolute;
+    width: $cellSize * 3;
+    height: 5px;
+    background: #f97e76;
+    @include transform-to-center();
+  }
+  .position__axis_x-a:before {
+    content: 'X';
+  }
+  .position__axis_y-a:before {
+    content: 'Y';
+  }
+}

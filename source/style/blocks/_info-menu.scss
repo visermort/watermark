@@ -21,8 +21,6 @@
 		text-decoration: none;
 		padding-top: (69px/4)-10px;
 		font: 20px/20px $roboto_light;
-
-		
 		&:hover {
 			color: #444a53;
 		}
@@ -91,7 +89,6 @@
 		width: nth($tw, 5); height: nth($tw, 6);
 		background-position: nth($tw, 3) nth($tw, 4);
 	}
-
 	&__item_fb:hover &__fb:before {
 		width: nth($fb-hover, 5); height: nth($fb-hover, 6);
 		background-position: nth($fb-hover, 3) nth($fb-hover, 4);

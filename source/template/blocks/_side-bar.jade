@@ -32,48 +32,44 @@ div.side-bar__container
                         a(href="#" attr="custom").view__link.view-2.active-custom view 2
 
             div.position__bottom.view__random
-                div.pos-div
-                    ul.position__list
-                        li.position__item 1
-                            a(href='#').position__link.position__link-active.top-left top left
-                        li.position__item 2
-                            a(href='#').position__link.top top middel
-                        li.position__item 3
-                            a(href='#').position__link.top-right top right
-                        li.position__item 4
-                            a(href='#').position__link.center-left center left
-                        li.position__item 5
-                            a(href='#').position__link.center center middel
-                        li.position__item 6
-                            a(href='#').position__link.center-right center right
-                        li.position__item 7
-                            a(href='#').position__link.bottom-left bottom left
-                        li.position__item 8
-                            a(href='#').position__link.bottom bottom middel
-                        li.position__item 9
-                          a(href='#').position__link.bottom-right bottom right
-                    div.pos-div__axis.pos-div__y
-                    div.pos-div__axis.pos-div__x
+                div.position__wrap
+                    table.position__table
+                        tr.position__row
+                            td.position__cell: a(href='#').position__link.position__link-active.top-left tl
+                            td.position__cell: a(href='#').position__link.top tc
+                            td.position__cell: a(href='#').position__link.top-right tr
+                        tr.position__row
+                            td.position__cell: a(href='#').position__link.center-left cl
+                            td.position__cell: a(href='#').position__link.center cc
+                            td.position__cell: a(href='#').position__link.center-right cr
+                        tr.position__row
+                            td.position__cell: a(href='#').position__link.bottom-left bl
+                            td.position__cell: a(href='#').position__link.bottom bc
+                            td.position__cell: a(href='#').position__link.bottom-right br                    
 
-                .axis__up
-                    .axis__x-a 
-                        a(href='#').axis__l горизантально
-                    .axis__x-b
-                        input(type="text" name="axis-x" value='0' max="650").axis__x-input
-                    ul.axis__x-c
-                        li.axis__x-item_up
-                            a(href='#').axis__link.arrow__x-up arrow up
-                        li.axis__x-item_down
-                            a(href='#').axis__link.arrow__x-down arrow down
-                .axis__down
-                    .axis__y-a горизантально
-                    .axis__y-b
-                        input(type="text" name="axis-y" value='0' max="535").axis__y-input
-                    ul.axis__y-c
-                        li.axis__y-item_up
-                            a(href='#').axis__link.arrow__y-up arrow up
-                        li.axis__y-item_down
-                            a(href='#').axis__link.arrow__y-down arrow down
+
+                    div.pos-div__axis.pos-div__x
+                    div.pos-div__axis.pos-div__y
+
+
+                div.position__axis
+                    div.position__axis-up
+                        div.position__axis_x-a X
+                        div.position__axis_x-b: input(type="text" name="axis-x" value='0' max="650" autocomplete="off").axis__x-input
+                        div.position__axis_x-c
+                            div.axis__x_arrow-up
+                                a(href='#').axis__link.arrow__x-up arrow up
+                            div.axis__x_arrow-down
+                                a(href='#').axis__link.arrow__x-down arrow down
+                    
+                    div.position__axis-down
+                        div.position__axis_y-a Y
+                        div.position__axis_y-b: input(type="text" name="axis-y" value='0' max="535" autocomplete="off").axis__y-input
+                        div.position__axis_y-c
+                            div.axis__y_arrow-up
+                                a(href='#').axis__link.arrow__y-up arrow up
+                            div.axis__y_arrow-down
+                                a(href='#').axis__link.arrow__y-down arrow down
 
     div.side-bar__transparency
         div.transparency

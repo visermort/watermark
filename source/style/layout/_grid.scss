@@ -35,17 +35,24 @@ ul {
 	margin: 0 auto;
 }
 .content {
-	padding-top: 50px;
+	display: table;
+	// background: #fff;
+	padding-top: 10%;
+	&__row {
+		display: table-row;
+	}
 }
 .main-bar {
-	float: left;
+	// float: left;
+	display: table-cell;
 	width: $innerWidth - $sideBarWidth;
 	min-height: $innerHeight;
 	padding-bottom: 25px;
 	background: rgba(46,54,65,.64);
 }
 .side-bar {
-	float: right;
+	display: table-cell;
+	// float: right;
 	width: $sideBarWidth;
 	min-height: $innerHeight;
 	background: #fff;
