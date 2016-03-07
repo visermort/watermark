@@ -4,8 +4,8 @@ div.info-menu
             - var lang = ['РУС', 'ENG']
             - var lang_suffix = ['ru', 'en']
             each val, index in lang
-                li(class="lang__item item__#{lang_suffix[index]}")
-                    a(href="#" lang="#{lang_suffix[index]}").lang__link= val
+                li.lang__item
+                    a(href="#" lang="#{lang_suffix[index]}" class=" lang__#{lang_suffix[index]}").lang__link= val
 
     div.social
         a(href="#").social__title Like

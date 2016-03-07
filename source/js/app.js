@@ -1,16 +1,20 @@
 (function() {
 	'use strict';
-	
+//------------------------------------------------------------------------------------
+// ----- социальные сети
+//------------------------------------------------------------------------------------	
+	// --------------------
+	// ----- COOKIE -------
+	// --------------------
 	function getCookie(name) {
-		var r = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
-		if (r) return r[2];
-		else return "";
+		var cName = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
+	return cName = (cName) ? cName[2] : "";
 	}
-	function setCookie(cvalue) {
+	function setCookie(value, name = "lang", day = 30) {
 	    var d = new Date();
-	    d.setTime(d.getTime() + (30*24*60*60*1000));
-	    var expires = "expires="+d.toUTCString();
-	    document.cookie = "lang" + "=" + cvalue + "; " + expires;
+	    d.setTime( d.getTime() + (day*24*60*60*1000) );
+	    var expires = "expires=" + d.toUTCString();
+	    document.cookie = name + "=" + value + "; " + expires;
 	}
 
 	function setLang(lang_attr) {
@@ -19,15 +23,24 @@
 			arr_en = ['Watermarks generator','Settings','Original image','Watermark','Select a image','Select a watermark','Place','Transparency','Reset','Download','© 2016 This is my site, do not even think to steal it'],
 			lang = (lang_attr == 'ru') ? arr_ru : arr_en;
 
-		jQuery.each( arr, function( index, value  ) {
-			$( "." + value ).text( lang[index]);
-			$( "title" ).text( lang[0]);
+		$.each(arr, function(index,value) {
+			$("." + value).text( lang[index]);
+			$("title").text(lang[0]);
 		});
 	}
 
 	var langFromCookie = getCookie("lang");
 
-	if (langFromCookie){ setLang(langFromCookie) }
+	if (langFromCookie) { 
+
+		setLang(langFromCookie);
+
+		$('.lang__' + langFromCookie).addClass('lang__active').removeClass('.lang__' + langFromCookie);
+
+
+	} else {
+
+	}
 
 	console.log(langFromCookie);
 
@@ -36,18 +49,31 @@
 		
 		event.preventDefault();
 
+
+		if(langFromCookie == 'ru') {
+
+			$('.lang__en').removeClass('lang__active').addClass('lang__en');
+
+		} else {
+			
+			$('.lang__ru').removeClass('lang__active').addClass('lang__ru');
+
+		}
+
 		var $this = $(this),
 			lang_attr = $this.attr('lang');
+			
+			$('.lang__' + lang_attr).addClass('lang__active');
 
-		// if( lang_attr != langFromCookie ) {
 			setLang(lang_attr);
 			setCookie(lang_attr);
-		// }
 
+			// /$('.lang__' + lang_attr).removeClass
 	});
 
-
-	//----- социальные сети
+//------------------------------------------------------------------------------------
+// ----- социальные сети
+//------------------------------------------------------------------------------------
 	$('.social__link').on('click', function(event) {
 		event.preventDefault();
 		
@@ -58,8 +84,9 @@
 
 		console.log(url);
 	});
-
-	//----- переключатель режима позицианирование по осям x & y
+//------------------------------------------------------------------------------------
+//----- переключатель режима позицианирование по осям x & y
+//------------------------------------------------------------------------------------
 	$('.view__link').on('click', function(event){
 
 		event.preventDefault();

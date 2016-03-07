@@ -32,7 +32,7 @@
 		text-decoration: none;
 		padding-top: (69px/4)-10px;
 		font: 20px/20px $roboto_light;
-		&:hover {
+		&:hover{
 			color: #444a53;
 		}
 	}
@@ -40,6 +40,9 @@
 		border-top: 1px solid #a6a8ac;
 		box-sizing: border-box;
 	}
+}
+.lang__active {
+	color: #444a53;
 }
 .social {
 	margin-top: 18px;
