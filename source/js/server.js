@@ -32,6 +32,9 @@ $(document).ready(function (){
                     //,fullUrl = response['fullUrl']
                 console.log(url);//путь к картинке
                 window.downloadFile(url);
+
+                //в этом месте нужно выводить
+
             } )
             .fail ( function(response) {
                 console.log(response); //вывести в popup сообщение  - ошибка работы с удалённым сервером
