@@ -11,7 +11,10 @@ $(document).ready(function (){
             watemarkWidth: $('.main-bar__watermark')[0].width,
             imgWidth: $('.main-bar__main-img')[0].width,
             watermarkPath: $('.main-bar__watermark').attr('src'),
-            imgPath: $('.main-bar__main-img').attr('src')
+            imgPath: $('.main-bar__main-img').attr('src'),
+            intervalVert : 20,
+            intervalHor : 20,
+            tiled: 0
         };
         console.log(jsonData);
         $.ajax({
