@@ -89,7 +89,7 @@
 				maxCount = Math.ceil(heightMainPicture/heightMiniPicture + 1)*Math.ceil(widthMainPicture/widthMiniPicture + 1) - 1;
 			miniPicture[0].style.top = '-30px';
 			miniPicture[0].style.left = '-30px';
-			miniPigcture[0].style.padding = '30px';
+			miniPicture[0].style.padding = '30px';
 			miniPicture.css({'width': Math.ceil(widthMainPicture/widthMiniPicture + 1)*(widthMiniPicture+marginRight)+60, 'height': Math.ceil(heightMainPicture/heightMiniPicture + 1)*(heightMiniPicture+marginBottom)+60});
 
 			for (var i =0; i<maxCount; i++){

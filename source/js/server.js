@@ -37,6 +37,7 @@ $(document).ready(function (){
 
             } )
             .fail ( function(response) {
+                $('.loading').hide();
                 console.log(response); //вывести в popup сообщение  - ошибка работы с удалённым сервером
             } );
     });
