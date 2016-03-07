@@ -66,9 +66,9 @@ if ($tiled) {//если замощение, то делаем много раз 
     $countX = round($originalWidth / ($watermarkWidth + $intervalHor)) + 1;
     $countY = round($imageHeight / ($watermarkHeight + $intervalVert)) + 1;
     $innerX = $left;
-    while ($innerX >=0 ) $innerX -= $watermarkWidth - $intervalHor;
+    while ($innerX >=0 ) $innerX -= ($watermarkWidth + $intervalHor);
     $innerY = $top;
-    while ($innerY >=0 ) $innerY -= $watermarkHeight - $intervalVert;
+    while ($innerY >=0 ) $innerY -= ($watermarkHeight + $intervalVert);
     for ( $i = 0 ; $i < $countX ; $i++ ) {
         for( $j = 0 ; $j < $countY ; $j++ ) {
             $currentLeft = $innerX + $i * ($watermarkWidth + $intervalHor );
