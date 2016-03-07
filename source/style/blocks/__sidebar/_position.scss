@@ -283,12 +283,12 @@ $boxSize: 103px;
             transform: translate(-50%,-50%);
         }
         &__x {
-            width: $boxSize;
-            height: 10px;
+            width: ($boxSize)-2px;
+            height: 1px;
         }
         &__y {
-            width: 10px;
-            height: $boxSize;
+            width: 1px;
+            height: ($boxSize)-2px;
         }
     }
     .axis__x-a:before,

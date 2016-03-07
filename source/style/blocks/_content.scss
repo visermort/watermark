@@ -18,22 +18,22 @@
 	max-width: 650px;
 	max-height: 535px;
 	position: relative;
-
 }
 .main-bar__img-main{
+	height: auto;
 	display: block;
+	overflow: hidden;
 	@include center;
 }
 
-.main-bar__watermark {
-	display: none;
-	max-width: 650px;
-	max-height: 535px;
+.watermark__img {
 	cursor: pointer;
-}
-.main-bar__main-img {
-
-}
-.main-bar__watermark {
 	position: absolute;
+	display: none;
 }
+.main-bar__watermark{
+	margin-bottom: 0;
+	margin-left: 0;
+	display: inline-block;
+}
+

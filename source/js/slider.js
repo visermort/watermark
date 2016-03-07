@@ -28,8 +28,8 @@
 		      		step: step,
 
 		      		slide: function( event, ui ) {
-		      			opacity = -ui.value;	      			
-		        		$target.css('opacity', opacity);
+		      			opacity = -ui.value;
+						$('.main-bar__watermark').css('opacity', opacity);
 		      		}
 		    	});
 	    	}
@@ -40,4 +40,5 @@
 })();
 
 sliderModule.sliderInit('.slider', '.main-bar__watermark');
+
 

@@ -1,40 +1,60 @@
 (function() {
 	'use strict';
 
-	// $('#image-upload').on('change', function(){
-	// 	var $this = $(this),
-	// 		imgPath = $this.val(),
-	// 		input = $('.image-upload__ico').parent($this);
-		
-	// 	// console.log($this);
-	// 	// console.log(imgPath);
-	// 	// console.log(input);
-		
-	// 	$('.image-upload__txt').text(imgPath);
-	// });
-
 	$('.view__link').on('click', function(event){
 
 		event.preventDefault();
 		var $this = $(this),
 			attr = $this.attr('attr'),
-			rmView,
-			addView,
-			rmActive,
-			addActive;
-		
+			positionBottom = $('.position__bottom');
+
 		console.log(attr);
 
-		rmView = (attr == 'custom') ? 'view__custom' : 'view__random';
-		rmActive = (attr == 'custom') ? 'active-random' : 'active-custom';
-		addView = (attr == 'custom') ? 'view__random' : 'view__custom';
-		addActive = (attr == 'custom') ? 'active-custom' : 'active-random';
-		$('.position__bottom').removeClass(rmView);
-		$('.view__link').removeClass(rmActive);
-		$('.position__bottom').addClass(addView);
-		$($this).addClass(addActive);
-		
-		console.log(rmActive);
+		if(attr == 'random'){
+			positionBottom.removeClass('view__random');
+			$('.view__link').removeClass('active-custom');
+			positionBottom.addClass('view__custom');
+			$($this).addClass('active-random');
+			module.rem();
+			var	miniPicture = $('.watermark__img'),
+				mainPicture = $('.main-bar__main-img'),
+				heightMainPicture = mainPicture.height(),
+				widthMainPicture = mainPicture.width(),
+				heightMiniPicture = miniPicture.find('img').height(),
+				widthMiniPicture = miniPicture.find('img').width(),
+				waterImg = miniPicture.find('img')[0],
+				srcImg = waterImg.src,
+				opacity = $('.main-bar__watermark')[0].style.opacity,
+				marginBottom = (waterImg.style.marginBottom == '') ? 0 : waterImg.style.marginBottom,
+				marginRight = (waterImg.style.marginRight == '') ? 0 : waterImg.style.marginRight,
+				maxCount = Math.ceil(heightMainPicture/heightMiniPicture + 1)*Math.ceil(widthMainPicture/widthMiniPicture + 1) - 1;
+			miniPicture[0].style.top = '-30px';
+			miniPicture[0].style.left = '-30px';
+			miniPicture[0].style.padding = '30px';
+			miniPicture.css({'width': Math.ceil(widthMainPicture/widthMiniPicture + 1)*(widthMiniPicture+marginRight)+60, 'height': Math.ceil(heightMainPicture/heightMiniPicture + 1)*(heightMiniPicture+marginBottom)+60});
+
+			for (var i =0; i<maxCount; i++){
+				var img = document.createElement('img');
+				img.src = srcImg;
+				img.style.marginBottom = marginBottom;
+				img.style.opacity = opacity;
+				img.style.marginRight = marginRight;
+				img.className = 'main-bar__watermark copy';
+				miniPicture[0].appendChild(img);
+			}
+
+		} else {
+			var	miniPicture = $('.watermark__img')[0];
+			$('img.copy').remove();
+			miniPicture.style.padding = '0px';
+			miniPicture.style.top = '0px';
+			miniPicture.style.left = '0px';
+			module.init();
+			positionBottom.removeClass('view__custom');
+			$('.view__link').removeClass('active-random');
+			positionBottom.addClass('view__random');
+			$($this).addClass('active-custom');
+		}
 	});
 
 })();
