@@ -102,7 +102,8 @@ exit( json_encode(array( 'status' => true ,
     'countX' => $countX.' = '.$originalWidth.'/('.$watermarkWidth.' + '.$intervalHor.') +1',
     'countY' => $countY.' = '.$imageHeight.'/('.$watermarkHeight.' + '.$intervalVert.') +1',
     'innerX' => $innerX,
-    'innerY' => $innerY
+    'innerY' => $innerY,
+    'tiled' => $tiled
 
 
 )));

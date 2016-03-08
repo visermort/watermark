@@ -21,9 +21,9 @@
 
         $.each(forms, function(index, item) {
 
-            var mainImg = $('.main-bar__main-img'),
-                watermark = $('.watermark_img'),
-                watermarkContent = $('.main-bar__watermark'),
+            var mainImg = $('.main-bar__main-img'), // основная картинка
+                watermark = $('.watermark_img'),    //слой со второй картинкой
+                watermarkContent = $('.main-bar__watermark'), //вторая картинка
                 current;
 
             if (item == '#image-upload__form') {
@@ -85,23 +85,29 @@
                         current
                             .attr('src', upload.url)
                             .show();
+                        current.get(0).onload = function() {
+                            watermarkSize.change(mainImg, watermarkContent); //watermark);
+                        };
                     } else {
                         watermark.show();
                         $(".watermark__img")[0].style.top = '0px';
                         $(".watermark__img")[0].style.left = '0px';
                         $(".watermark__img")[0].style.display = 'block';
                         watermarkContent.attr('src', upload.url);
+                        watermarkContent.get(0).onload = function() {
+                            watermarkSize.change(mainImg, watermarkContent); //watermark);
+                        };
                     }
-
-
-                    current
-                        .attr('src', upload.url)
-                        .show();
-
-                    current.get(0).onload = function() {
-                        watermarkSize.change(mainImg, watermark);
-                    }; 
-
+                    
+                    //current
+                    //    .attr('src', upload.url)
+                    //    .show();
+                    //mainImg.get(0).onLoad = function() {
+                    //    watermarkSize.change(mainImg, watermark);
+                    //};
+                    //current.get(0).onload = function() {
+                    //    watermarkSize.change(mainImg, watermark);
+                    //};
                 },
                 fail: function (e,data) {
                     $('.loading').hide();

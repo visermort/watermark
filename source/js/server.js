@@ -3,18 +3,23 @@ $(document).ready(function (){
 
     $('.inputs__download').on('click',function(e){
         e.preventDefault();
-        console.log('Команда серверу на склейку');
-        var jsonData = {//сюда ещё данные - прозрачность, пропорции, и всё такое
-            top: $('.axis__y-input')[0].value ,
-            left: $('.axis__x-input')[0].value,
-            opacity: $('.main-bar__watermark').css('opacity'),
-            watemarkWidth: $('.main-bar__watermark')[0].width,
-            imgWidth: $('.main-bar__main-img')[0].width,
-            watermarkPath: $('.main-bar__watermark').attr('src'),
-            imgPath: $('.main-bar__main-img').attr('src'),
-            intervalVert : 20,
-            intervalHor : 20,
-            tiled: 0
+        console.log('Команда серверу на создание Watermark');
+        var watermarkImgDiv = $('.watermark__img'),
+            watermarkImg = $('.main-bar__watermark'),
+            positionBottom = $('.position__bottom'),
+            mainImage = $('.main-bar__main-img'),
+            tiled = (positionBottom.hasClass('view__custom')? 1 : 0);
+        var jsonData = {//данные для создания watermark - прозрачность, размеры, отступы, и т.д.
+            top: parseInt(watermarkImgDiv.css('top'))+parseInt(watermarkImgDiv.css('padding-top')),
+            left: parseInt(watermarkImgDiv.css('left'))+parseInt(watermarkImgDiv.css('padding-left')),
+            opacity: watermarkImg.css('opacity'),
+            watemarkWidth: watermarkImgDiv[0].width,
+            imgWidth: mainImage[0].width,
+            watermarkPath: watermarkImg.attr('src'),
+            imgPath: mainImage.attr('src'),
+            intervalVert : $('.axis__y-input')[0].value ,
+            intervalHor : $('.axis__x-input')[0].value,
+            tiled: tiled
         };
         console.log(jsonData);
         $.ajax({

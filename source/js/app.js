@@ -10,7 +10,9 @@
 		var cName = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
 	return cName = (cName) ? cName[2] : "";
 	}
-	function setCookie(value, name = "lang", day = 30) {
+	function setCookie(value, name, day) {
+		name = name || "lang";
+		day = day || 30;
 	    var d = new Date();
 	    d.setTime( d.getTime() + (day*24*60*60*1000) );
 	    var expires = "expires=" + d.toUTCString();
