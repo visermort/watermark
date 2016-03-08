@@ -1,5 +1,18 @@
 (function() {
 	'use strict';
+
+$('.social').on('click', function(){
+
+	var el = $(this).css('margin-left');
+	console.log(el);
+	if($(this).css('margin-left') == '-43px') {
+		$(this).css({'margin-left':'0'});
+		console.log("margin-left is -43px");
+		console.log($(this).css('margin-left'));
+	} else {
+		$(this).css({'margin-left':'-43px'});
+	}
+});
 //------------------------------------------------------------------------------------
 // ----- социальные сети
 //------------------------------------------------------------------------------------	
@@ -11,8 +24,8 @@
 	return cName = (cName) ? cName[2] : "";
 	}
 	function setCookie(value, name, day) {
-		name = name || "lang";
-		day = day || 30;
+	    name = name || "lang";
+	    day = day || 30;
 	    var d = new Date();
 	    d.setTime( d.getTime() + (day*24*60*60*1000) );
 	    var expires = "expires=" + d.toUTCString();
@@ -34,14 +47,13 @@
 	var langFromCookie = getCookie("lang");
 
 	if (langFromCookie) { 
-
 		setLang(langFromCookie);
-
-		$('.lang__' + langFromCookie).addClass('lang__active').removeClass('.lang__' + langFromCookie);
-
+		$('.lang__active').removeClass('.lang__active');
+		$('.lang__' + langFromCookie).addClass('lang__active')
 
 	} else {
-
+		$('.lang__active').removeClass('lang__active');
+		$('.lang__ru').addClass('lang__active');
 	}
 
 	console.log(langFromCookie);
@@ -51,26 +63,14 @@
 		
 		event.preventDefault();
 
-
-		if(langFromCookie == 'ru') {
-
-			$('.lang__en').removeClass('lang__active').addClass('lang__en');
-
-		} else {
-			
-			$('.lang__ru').removeClass('lang__active').addClass('lang__ru');
-
-		}
-
 		var $this = $(this),
 			lang_attr = $this.attr('lang');
-			
-			$('.lang__' + lang_attr).addClass('lang__active');
 
+			$('.lang__active').removeClass('lang__active');
+			$('.lang__' + lang_attr).addClass('lang__active');
+			
 			setLang(lang_attr);
 			setCookie(lang_attr);
-
-			// /$('.lang__' + lang_attr).removeClass
 	});
 
 //------------------------------------------------------------------------------------

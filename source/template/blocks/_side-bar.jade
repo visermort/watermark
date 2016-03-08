@@ -18,7 +18,8 @@ div.side-bar__container
                 label(for="watermark").watermark__wrapper
                     div.watermark__txt Выберите водяной знак
                     div.watermark__ico
-                        input(type="file" name="files[]" id="watermark" multiple).watermark__input
+                        input(type="file" name="files[]" id="watermark" multiple disabled).watermark__input
+            div.watermark__form-disabled
 
     div.side-bar__position
 
@@ -35,7 +36,7 @@ div.side-bar__container
                 div.position__wrap
                     table.position__table
                         tr.position__row
-                            td.position__cell: a(href='#').position__link.position__link-active.top-left tl
+                            td.position__cell: a(href='#').position__link.top-left tl
                             td.position__cell: a(href='#').position__link.top tc
                             td.position__cell: a(href='#').position__link.top-right tr
                         tr.position__row
@@ -70,15 +71,15 @@ div.side-bar__container
                                 a(href='#').axis__link.arrow__y-up arrow up
                             div.axis__y_arrow-down
                                 a(href='#').axis__link.arrow__y-down arrow down
-
+        div.side-bar__position-disabled
     div.side-bar__transparency
         div.transparency
             div.transparency__top
                 div.transparency__header Прозрачность
             div.transparency__bottom
                 div(class="slider" data-min="-1" data-max="0")
-
+        div.side-bar__transparency-disabled
     div.side-bar__block
         div.inputs
             button.inputs__reset Сброс
-            button.inputs__download Скачать
+            button(class="inputs__download" disabled) Скачать

@@ -4,8 +4,20 @@
 	to { margin-left: -45px; }
 }
 @keyframes info-menu-show {
-	from { margin-left: -45px;	} 
+	from { margin-left: -45px; } 
 	to { margin-left: 0; }
+}
+
+.nohover {
+	animation-name: info-menu-hide;
+	animation-duration: 1s;
+	animation-fill-mode:forwards; 
+	background: #000;
+}
+.hover {
+	animation-name: info-menu-show;
+	animation-duration: 1s;
+	animation-fill-mode:forwards; 
 }
 // -- ANIMATON -- END --
 
@@ -47,19 +59,19 @@
 .social {
 	margin-top: 18px;
 	width: 86px;
-	// margin-left: -43px;
+	margin-left: -43px;
 
 	@include clearfix();
 	@include text-hide();
-	animation-name: info-menu-hide;
-	animation-duration: 1s;
-	animation-fill-mode:forwards;
+	// animation-name: info-menu-hide;
+	// animation-duration: 1s;
+	// animation-fill-mode:forwards;
 	&:hover{
 		// margin-left: 0;
 	//-
-	animation-name: info-menu-show;
-	animation-duration: 1s;
-	animation-fill-mode:forwards; 
+	// animation-name: info-menu-show;
+	// animation-duration: 1s;
+	// animation-fill-mode:forwards; 
 	// animation-		
 	}
 
