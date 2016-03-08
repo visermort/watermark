@@ -18,7 +18,7 @@ div.side-bar__container
                 label(for="watermark").watermark__wrapper
                     div.watermark__txt Выберите водяной знак
                     div.watermark__ico
-                        input(type="file" name="files[]" id="watermark" multiple disabled).watermark__input
+                        input(type="file" name="files[]" id="watermark" multiple ).watermark__input
             div.watermark__form-disabled
 
     div.side-bar__position
@@ -81,5 +81,5 @@ div.side-bar__container
         div.side-bar__transparency-disabled
     div.side-bar__block
         div.inputs
-            button.inputs__reset Сброс
+            button.inputs__reset( disabled ) Сброс
             button(class="inputs__download" disabled) Скачать

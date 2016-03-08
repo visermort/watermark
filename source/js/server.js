@@ -49,6 +49,7 @@ $(document).ready(function (){
 
     $('.inputs__reset').on('click',function(e){
         e.preventDefault();
+               
         // нужно ввести команду на начальную позицию второго фото
 
     });

@@ -88,6 +88,7 @@
                         current.get(0).onload = function() {
                             watermarkSize.change(mainImg, watermarkContent); //watermark);
                         };
+                        $('.watermark__form-disabled').removeClass('watermark__form-disabled');
                     } else {
                         watermark.show();
                         $(".watermark__img")[0].style.top = '0px';
@@ -97,8 +98,12 @@
                         watermarkContent.get(0).onload = function() {
                             watermarkSize.change(mainImg, watermarkContent); //watermark);
                         };
+                        $('.side-bar__transparency-disabled').removeClass('side-bar__transparency-disabled');
+                        $('.side-bar__position-disabled').removeClass('side-bar__position-disabled');
+                        $('.inputs__download').removeAttr('disabled');
+                        $('.inputs__reset').removeAttr('disabled');
+
                     }
-                    
                     //current
                     //    .attr('src', upload.url)
                     //    .show();
