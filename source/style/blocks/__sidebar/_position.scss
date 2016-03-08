@@ -2,12 +2,6 @@ $axisInputSize: 45px;
 $borderColor: #9eb2c0;
 $cellSize: 34px;
 $wrapSize: 102px;
-
-.side-bar__position {
-  padding: 5px 5px 5px 5px;
-  border-bottom: 1px solid #f97e76;
-  position: relative;
-}
 .view {
   &__list {
     float: right;
@@ -81,21 +75,16 @@ $wrapSize: 102px;
         padding: 25px 16px;
         @include clearfix();
       }
-      
-      &__list {
-        position: relative;
-        @include text-hide();
-        @include border-radius(5px);
-        overflow: hidden;
-      }
 }
 
 .position__wrap {
   float: left;
   width: $wrapSize;
+  height: $wrapSize;
   border: 1px solid $borderColor;
   @include border-radius(3px);
   overflow: hidden;
+  position: relative;
 }
 .position__table {
   background: #dbe1e8;
