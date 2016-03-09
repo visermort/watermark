@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-$('.social').on('click', function(){
+$('.social').hover(function(){
 
 	var el = $(this).css('margin-left');
 	console.log(el);
