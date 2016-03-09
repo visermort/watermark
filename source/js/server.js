@@ -1,6 +1,20 @@
 
 $(document).ready(function (){
 
+    clearTmp = function() { //после загрузки страницы команда серверу на очистку от старых файлов
+        $.ajax({
+            url : 'assets/php/utils.php',
+            type:"POST",
+            dataType: "json",
+            data: { clear: 1 }
+        }).done( function(response) {
+                console.log(response); //если status=fasle  - ошибка  вывести message
+            })
+            .fail ( function(response) {
+                console.log(response); //вывести в popup сообщение  - ошибка работы с удалённым сервером
+            });
+    }();
+
     $('.inputs__download').on('click',function(e){
         e.preventDefault();
         console.log('Команда серверу на создание Watermark');
@@ -53,7 +67,10 @@ $(document).ready(function (){
         // нужно ввести команду на начальную позицию второго фото
 
     });
+
 });
+
+
 
 window.downloadFile = function (sUrl) {
 
