@@ -113,18 +113,22 @@ $('.social').on('click', function(){
 				waterImg = miniPicture.find('img')[0],
 				srcImg = waterImg.src,
 				opacity = $('.main-bar__watermark')[0].style.opacity,
+				maxHeight = waterImg.style.maxHeight,
+				maxWidth = waterImg.style.maxWidth,
 				marginBottom = (waterImg.style.marginBottom == '') ? 0 : waterImg.style.marginBottom,
 				marginRight = (waterImg.style.marginRight == '') ? 0 : waterImg.style.marginRight,
 				maxCount = Math.ceil(heightMainPicture/heightMiniPicture + 1)*Math.ceil(widthMainPicture/widthMiniPicture + 1) - 1;
 			miniPicture[0].style.top = '-30px';
 			miniPicture[0].style.left = '-30px';
 			miniPicture[0].style.padding = '30px';
-			miniPicture.css({'width': Math.ceil(widthMainPicture/widthMiniPicture + 1)*(widthMiniPicture+marginRight)+60, 'height': Math.ceil(heightMainPicture/heightMiniPicture + 1)*(heightMiniPicture+marginBottom)+60});
+			miniPicture.css({'width': Math.ceil(widthMainPicture/widthMiniPicture + 1)*(widthMiniPicture+Number(marginRight.replace(/px/g, '')))+60, 'height': Math.ceil(heightMainPicture/heightMiniPicture + 1)*(heightMiniPicture+Number(marginBottom.replace(/px/g, '')))+60});
 
 			for (var i =0; i<maxCount; i++){
 				var img = document.createElement('img');
 				img.src = srcImg;
 				img.style.marginBottom = marginBottom;
+				img.style.maxWidth = maxWidth;
+				img.style.maxHeight = maxHeight;
 				img.style.opacity = opacity;
 				img.style.marginRight = marginRight;
 				img.className = 'main-bar__watermark copy';

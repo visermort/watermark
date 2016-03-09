@@ -95,7 +95,9 @@ var module = (function () {
         $('.axis__link').on('click', _changeMarginOne);
         $('.axis__x-input').unbind("change keyup input click",_changePositionInputLeft);
         $('.axis__y-input').unbind("change keyup input click",_changePositionInputTop);
+
         var mini = $('.watermark__img')[0];
+
         mini.onmousedown = function(e) {
             _clearActive();
             var miniPic = $('.watermark__img'),
@@ -107,50 +109,52 @@ var module = (function () {
                 mainPicture = $('.main-bar__main-img'),
                 heightMainPicture = mainPicture.height(),
                 widthMainPicture = mainPicture.width(),
-                self = this;
+                self = this,
+                waterImg = miniPic.find('img')[0],
+                marginBottom =  (waterImg.style.marginBottom == '') ? 0 : Number(waterImg.style.marginBottom.replace(/px/g, '')),
+                marginRight =  (waterImg.style.marginRight == '') ? 0 : Number(waterImg.style.marginRight.replace(/px/g, '')),
+                mainPictureTop = Math.floor(mainPicture[0].getBoundingClientRect().top),
+                mainPictureLeft = Math.floor(mainPicture[0].getBoundingClientRect().left),
+                containerTop = Math.floor(miniPicture.getBoundingClientRect().top),
+                containerLeft = Math.floor(miniPicture.getBoundingClientRect().left);
 
-            var shiftX = e.offsetX,
-                shiftY = e.offsetY;
+
+            var shiftX = Math.floor((e.pageX - containerLeft - 30)/(widthMiniPicture + marginRight))*(widthMiniPicture + marginRight) + e.offsetX,
+                shiftY = Math.floor((e.pageY - containerTop - 30)/(heightMiniPicture + marginBottom))*(heightMiniPicture + marginBottom) + e.offsetY;
             this.style.position = 'absolute';
             $('.main-bar__img-main')[0].appendChild(miniPicture);
             miniPicture.style.zIndex = 1000;
 
             moveAt(e);
-
-
             function moveAt(e) {
-                var mainPictureTop = Math.floor(mainPicture[0].getBoundingClientRect().top),
-                    mainPictureLeft = Math.floor(mainPicture[0].getBoundingClientRect().left),
-                    containerTop = Math.floor(miniPicture.getBoundingClientRect().top),
-                    containerLeft = Math.floor(miniPicture.getBoundingClientRect().left);
-                if (miniPicture.style.left > 0) {
-                        if(e.target !== e.currentTarget){
-                            miniPicture.style.top = e.pageY - containerTop - Math.floor((e.pageY - containerTop - 30)/heightMiniPicture)*heightMiniPicture - shiftY - 60 + 'px';
-                            miniPicture.style.left = '0px';
-                            if(mainPictureTop - containerTop < 0){
-                                miniPicture.style.top = '0px';
-                                }
-                            if(mainPictureTop - containerTop  >= heightContainer - heightMainPicture){
-                                miniPicture.style.top =   -heightContainer + heightMainPicture  - 60 + 'px';
-                            }
-
-                        }
-                        //else {
-                        //        miniPicture.style.left = '0px';
-                        //        miniPicture.style.top = Math.floor(e.pageY - mainPictureTop - shiftY) + 'px';
-                        //    }
-                    //} else if(mainPictureTop + heightMainPicture - containerTop - heightContainer >= 0){
-                    //    miniPicture.style.top = heightMainPicture - 30 + 'px';
-                    //    miniPicture.style.left = e.pageX - containerLeft - shiftX + 'px';
-                } else {
-                    if(e.target !== e.currentTarget){
-                        miniPicture.style.top = e.pageY - containerTop - Math.floor((e.pageY - containerTop - 30)/heightMiniPicture)*heightMiniPicture - shiftY - 60 + 'px';
-                        miniPicture.style.left = e.pageX - containerLeft - Math.floor((e.pageX - containerLeft - 30)/widthMiniPicture)*widthMiniPicture - shiftX - 60 + 'px';
+            console.log(Math.floor(e.pageX - mainPictureLeft -shiftX), Math.floor(e.pageY - mainPictureTop - shiftY),  heightMainPicture - heightContainer - 60, widthMainPicture - widthContainer - 60)
+                if (Math.floor(e.pageX - mainPictureLeft -shiftX) >= 0) {
+                    miniPicture.style.top = Math.floor(e.pageY - mainPictureTop - shiftY) - 30 + 'px';
+                    miniPicture.style.left = '0px';
+                    if (Math.floor(e.pageY - mainPictureTop - shiftY) >= 0) {
+                        miniPicture.style.top = '0px';
                     }
-                    //else {
-                    //    miniPicture.style.left = Math.floor(e.pageX - mainPictureLeft -shiftX) + 'px';
-                    //    miniPicture.style.top = Math.floor(e.pageY - mainPictureTop - shiftY) + 'px';
-                    //}
+                    if (Math.floor(e.pageY - mainPictureTop - shiftY) <= heightMainPicture - heightContainer - 60) {
+                        miniPicture.style.top = heightMainPicture - heightContainer - 60 + 'px';
+                    }
+                } else if (Math.floor(e.pageY - mainPictureTop - shiftY) >= 0) {
+                    miniPicture.style.top = '0px';
+                    miniPicture.style.left = Math.floor(e.pageX - mainPictureLeft - shiftX) - 30 + 'px';
+                    if (Math.floor(e.pageX - mainPictureLeft - shiftX) <= widthMainPicture -  widthContainer - 60) {
+                        miniPicture.style.left = widthMainPicture - widthContainer - 60 + 'px';
+                    }
+                } else if (Math.floor(e.pageX - mainPictureLeft - shiftX) <= widthMainPicture - widthContainer - 30) {
+                    miniPicture.style.left = widthMainPicture - widthContainer - 60 + 'px';
+                    miniPicture.style.top = Math.floor(e.pageY - mainPictureTop - shiftY) - 30 + 'px';
+                    if (Math.floor(e.pageY - mainPictureTop - shiftY) <= heightMainPicture - heightContainer - 30) {
+                        miniPicture.style.top = heightMainPicture - heightContainer - 60 + 'px';
+                    }
+                } else if (Math.floor(e.pageY - mainPictureTop - shiftY) <= heightMainPicture - heightContainer - 60) {
+                    miniPicture.style.top = heightMainPicture - heightContainer - 60 + 'px';
+                    miniPicture.style.left = Math.floor(e.pageX - mainPictureLeft - shiftX) - 30 + 'px';
+                } else {
+                    miniPicture.style.left = Math.floor(e.pageX - mainPictureLeft - shiftX) - 30 + 'px';
+                    miniPicture.style.top = Math.floor(e.pageY - mainPictureTop - shiftY) - 30 + 'px';
                 }
 
             }
@@ -274,7 +278,6 @@ var module = (function () {
     var _changeMarginOne = function (e) {
 
         e.preventDefault();
-        _clearActive();
         var $this = $(this),
             item = $this.attr("class"),
             miniPicture = $('.main-bar__watermark'),
@@ -283,41 +286,50 @@ var module = (function () {
             position = item.replace(/axis__link/g, '').trim();
             widthLine[0].style.width = widthLine.width() + 'px';
             heightLine[0].style.height = heightLine.height() + 'px';
+
             switch (position) {
                 case 'arrow__y-up':
                     if(widthLine.width() < 99){
                         miniPicture.css('margin-right', '+=' + 5);
                         widthLine[0].style.width = parseInt(widthLine[0].style.width) + 5 + 'px';
+                        _changeCont();
                     } else {
                         miniPicture.css({'margin-right': 100})
                         widthLine[0].style.width = '100px';
+                        _changeCont();
                     }
                     break;
                 case 'arrow__y-down':
                     if(widthLine.width() > 5){
                         miniPicture.css('margin-right', '-=' + 5);
                         widthLine[0].style.width = parseInt(widthLine[0].style.width) - 5 + 'px';
+                        _changeCont();
                     } else {
                         miniPicture.css({'margin-right': 0});
                         widthLine[0].style.width = '1px';
+                        _changeCont();
                     }
                     break;
                 case 'arrow__x-up':
                     if(heightLine.height() < 99){
                         miniPicture.css('margin-bottom', '+=' + 5);
                         heightLine[0].style.height = parseInt(heightLine[0].style.height) + 5 + 'px';
+                        _changeCont();
                     } else {
                         miniPicture.css({'margin-bottom': 100});
                         heightLine[0].style.height = '100px';
+                        _changeCont();
                     }
                     break;
                 case 'arrow__x-down':
                     if(heightLine.height() > 5){
                         miniPicture.css('margin-bottom', '-=' + 5);
                         heightLine[0].style.height = parseInt(heightLine[0].style.height) - 5 + 'px';
+                        _changeCont();
                     } else {
                         miniPicture.css({'margin-bottom': 0});
                         heightLine[0].style.height ='1px';
+                        _changeCont();
                     }
                     break;
                 default:
@@ -325,6 +337,20 @@ var module = (function () {
             }
         _showMargin();
     };
+    var _changeCont = function () {
+        var contPicture = $('.watermark__img'),
+            mainPicture = $('.main-bar__main-img'),
+            heightMainPicture = mainPicture.height(),
+            widthMainPicture = mainPicture.width(),
+            heightMiniPicture = contPicture.find('img').height(),
+            widthMiniPicture = contPicture.find('img').width(),
+            waterImg = contPicture.find('img')[0],
+            marginBottom =  (waterImg.style.marginBottom == '') ? 0 : Number(waterImg.style.marginBottom.replace(/px/g, '')),
+            marginRight =  (waterImg.style.marginRight == '') ? 0 : Number(waterImg.style.marginRight.replace(/px/g, ''));
+
+        contPicture.css({'width': (Math.ceil(widthMainPicture/widthMiniPicture) + 1)*(widthMiniPicture+marginRight)+60, 'height': Math.ceil(heightMainPicture/heightMiniPicture + 1)*(heightMiniPicture+marginBottom)+60});
+
+    }
     var _changePositionInputTop = function () {
         _clearActive();
         var miniPicture = $('.watermark__img'),
@@ -371,7 +397,6 @@ var module = (function () {
         }
 
     };
-
 
     var _showPosition = function() {
 
