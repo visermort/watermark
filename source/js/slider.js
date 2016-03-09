@@ -13,7 +13,6 @@
     		sliderInit: function (slider, target, min, max, step, value) {
 
     		var $slider = $(slider),
-	    		$target = $(target),
 		    	min = min || $slider.data('min'),
 		    	max = max || $slider.data('max'),
 		    	step = step || .01,

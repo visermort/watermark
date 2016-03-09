@@ -96,8 +96,6 @@ $('.social').on('click', function(){
 			attr = $this.attr('attr'),
 			positionBottom = $('.position__bottom');
 
-		console.log(attr);
-
 		if(attr == 'random'){
 			positionBottom.removeClass('view__random');
 			$('.view__link').removeClass('active-custom');
@@ -122,7 +120,6 @@ $('.social').on('click', function(){
 			miniPicture[0].style.left = '-30px';
 			miniPicture[0].style.padding = '30px';
 			miniPicture.css({'width': Math.ceil(widthMainPicture/widthMiniPicture + 1)*(widthMiniPicture+parseInt(marginRight))+60, 'height': Math.ceil(heightMainPicture/heightMiniPicture + 1)*(heightMiniPicture+parseInt(marginBottom))+60});
-//			miniPicture.css({'width': Math.ceil(widthMainPicture/widthMiniPicture + 1)*(widthMiniPicture+Number(marginRight.replace(/px/g, '')))+60, 'height': Math.ceil(heightMainPicture/heightMiniPicture + 1)*(heightMiniPicture+Number(marginBottom.replace(/px/g, '')))+60});
 
 			for (var i =0; i<maxCount; i++){
 				var img = document.createElement('img');
