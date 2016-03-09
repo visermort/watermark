@@ -12,6 +12,7 @@ var module = (function () {
 
     var _setUpListeners = function () {
         $('.position__link').on('click', _changePosition);
+        $('.inputs__reset').on('click', _reset);
         $('.axis__link').off('click', _changeMarginOne);
         $('.axis__link').on('click', _changePositionOne);
         $('.axis__x-input').bind("change keyup input click",_changePositionInputLeft);
@@ -91,6 +92,7 @@ var module = (function () {
     };
 
     var _setDownListeners = function () {
+        $('.inputs__reset').on('click', _reset);
         $('.axis__link').off('click', _changePositionOne);
         $('.axis__link').on('click', _changeMarginOne);
         $('.axis__x-input').unbind("change keyup input click",_changePositionInputLeft);
@@ -118,16 +120,22 @@ var module = (function () {
                 containerTop = Math.floor(miniPicture.getBoundingClientRect().top),
                 containerLeft = Math.floor(miniPicture.getBoundingClientRect().left);
 
+            if(e.target == e.currentTarget){
+                var shiftX = e.offsetX - 30,
+                    shiftY = e.offsetY - 30;
+            } else {
 
-            var shiftX = Math.floor((e.pageX - containerLeft - 30)/(widthMiniPicture + marginRight))*(widthMiniPicture + marginRight) + e.offsetX,
-                shiftY = Math.floor((e.pageY - containerTop - 30)/(heightMiniPicture + marginBottom))*(heightMiniPicture + marginBottom) + e.offsetY;
+                var shiftX = Math.floor((e.pageX - containerLeft - 30)/(widthMiniPicture + marginRight))*(widthMiniPicture + marginRight) + e.offsetX,
+                    shiftY = Math.floor((e.pageY - containerTop - 30)/(heightMiniPicture + marginBottom))*(heightMiniPicture + marginBottom) + e.offsetY;
+            }
+
             this.style.position = 'absolute';
             $('.main-bar__img-main')[0].appendChild(miniPicture);
             miniPicture.style.zIndex = 1000;
 
             moveAt(e);
             function moveAt(e) {
-            console.log(Math.floor(e.pageX - mainPictureLeft -shiftX), Math.floor(e.pageY - mainPictureTop - shiftY),  heightMainPicture - heightContainer - 60, widthMainPicture - widthContainer - 60)
+
                 if (Math.floor(e.pageX - mainPictureLeft -shiftX) >= 0) {
                     miniPicture.style.top = Math.floor(e.pageY - mainPictureTop - shiftY) - 30 + 'px';
                     miniPicture.style.left = '0px';
@@ -397,7 +405,34 @@ var module = (function () {
         }
 
     };
+    var _reset = function () {
+        var positionBottom = $('.position__bottom');
+        _clearActive();
+        var miniCont = $('.main-bar__watermark'),
+            widthLine = $('.pos-div__y'),
+            heightLine = $('.pos-div__x');
+        widthLine[0].style.width = widthLine.width() + 'px';
+        heightLine[0].style.height = heightLine.height() + 'px';
 
+        miniCont.css('margin-right', 0);
+        miniCont.css('margin-bottom', 0);
+        widthLine[0].style.width = '1px';
+        heightLine[0].style.height = '1px';
+        miniCont.css('opacity', 1);
+        var miniPicture = $('.watermark__img')[0];
+        $('img.copy').remove();
+        miniPicture.style.padding = '0px';
+        miniPicture.style.top = '0px';
+        miniPicture.style.left = '0px';
+        $('.ui-slider-range-max').css('width', '100%');
+        $('.ui-slider-handle').css('left', '0%');
+        if($('.view-1').hasClass('active-random')){
+        positionBottom.removeClass('view__custom');
+        $('.view-1').removeClass('active-random');
+        positionBottom.addClass('view__random');
+        $('.view-2').addClass('active-custom');
+        module.init();}
+     };
     var _showPosition = function() {
 
         var miniPicture = $('.watermark__img');
