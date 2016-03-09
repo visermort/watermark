@@ -5,7 +5,7 @@ $(document).ready(function (){
         e.preventDefault();
         console.log('Команда серверу на создание Watermark');
         var watermarkImgDiv = $('.watermark__img'),
-            watermarkImg = $('.main-bar__watermark'),
+            watermarkImg = $('.main-bar__watermark'),//main-bar__watermark
             positionBottom = $('.position__bottom'),
             mainImage = $('.main-bar__main-img'),
             tiled = (positionBottom.hasClass('view__custom')? 1 : 0);
@@ -13,12 +13,12 @@ $(document).ready(function (){
             top: parseInt(watermarkImgDiv.css('top'))+parseInt(watermarkImgDiv.css('padding-top')),
             left: parseInt(watermarkImgDiv.css('left'))+parseInt(watermarkImgDiv.css('padding-left')),
             opacity: watermarkImg.css('opacity'),
-            watemarkWidth: watermarkImgDiv[0].width,
+            watemarkWidth:  watermarkImg[0].width,
             imgWidth: mainImage[0].width,
             watermarkPath: watermarkImg.attr('src'),
             imgPath: mainImage.attr('src'),
-            intervalVert : $('.axis__y-input')[0].value ,
-            intervalHor : $('.axis__x-input')[0].value,
+            intervalHor : $('.axis__y-input')[0].value ,
+            intervalVert : $('.axis__x-input')[0].value,
             tiled: tiled
         };
         console.log(jsonData);

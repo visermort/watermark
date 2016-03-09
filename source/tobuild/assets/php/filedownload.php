@@ -11,7 +11,7 @@ if ($_POST['opacity'])  $opacity = $_POST['opacity'];
 $left = $_POST['left'];
 $top =  $_POST['top'];
 $imageWidth = $_POST['imgWidth'];
-$watemarkWidth = $_POST['watemarkWidth'];
+$frontWatermarkWidth = $_POST['watemarkWidth'];
 $mainImageFile = urldecode($_POST['imgPath']);
 $watermarkImageFile = urldecode($_POST['watermarkPath']);
 $intervalVert = $_POST['intervalVert'];
@@ -20,6 +20,10 @@ $tiled = $_POST['tiled'];
 
 $scriptPath = 'assets/php/';
 
+
+if (!$_POST or !$mainImageFile or !$watermarkImageFile) exit
+    (json_encode(array( 'status' => false , 'message' => 'Ошибка, недостаточно данных!')));
+
 if ($mainImageFile = stristr( $mainImageFile , $scriptPath )) {  //из полных путей к файлам оставим только путь из папки где скрипты
     $mainImageFile = substr($mainImageFile, strlen($scriptPath)) ;
 }
@@ -27,58 +31,68 @@ if ($watermarkImageFile = stristr( $watermarkImageFile , $scriptPath )) {  //и�
     $watermarkImageFile = substr($watermarkImageFile, strlen($scriptPath)) ;
 }
 
+try {
 
-$mainImage = new abeautifulsite\SimpleImage($mainImageFile);
-$watermarkImage = new abeautifulsite\SimpleImage($watermarkImageFile);
-
-
-//далее  $watermarkImage нужно ресайзить в соответсвии с тем, что получили из POST
-$originalWidth = $mainImage -> get_width();
-$imageHeight = $mainImage -> get_height();
-
-$watermarkWidth = $watermarkImage -> get_width();
-$watermarkHeight = $watermarkImage -> get_height();
-
-$mainImageScale = $originalWidth / $imageWidth;//получили коэффициент картинка на столько больше чем у нас на экране
-
-//на эту величину умножим top left и интервалы;
-$left = $left * $mainImageScale;
-$top = $top * $mainImageScale;
-$intervalVert = $intervalVert * $mainImageScale;
-$intervalHor = $intervalHor * $mainImageScale;
+    $mainImage = new abeautifulsite\SimpleImage($mainImageFile);
+    $watermarkImage = new abeautifulsite\SimpleImage($watermarkImageFile);
 
 
-//разбираемся в вотермарком
-$watermarkScale = 1;
-//if ( $wmWidth > $watemarkWidth ) $watermarkScale = $wmWidth / $watemarkWidth; //коэффициент, насколько реальный больше, чем на экране
+    //далее  $watermarkImage нужно ресайзить в соответсвии с тем, что получили из POST
+    $originalWidth = $mainImage->get_width();
+    $imageHeight = $mainImage->get_height();
 
-if (!($mainImageScale == 1 ) ) {  //and $watermarkScale == 1   если нужно , то ресайзим
-    $watermarkWidth = $mainImageScale * $watermarkWidth;// * $watermarkScale;
-    $watermarkHeight = $mainImageScale * $watermarkHeight;// * $watermarkScale;
+    $watermarkWidth = $watermarkImage->get_width();
+    $watermarkHeight = $watermarkImage->get_height();
 
-    $watermarkImage -> fit_to_width( $watermarkWidth );
+    $mainImageScale = $originalWidth / $imageWidth;//получили коэффициент картинка на столько больше чем у нас на экране
+
+    //на эту величину умножим top left и интервалы;
+    $left = $left * $mainImageScale;
+    $top = $top * $mainImageScale;
+    $intervalVert = $intervalVert * $mainImageScale;
+    $intervalHor = $intervalHor * $mainImageScale;
+
+
+    //разбираемся в вотермарком
+    $watermarkScale = 1;
+    if ($tiled and ($watermarkWidth > $frontWatermarkWidth)) $watermarkScale = $watermarkWidth / $frontWatermarkWidth; //коэффициент, насколько реальный больше, чем на экране
+
+    if ($mainImageScale != 1 or $watermarkScale != 1) {//  если нужно , то ресайзим
+        $watermarkWidth = $mainImageScale * $watermarkWidth / $watermarkScale;
+        $watermarkHeight = $mainImageScale * $watermarkHeight / $watermarkScale;
+
+        $watermarkImage->fit_to_width($watermarkWidth);
+    }
+
+    //сформировать новое имя файла
+    $newFileName = 'files/' . substr(md5(rand(1, 100000)), 0, 16) . '.jpg';
+
+    if ($tiled) {//если замощение, то делаем много раз в цикле, иначе один раз
+        $countX = round($originalWidth / ($watermarkWidth + $intervalHor)) + 1;
+        $countY = round($imageHeight / ($watermarkHeight + $intervalVert)) + 1;
+        $innerX = $left;
+        while ($innerX >= $intervalHor) $innerX -= ($watermarkWidth + $intervalHor); //сдвигаем innerleft на минимальную отрицательную величину
+        while ($innerX <= 0 - ($watermarkWidth))
+            $innerX += ($watermarkWidth + $intervalHor);//если очень отрицательный - сдвикаем максимально к нулю
+        $innerY = $top;
+        while ($innerY >= $intervalVert) $innerY -= ($watermarkHeight + $intervalVert);
+        while ($innerY <= 0 - ($watermarkHeight)) //обе операции проделываем для innerTop
+            $innerY += ($watermarkHeight + $intervalVert);
+        for ($i = 0; $i < $countX; $i++) {
+            for ($j = 0; $j < $countY; $j++) {
+                $currentLeft = $innerX + $i * ($watermarkWidth + $intervalHor);
+                $currentTop = $innerY + $j * ($watermarkHeight + $intervalVert);
+                $mainImage->overlay($watermarkImage, 'top left', $opacity, $currentLeft, $currentTop);
+            } //for j
+        } //for i
+
+    } else $mainImage->overlay($watermarkImage, 'top left', $opacity, $left, $top);// ->  save($newFileName);
+    
+    $mainImage->save($newFileName);
+
+} catch (Exception $e) {			//ошибка,
+    exit  (json_encode(array( 'status' => false , 'message' => 'Ошибка при выполнении '.$e -> getMessage())));
 }
-
-//сформировать новое имя файла
-$newFileName = 'files/'.substr(md5(rand(1,10000)),0,16).'.jpg';
-
-if ($tiled) {//если замощение, то делаем много раз в цикле, иначе один раз
-    $countX = round($originalWidth / ($watermarkWidth + $intervalHor)) + 1;
-    $countY = round($imageHeight / ($watermarkHeight + $intervalVert)) + 1;
-    $innerX = $left;
-    while ($innerX >=0 ) $innerX -= ($watermarkWidth + $intervalHor);
-    $innerY = $top;
-    while ($innerY >=0 ) $innerY -= ($watermarkHeight + $intervalVert);
-    for ( $i = 0 ; $i < $countX ; $i++ ) {
-        for( $j = 0 ; $j < $countY ; $j++ ) {
-            $currentLeft = $innerX + $i * ($watermarkWidth + $intervalHor );
-            $currentTop = $innerY + $j * ($watermarkHeight + $intervalVert );
-            $mainImage -> overlay($watermarkImage, 'top left', $opacity, $currentLeft, $currentTop );
-        } //for j
-    } //for i
-
-} else $mainImage -> overlay($watermarkImage, 'top left', $opacity, $left, $top );// ->  save($newFileName);
-$mainImage -> save($newFileName);
 
 
 exit( json_encode(array( 'status' => true ,
@@ -95,7 +109,6 @@ exit( json_encode(array( 'status' => true ,
     'left' => $left,
     'scale' =>  $mainImageScale,
     'watermarkScale' => $watermarkScale,
-    'newWidth' => $newWidth,
     'opacity' => $opacity,
     'intervalVert' => $intervalVert,
     'intervalHor' => $intervalHor,
