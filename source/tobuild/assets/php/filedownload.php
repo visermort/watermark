@@ -21,8 +21,13 @@ $tiled = $_POST['tiled'];
 $scriptPath = 'assets/php/';
 
 
-if (!$_POST or !$mainImageFile or !$watermarkImageFile) exit
-    (json_encode(array( 'status' => false , 'message' => 'Ошибка, недостаточно данных!')));
+if (!$_POST or !$mainImageFile or !$watermarkImageFile)
+    exit (json_encode(array(
+        'status' => false ,
+        'message' => 'Ошибка, недостаточно данных!',
+        'frontImage' => $mainImageFile,
+        'frontWatermark' => $watermarkImageFile
+    )));
 
 if ($mainImageFile = stristr( $mainImageFile , $scriptPath )) {  //из полных путей к файлам оставим только путь из папки где скрипты
     $mainImageFile = substr($mainImageFile, strlen($scriptPath)) ;
@@ -86,8 +91,8 @@ try {
             } //for j
         } //for i
 
-    } else $mainImage->overlay($watermarkImage, 'top left', $opacity, $left, $top);// ->  save($newFileName);
-    
+    } else $mainImage->overlay($watermarkImage, 'top left', $opacity, $left, $top);
+
     $mainImage->save($newFileName);
 
 } catch (Exception $e) {			//ошибка,
@@ -97,14 +102,12 @@ try {
 
 exit( json_encode(array( 'status' => true ,
     'url' => $scriptPath.$newFileName, //$settings['phpPath'].$newFileName ,
-   // 'fullUrl' => $_SERVER['HTTP_ORIGIN'].'/'.$settings['phpPath'].$newFileName ,
     'message' => 'Склейка изображения выполнена', //далее это всё выводим для отладки
     'frontImage' => $mainImageFile,
     'frontWatermark' => $watermarkImageFile,
     'with' =>  $imageWidth,
     'watermarkwidth' => $watermarkWidth,
     'realwidth' => $originalWidth,
-  //  'realwatermarkWidth' => $wmWidth,
     'top' => $top,
     'left' => $left,
     'scale' =>  $mainImageScale,
@@ -117,6 +120,4 @@ exit( json_encode(array( 'status' => true ,
     'innerX' => $innerX,
     'innerY' => $innerY,
     'tiled' => $tiled
-
-
 )));
