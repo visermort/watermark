@@ -30,7 +30,7 @@
 	border-radius: 2px;
 	border: none;
 	outline: none;
-	&not(:disabled)::hover {
+	&:not(.disabled):hover {
 		background-image: linear-gradient(to top, #f97e76 0%, #e3736c 100%);
 		border: 1px solid #e3736c;
 	}

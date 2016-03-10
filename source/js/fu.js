@@ -58,7 +58,7 @@
 
                     if (!~data.files[0].type.indexOf('image')) {
                         popup.show('error', 'Ошибка! Загрузите картинку');
-                    } else if (data.files[0].size > 400000) {
+                    } else if (data.files[0].size > 4000000) {
                         popup.show('error', 'Ошибка! Файл слишком большой');
                     } else {
 

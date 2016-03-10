@@ -8,7 +8,7 @@ module.exports = function($) {
       .pipe($.gp.autoprefixer({ browsers: $.config.autoprefixerConfig }))
       .pipe($.gp.if($.dev, $.gp.sourcemaps.write()))
       .pipe($.gp.if(!$.dev, $.gp.csso()))
-      .pipe($.gp.if(!$.dev, $.gp.rename({ suffix: '.min' })))
+      .pipe($.gp.if(!$.dev, $.gp.rename({ suffix: '.min.rel='+ $.package.version })))
       .pipe($.gulp.dest($.config.root + '/assets/css'))
       .pipe($.browserSync.stream());
   })

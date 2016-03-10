@@ -7,7 +7,7 @@ module.exports = function($) {
       .pipe($.gp.concat('app.js'))
       .pipe($.gp.if($.dev, $.gp.sourcemaps.write()))
       .pipe($.gp.if(!$.dev, $.gp.uglify()))
-      .pipe($.gp.if(!$.dev, $.gp.rename({ suffix: '.min' })))
+      .pipe($.gp.if(!$.dev, $.gp.rename({ suffix: '.min.rel='+ $.package.version })))
       .pipe($.gulp.dest($.config.root + '/assets/js'))
   })
 };

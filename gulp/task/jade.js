@@ -5,7 +5,7 @@ module.exports = function($) {
 
   $.gulp.task('jade', function() {
     patterns.push({match: '%=suffix=%', replace: $.dev ? '' : '.min'});
-    patterns.push({match: '%=version=%', replace: $.dev ? '' : '?rel=' + $.package.version});
+    patterns.push({match: '%=version=%', replace: $.dev ? '' : '.rel=' + $.package.version});
 
     return $.gulp.src($.path.template, {since: $.gulp.lastRun('jade')})
       .pipe($.gp.jade({ pretty: true }))

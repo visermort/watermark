@@ -8,16 +8,17 @@ $(document).ready(function (){
             dataType: "json",
             data: { clear: 1 }
         }).done( function(response) {
-                console.log(response); //если status=fasle  - ошибка  вывести message
+            if (!response['status']) {
+                console.log(response['message']);
+            }
             })
-            .fail ( function(response) {
-                console.log(response); //вывести в popup сообщение  - ошибка работы с удалённым сервером
-            });
+        .fail ( function(response) {
+            console.log(response);
+        });
     }();
 
     $('.inputs__download').on('click',function(e){
         e.preventDefault();
-        console.log('Команда серверу на создание Watermark');
         var watermarkImgDiv = $('.watermark__img'),
             watermarkImg = $('.main-bar__watermark'),//main-bar__watermark
             positionBottom = $('.position__bottom'),
@@ -35,7 +36,6 @@ $(document).ready(function (){
             intervalVert : $('.axis__x-input')[0].value,
             tiled: tiled
         };
-        console.log(jsonData);
         $.ajax({
             url : 'assets/php/filedownload.php',
             type:"POST",
@@ -46,27 +46,22 @@ $(document).ready(function (){
             }
         }).done( function(response) {
                 $('.loading').hide();
-                console.log(response);
                 var url = response['url'];
-                    //,fullUrl = response['fullUrl']
-                console.log(url);//путь к картинке
                 window.downloadFile(url);
-
-                //в этом месте нужно выводить
-
+                if (response['status']) {
+                    popup.show('success', 'Файл с водяным знаком передан на скачивание');
+                } else {
+                    console.log(response['message']);
+                    popup.show('error', 'Ошибка при формировании водяного знака!');
+                }
             } )
             .fail ( function(response) {
                 $('.loading').hide();
-                console.log(response); //вывести в popup сообщение  - ошибка работы с удалённым сервером
+                console.log(response['message']); //вывести в popup сообщение  - ошибка работы с удалённым сервером
+                popup.show('error', 'Ошибка работы с удалённым сервером');
             } );
     });
 
-    $('.inputs__reset').on('click',function(e){
-        e.preventDefault();
-               
-        // нужно ввести команду на начальную позицию второго фото
-
-    });
 
 });
 
