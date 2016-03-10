@@ -2,26 +2,23 @@
     'use strict';
 
     var forms,
-        fileList;
+        fileList,
+        progressBar;
 
     init();
-    attachEvents();
 
     function init() {
         forms = ['#image-upload__form', '#watermark__form'];
+        progressBar = $('#progress .progress-bar');
         fileUpload();
     }
-
-    function attachEvents() {
-    }
-
-
 
     function fileUpload () {
 
         $.each(forms, function(index, item) {
 
-            var mainImg = $('.main-bar__main-img'), // основная картинка
+            var 
+                mainImg = $('.main-bar__main-img'), // основная картинка
                 watermark = $('.watermark_img'),    //слой со второй картинкой
                 watermarkContent = $('.main-bar__watermark'), //вторая картинка
                 current;
@@ -54,19 +51,24 @@
                 ],
 
                 add: function(e, data) {
+
+                    var $this = $(this);
+
+                    progressBar.css('width', 0);
+
                     if (!~data.files[0].type.indexOf('image')) {
-                        console.log('Загрузите картинку');
-                    } else if (data.files[0].size > 4000000) {
-                        console.log('Файл слишком большой');
+                        popup.show('error', 'Ошибка! Загрузите картинку');
+                    } else if (data.files[0].size > 400000) {
+                        popup.show('error', 'Ошибка! Файл слишком большой');
                     } else {
-                        var $this = $(this);
+
                         data
-                            .process(function () {
-                            return $this.fileupload('process', data);
-                        })
-                            .done(function() {
-                            data.submit();
-                        });
+                            .process (function () {
+                                return $this.fileupload('process', data);
+                            })
+                            .done (function() {
+                                data.submit();
+                            });
                     }
                 },
 
@@ -76,18 +78,20 @@
 
                 done: function (e, data) {
                     
-                    $('.loading').hide();
-
                     var upload = data.result.files[0];
-//                    console.log(e.target.id, upload.url);
 
-                    if(current ==  mainImg){
+                    $('.loading').hide();
+                    popup.show('success', 'Файл успешно загружен');
+                    
+                    if (current ==  mainImg) {
                         current
                             .attr('src', upload.url)
                             .show();
+
                         current.get(0).onload = function() {
                             watermarkSize.change(mainImg, watermarkContent); //watermark);
                         };
+
                         $('.watermark__form-disabled').removeClass('watermark__form-disabled');
                     } else {
                         watermark.show();
@@ -98,25 +102,29 @@
                         watermarkContent.get(0).onload = function() {
                             watermarkSize.change(mainImg, watermarkContent); //watermark);
                         };
+                        
                         $('.side-bar__transparency-disabled').removeClass('side-bar__transparency-disabled');
                         $('.side-bar__position-disabled').removeClass('side-bar__position-disabled');
                         $('.inputs__download').removeAttr('disabled');
                         $('.inputs__reset').removeAttr('disabled');
 
                     }
-                    //current
-                    //    .attr('src', upload.url)
-                    //    .show();
-                    //mainImg.get(0).onLoad = function() {
-                    //    watermarkSize.change(mainImg, watermark);
-                    //};
-                    //current.get(0).onload = function() {
-                    //    watermarkSize.change(mainImg, watermark);
-                    //};
                 },
+
                 fail: function (e,data) {
                     $('.loading').hide();
-                    console.log(data);
+                    progressBar.css('width', 0);
+                    popup.show('error', 'Ошибка! Файл не загружен');
+                },
+
+                progressall: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+
+                    function set() {
+                        progressBar.css('width', progress + '%');
+                    }
+                    
+                    setTimeout(set, 500);
                 }
             });
         });

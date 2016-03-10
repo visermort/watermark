@@ -36,7 +36,7 @@ ul {
 }
 .content {
 	display: table;
-	// background: #fff;
+	position: relative;
 	padding-top: 10%;
 	&__row {
 		display: table-row;
