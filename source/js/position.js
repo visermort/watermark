@@ -15,6 +15,8 @@ var module = (function () {
         $('.inputs__reset').on('click', _reset);
         $('.axis__link').off('click', _changeMarginOne);
         $('.axis__link').on('click', _changePositionOne);
+        $('.axis__x-input').unbind("change keyup input click",_changeMarginInputLeft);
+        $('.axis__y-input').unbind("change keyup input click",_changeMarginInputTop);
         $('.axis__x-input').bind("change keyup input click",_changePositionInputLeft);
         $('.axis__y-input').bind("change keyup input click",_changePositionInputTop);
         var mini = $('.watermark__img')[0];
@@ -97,7 +99,8 @@ var module = (function () {
         $('.axis__link').on('click', _changeMarginOne);
         $('.axis__x-input').unbind("change keyup input click",_changePositionInputLeft);
         $('.axis__y-input').unbind("change keyup input click",_changePositionInputTop);
-
+        $('.axis__x-input').bind("change keyup input click",_changeMarginInputLeft);
+        $('.axis__y-input').bind("change keyup input click",_changeMarginInputTop);
         var mini = $('.watermark__img')[0];
 
         mini.onmousedown = function(e) {
@@ -135,17 +138,17 @@ var module = (function () {
 
             moveAt(e);
             function moveAt(e) {
-
-                if (Math.floor(e.pageX - mainPictureLeft -shiftX) >= 0) {
+                e.preventDefault();
+                if (Math.floor(e.pageX - mainPictureLeft -shiftX) >= 30) {
                     miniPicture.style.top = Math.floor(e.pageY - mainPictureTop - shiftY) - 30 + 'px';
                     miniPicture.style.left = '0px';
-                    if (Math.floor(e.pageY - mainPictureTop - shiftY) >= 0) {
+                    if (Math.floor(e.pageY - mainPictureTop - shiftY) >= 30) {
                         miniPicture.style.top = '0px';
                     }
                     if (Math.floor(e.pageY - mainPictureTop - shiftY) <= heightMainPicture - heightContainer - 60) {
                         miniPicture.style.top = heightMainPicture - heightContainer - 60 + 'px';
                     }
-                } else if (Math.floor(e.pageY - mainPictureTop - shiftY) >= 0) {
+                } else if (Math.floor(e.pageY - mainPictureTop - shiftY) >= 30) {
                     miniPicture.style.top = '0px';
                     miniPicture.style.left = Math.floor(e.pageX - mainPictureLeft - shiftX) - 30 + 'px';
                     if (Math.floor(e.pageX - mainPictureLeft - shiftX) <= widthMainPicture -  widthContainer - 60) {
@@ -404,6 +407,81 @@ var module = (function () {
             this.value = this.value.replace(/[^0-9]/g, '');
         }
 
+    };
+    var _changeMarginInputLeft = function () {
+
+        var miniPic = $('.main-bar__watermark'),
+            widthLine = $('.pos-div__y'),
+            heightLine = $('.pos-div__x'),
+            miniPicture = $('.watermark__img'),
+            mainPicture = $('.main-bar__main-img'),
+            heightMainPicture = mainPicture.height(),
+            heightMiniPicture = miniPicture.find('img').height(),
+            marginBottom = $('.axis__x-input')[0].value;
+
+        if (this.value.match(/[^0-9]/g)) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        }
+
+        widthLine[0].style.width = widthLine.width() + 'px';
+        heightLine[0].style.height = heightLine.height() + 'px';
+
+        if(marginBottom >= heightMainPicture-heightMiniPicture){
+            $('.axis__x-input')[0].value = heightMainPicture-heightMiniPicture;
+            miniPic.css({'margin-bottom': heightMainPicture-heightMiniPicture});
+            _changeCont();
+            heightLine[0].style.height = '100px';
+        } else if(marginBottom == 0) {
+            miniPic.css({'margin-bottom': 0});
+            _changeCont();
+            heightLine[0].style.height ='1px';
+        } else if(marginBottom <= 100) {
+            heightLine[0].style.height = marginBottom + 'px';
+            miniPic.css({'margin-bottom': parseInt(heightLine[0].style.height)});
+            _changeCont();
+        } else {
+            miniPic.css({'margin-bottom': marginBottom});
+            heightLine[0].style.height = '100px';
+            _changeCont();
+        }
+    };
+    var _changeMarginInputTop = function () {
+
+        var miniPic = $('.main-bar__watermark'),
+            widthLine = $('.pos-div__y'),
+            heightLine = $('.pos-div__x'),
+            miniPicture = $('.watermark__img'),
+            mainPicture = $('.main-bar__main-img'),
+            widthMainPicture = mainPicture.width(),
+            widthMiniPicture = miniPicture.find('img').width(),
+            marginRight = $('.axis__y-input')[0].value;
+
+        widthLine[0].style.width = widthLine.width() + 'px';
+        heightLine[0].style.height = heightLine.height() + 'px';
+
+        if (this.value.match(/[^0-9]/g)) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        }
+
+        if(marginRight > widthMainPicture-widthMiniPicture){
+            $('.axis__y-input')[0].value = widthMainPicture-widthMiniPicture;
+            miniPic.css({'margin-right': widthMainPicture-widthMiniPicture});
+            _changeCont();
+            widthLine[0].style.width = '100px';
+        } else if(marginRight == 0) {
+            miniPic.css({'margin-right': 0});
+            _changeCont();
+            widthLine[0].style.width = '1px';
+        } else if(marginRight <= 100) {
+            _changeCont();
+            widthLine[0].style.width = marginRight + 'px';
+            miniPic.css({'margin-right': parseInt(widthLine[0].style.width)});
+        } else {
+            miniPic.css({'margin-right': marginRight});
+            widthLine[0].style.width = '100px';
+
+            _changeCont();
+        }
     };
     var _reset = function () {
         var positionBottom = $('.position__bottom');
