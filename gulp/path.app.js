@@ -8,5 +8,6 @@ module.exports = [
   './source/js/position.js',
   './source/js/slider.js',
   './source/js/server.js',
-  './source/js/inputs.js'
+  './source/js/inputs.js',
+  './source/js/lang.js'
 ];

@@ -6,7 +6,10 @@ $(document).ready(function (){
             url : 'assets/php/utils.php',
             type:"POST",
             dataType: "json",
-            data: { clear: 1 }
+            data: {
+                clear: 1,
+                lang: messageLang.getLanguage()  //текущий язык в бек
+                }
         }).done( function(response) {
             if (!response['status']) {
                 console.log(response['message']);
@@ -34,8 +37,9 @@ $(document).ready(function (){
             imgPath: mainImage.attr('src'),
             intervalHor : $('.axis__y-input')[0].value ,
             intervalVert : $('.axis__x-input')[0].value,
-            tiled: tiled
-        };
+            tiled: tiled,
+            lang: messageLang.getLanguage()  //текущий язык в бек
+    };
         $.ajax({
             url : 'assets/php/filedownload.php',
             type:"POST",
@@ -49,16 +53,16 @@ $(document).ready(function (){
                 var url = response['url'];
                 window.downloadFile(url);
                 if (response['status']) {
-                    popup.show('success', 'Файл с водяным знаком передан на скачивание');
+                    popup.show('success', messageLang.getMessage('message4'));//файл передан на скачивание
                 } else {
                     console.log(response['message']);
-                    popup.show('error', 'Ошибка при формировании водяного знака!');
+                    popup.show('error', messageLang.getMessage('message5'));//ошибка при формировании файла
                 }
             } )
             .fail ( function(response) {
                 $('.loading').hide();
                 console.log(response['message']); //вывести в popup сообщение  - ошибка работы с удалённым сервером
-                popup.show('error', 'Ошибка работы с удалённым сервером');
+                popup.show('error', messageLang.getMessage('message6'));//ошибка работы с удалённым сервером
             } );
     });
 
@@ -71,7 +75,8 @@ window.downloadFile = function (sUrl) {
 
     //iOS devices do not support downloading. We have to inform user about this.
     if (/(iP)/g.test(navigator.userAgent)) {
-        alert('Your device does not support files downloading. Please try again in desktop browser.');
+//        alert('Your device does not support files downloading. Please try again in desktop browser.');
+        popup.show('error', messageLang.getMessage('message7'));//браузер не поддерживает скачивание
         return false;
     }
 
