@@ -1,8 +1,10 @@
 (function () {
 	'use strict';
 
+    var module;
+
     init();
-    attachEvents();
+    publicInterface();
 
     function init() {
     	var arr = [
@@ -15,22 +17,29 @@
     	});
     }
 
-    function attachEvents() {
-    }
-
     function pasteValue(from, to) {
     	$(from).on('change', function() {
+            if (inputFile.valid === true) {
+                var 
+                    input = $(this),
+                    value = input.val(),
+                    fake = $(to),
+                    lastIndex = value.lastIndexOf('\\') + 1;
 
-    		var input = $(this),
-		    	value = input.val(),
-		    	fake = $(to),
-		    	lastIndex = value.lastIndexOf('\\') + 1;
+                if (lastIndex !== -1) {
+                    value = value.substr(lastIndex);
+                }
 
-		    if (lastIndex !== -1) {
-			    value = value.substr(lastIndex);
-	   		}
-
-	   		fake.text(value);
+                fake.text(value);
+            }
     	});
     }
+
+    function publicInterface() {
+        module = {
+            valid: true
+        }
+    }
+
+    window.inputFile = module;
 })();

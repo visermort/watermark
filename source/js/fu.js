@@ -15,21 +15,22 @@
 
     function fileUpload () {
 
-        $.each(forms, function(index, item) {
+        $.each(forms, function(index, form) {
 
             var 
+                $form = $(form),
                 mainImg = $('.main-bar__main-img'), // основная картинка
                 watermark = $('.watermark_img'),    //слой со второй картинкой
                 watermarkContent = $('.main-bar__watermark'), //вторая картинка
                 current;
 
-            if (item == '#image-upload__form') {
+            if (form == '#image-upload__form') {
                 current = mainImg;
-            } else if (item == '#watermark__form') {
+            } else if (form == '#watermark__form') {
                 current = watermark;
             }
 
-            $(item).fileupload({
+            $form.fileupload({
 
                 url: 'assets/php/fileupload.php',
                 disableImageResize: false,
@@ -53,15 +54,16 @@
                 add: function(e, data) {
 
                     var $this = $(this);
-
                     progressBar.css('width', 0);
 
-                    if (!~data.files[0].type.indexOf('image')) {
+                    if (!~data.files[0].type.indexOf('image')) {                      
                         popup.show('error', 'Ошибка! Загрузите картинку');
+                        inputFile.valid = false;
                     } else if (data.files[0].size > 4000000) {
                         popup.show('error', 'Ошибка! Файл слишком большой');
+                        inputFile.valid = false;
                     } else {
-
+                        inputFile.valid = true;
                         data
                             .process (function () {
                                 return $this.fileupload('process', data);
@@ -125,9 +127,20 @@
                     }
                     
                     setTimeout(set, 500);
+                    hideProgress();
                 }
             });
         });
+    }
+
+    function hideProgress() {
+
+        function hide() {
+            progressBar.css('width', 0 + '%');
+        }
+
+        setTimeout(hide, 3400);
+        
     }
 
 })();

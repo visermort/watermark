@@ -8,6 +8,13 @@
 	padding: 15px;
 	border-radius: 4px;
 	font-size: 16px;
-	box-shadow: 0px 1px 7.2px 0.8px rgba(153,153,153,0.75);
 	color: #fff;
+
+	&_error {
+		box-shadow: 0px 1px 7.2px 0.8px #F44336;
+	}
+
+	&_success {
+		box-shadow: 0px 1px 7.2px 0.8px #8BC34A;
+	}
 }

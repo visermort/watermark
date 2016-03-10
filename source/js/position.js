@@ -38,6 +38,7 @@ var module = (function () {
             miniPicture.style.zIndex = 1000;
 
             moveAt(e);
+            e.preventDefault();
 
             function moveAt(e) {
                 var mainPictureTop = Math.floor(mainPicture[0].getBoundingClientRect().top),
