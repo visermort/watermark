@@ -78,9 +78,9 @@
 
 |  Имя    | работа в проекте     |  GitHub    | Email     |
 | :----------- | :----------: | :----------- | :----------: |
-| Андрей Спартак | Тим-лид | [visermort](https://github.com/visermort) |<me@example.com> |
-| Стелиос Багларидис | front-end | [steliosbox](https://github.com/steliosbox) |<s.baglaridis@gmail.com> |
-| Лейсан Гильфанова | js | [Allarepossible](https://github.com/Allarepossible) |<me@example.com> |
-| Тимофей Дяденко | php | [tim44](https://github.com/tim44) |<me@example.com> |
+| Андрей Спартак | Тим-лид, PHP, JS| [visermort](https://github.com/visermort) |<oxygenn@list.ru> |
+| Стелиос Багларидис | front-end, JS | [steliosbox](https://github.com/steliosbox) |<s.baglaridis@gmail.com> |
+| Лейсан Гильфанова | JS | [Allarepossible](https://github.com/Allarepossible) |<allarepossible@gmail.com> |
+| Тимофей Дяденко | front-end, JS | [tim44](https://github.com/tim44) |<tmtm69@yandex.ru> |
 | Алексей Егоров | front-end | [ego-web](https://github.com/ego-web) |<ego_web@mail.ru> |
 
