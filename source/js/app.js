@@ -4,7 +4,7 @@
 $('.social').hover(function(){
 
 	var el = $(this).css('margin-left');
-	console.log(el);
+//	console.log(el);
 	if($(this).css('margin-left') == '-43px') {
 		$(this).css({'margin-left':'0'});
 		console.log("margin-left is -43px");

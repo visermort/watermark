@@ -57,15 +57,10 @@
                     progressBar.css('width', 0);
 
                     if (!~data.files[0].type.indexOf('image')) {
-                        popup.show('error', 'Ошибка! Загрузите картинку');
                         inputFile.valid = false;
-                    if (!~data.files[0].type.indexOf('image')) {
-                       // popup.show('error', 'Ошибка! Загрузите картинку');
                         popup.show('error', messageLang.getMessage('message0'));//загружите картинку
                     } else if (data.files[0].size > 4000000) {
-                        popup.show('error', 'Ошибка! Файл слишком большой');
                         inputFile.valid = false;
-//                        popup.show('error', 'Ошибка! Файл слишком большой');
                         popup.show('error', messageLang.getMessage('message1'));//файл слишком большой
                     } else {
                         inputFile.valid = true;
@@ -88,7 +83,6 @@
                     var upload = data.result.files[0];
 
                     $('.loading').hide();
-//                    popup.show('success', 'Файл успешно загружен');
                     popup.show('success', messageLang.getMessage('message3'));//файл успешно загружен
 
                     if (current ==  mainImg) {
@@ -122,7 +116,6 @@
                 fail: function (e,data) {
                     $('.loading').hide();
                     progressBar.css('width', 0);
-//                    popup.show('error', 'Ошибка! Файл не загружен');
                     popup.show('error', messageLang.getMessage('message2'));//ошибка, файл не загружен
                 },
 
