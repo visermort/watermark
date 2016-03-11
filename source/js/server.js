@@ -44,8 +44,12 @@ $(document).ready(function (){
             url : 'assets/php/filedownload.php',
             type:"POST",
             dataType: "json",
-            data: jsonData
+            data: jsonData,
+            beforeSend: function() {
+                $('.preloader').show();
+            }
         }).done( function(response) {
+                $('.preloader').hide();
 
                 var url = response['url'];
                 window.downloadFile(url);
@@ -57,7 +61,7 @@ $(document).ready(function (){
                 }
             } )
             .fail ( function(response) {
-                $('.loading').hide();
+                $('.preloader').hide();
                 console.log(response['message']); //вывести в popup сообщение  - ошибка работы с удалённым сервером
                 popup.show('error', messageLang.getMessage('message6'));//ошибка работы с удалённым сервером
             } );
