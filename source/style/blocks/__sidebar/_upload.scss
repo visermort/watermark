@@ -26,25 +26,26 @@
         height: 27px;
         font: 12px/14px $roboto_light;
         color: #2e3641;
-        border: 1px solid #9eb2c0;
     }
     &__txt {
       border-right: none;
       width: 181px;
-      @include border-radius(5px 0 0 5px);
+      @include border-radius(3px 0 0 3px);
       overflow: hidden;
       text-overflow: ellipsis;
       color: rgb(158, 178, 192);
       padding-left: 10px;
       white-space: nowrap;
       font: 12px/27px $roboto_light;
+      border: 1px solid #9eb2c0;
+      border-right: none;
     }    
     &__ico {
         position: relative;
         border-left: none;
         width: 39px;
         background: $colorOrange;
-        @include border-radius(0 5px 5px 0);
+        @include border-radius(0 3px 3px 0);
 
         &:after {
             content: '';
