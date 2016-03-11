@@ -14,24 +14,30 @@
 	width: 99px;
 	height: 42px;
 	background-color: #c1cfd9;
-	border-radius: 2px;
+	border-radius: 3px;
 	border: none;
 	outline: none;
-	&:hover{
+	&:not(:disabled):hover{
 		background-image: linear-gradient(to top, #c1cfd9 0%, #9eaab3 100%);
 		border: 1px solid #a6b2bb;
 	}
+}
+.inputs__reset:disabled {
+	background: rgba(193,207,217,.5);
 }
 .inputs__download {
 	float: right;
 	width: 99px;
 	height: 42px;
 	background-color: #f97e76;
-	border-radius: 2px;
+	border-radius: 3px;
 	border: none;
 	outline: none;
-	&:not(.disabled):hover {
+	&:not(:disabled):hover {
 		background-image: linear-gradient(to top, #f97e76 0%, #e3736c 100%);
 		border: 1px solid #e3736c;
 	}
+}
+.inputs__download:disabled {
+	background: rgba(249,126,118,.5);
 }

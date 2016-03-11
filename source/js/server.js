@@ -44,12 +44,9 @@ $(document).ready(function (){
             url : 'assets/php/filedownload.php',
             type:"POST",
             dataType: "json",
-            data: jsonData,
-            beforeSend: function() {
-                $('.loading').show();
-            }
+            data: jsonData
         }).done( function(response) {
-                $('.loading').hide();
+
                 var url = response['url'];
                 window.downloadFile(url);
                 if (response['status']) {

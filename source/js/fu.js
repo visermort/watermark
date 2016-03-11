@@ -74,15 +74,10 @@
                     }
                 },
 
-                beforeSend: function() {
-                    $('.loading').show();
-                },
-
                 done: function (e, data) {
                     
                     var upload = data.result.files[0];
 
-                    $('.loading').hide();
                     popup.show('success', messageLang.getMessage('message3'));//файл успешно загружен
 
                     if (current ==  mainImg) {
