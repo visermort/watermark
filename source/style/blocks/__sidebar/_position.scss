@@ -82,7 +82,7 @@ $wrapSize: 102px;
   width: $wrapSize;
   height: $wrapSize - 1px;
   border: 1px solid $borderColor;
-  @include border-radius(3px);
+  @include border-radius(2px);
   overflow: hidden;
   position: relative;
 }
@@ -121,7 +121,7 @@ $wrapSize: 102px;
   //--- #2
 }
 .position__axis-down {
-  margin-top: 14px;
+  margin-top: 11px;
 }
 .position__axis_x-a,
 .position__axis_x-b,
@@ -164,7 +164,7 @@ $wrapSize: 102px;
   height: $axisInputSize;
   outline: none;
   border: 1px solid $borderColor;
-  @include border-radius(3px);
+  @include border-radius(2px);
   font-family: $roboto_light;
   font-size: 16px;
   color: #444a53;

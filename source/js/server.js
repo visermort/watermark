@@ -50,6 +50,7 @@ $(document).ready(function (){
             }
         }).done( function(response) {
                 $('.preloader').hide();
+
                 var url = response['url'];
                 window.downloadFile(url);
                 if (response['status']) {
