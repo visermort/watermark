@@ -35,9 +35,9 @@ $wrapSize: 102px;
     background-position: nth($view-1, 3) nth($view-1, 4);
 }
 .active-random:before {
-    background-position: nth($view-1-hover, 3) nth($view-1-hover, 4);
+    background-position: nth($view-1-active, 3) nth($view-1-active, 4);
 }
-.view__item-1:hover .view-1:before {
+.view__item-1:hover .view-1:not(.active-random):before {
   width: nth($view-1-hover, 5);
   height: nth($view-1-hover, 6);
   background-position: nth($view-1-hover, 3) nth($view-1-hover, 4);
@@ -51,9 +51,9 @@ $wrapSize: 102px;
   background-position: nth($view-2, 3) nth($view-2, 4);
 }
 .active-custom:before {
-    background-position: nth($view-2-hover, 3) nth($view-2-hover, 4);
+    background-position: nth($view-2-active, 3) nth($view-2-active, 4);
 }
-.view__item-2:hover .view-2:before {
+.view__item-2:hover .view-2:not(.active-custom):before {
   width: nth($view-2-hover, 5);
   height: nth($view-2-hover, 6);
   background-position: nth($view-2-hover, 3) nth($view-2-hover, 4);
@@ -70,6 +70,7 @@ $wrapSize: 102px;
         padding: 13px 15px;
         display: block;
         float: left;
+        width: 190px;
       }
       &__bottom {
         padding: 25px 16px;

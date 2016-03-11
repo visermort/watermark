@@ -1,6 +1,8 @@
 .side-bar__block {
 	@include clearfix();
 	padding: 0 10px;
+	display: block;
+	min-height: 70px;
 }
 .inputs__reset,
 .inputs__download {
@@ -8,11 +10,12 @@
 	font-family: $roboto_medium;
 	font-size: 18px;
 	font-weight: 500;
+	margin-bottom: 20px;
 }
 .inputs__reset {
 	float: left;
 	width: 99px;
-	height: 42px;
+	min-height: 42px;
 	background-color: #c1cfd9;
 	border-radius: 3px;
 	border: none;
