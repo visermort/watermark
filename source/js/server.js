@@ -79,9 +79,6 @@ window.downloadFile = function (sUrl) {
         popup.show('error', messageLang.getMessage('message7'));//браузер не поддерживает скачивание
         return false;
     }
-
-    //If in Chrome or Safari - download via virtual link click
-    if (window.downloadFile.isChrome || window.downloadFile.isSafari) {
         //Creating new link node.
         var link = document.createElement('a');
         link.href = sUrl;
@@ -99,16 +96,6 @@ window.downloadFile = function (sUrl) {
             link.dispatchEvent(e);
             return true;
         }
-    }
 
-    // Force file download (whether supported by server).
-    if (sUrl.indexOf('?') === -1) {
-        sUrl += '?download';
-    }
-
-    window.open(sUrl, '_self');
-    return true;
 };
 
-window.downloadFile.isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-window.downloadFile.isSafari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
