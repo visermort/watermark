@@ -46,10 +46,10 @@ $(document).ready(function (){
             dataType: "json",
             data: jsonData,
             beforeSend: function() {
-                $('.loading').show();
+                $('.preloader').show();
             }
         }).done( function(response) {
-                $('.loading').hide();
+                $('.preloader').hide();
                 var url = response['url'];
                 window.downloadFile(url);
                 if (response['status']) {
@@ -60,7 +60,7 @@ $(document).ready(function (){
                 }
             } )
             .fail ( function(response) {
-                $('.loading').hide();
+                $('.preloader').hide();
                 console.log(response['message']); //вывести в popup сообщение  - ошибка работы с удалённым сервером
                 popup.show('error', messageLang.getMessage('message6'));//ошибка работы с удалённым сервером
             } );

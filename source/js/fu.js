@@ -75,14 +75,14 @@
                 },
 
                 beforeSend: function() {
-                    $('.loading').show();
+                    $('.preloader').show();
                 },
 
                 done: function (e, data) {
                     
                     var upload = data.result.files[0];
 
-                    $('.loading').hide();
+                    $('.preloader').hide();
                     popup.show('success', messageLang.getMessage('message3'));//файл успешно загружен
 
                     if (current ==  mainImg) {
@@ -114,7 +114,7 @@
                 },
 
                 fail: function (e,data) {
-                    $('.loading').hide();
+                    $('.preloader').hide();
                     progressBar.css('width', 0);
                     popup.show('error', messageLang.getMessage('message2'));//ошибка, файл не загружен
                 },
