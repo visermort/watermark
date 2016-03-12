@@ -8,8 +8,7 @@ var $ = {
     template: require('./gulp/path.template'),
     foundation: require('./gulp/path.foundation'),
     app: require('./gulp/path.app'),
-    images: require('./gulp/path.images'),
-    fonts: require('./gulp/path.fonts'),
+    tobuild: require('./gulp/path.tobuild'),
     php: require('./gulp/path.php')
   },
   gulp: require('gulp'),
@@ -35,7 +34,8 @@ $.gulp.task('default', $.gulp.series(
         'sass',
         'jade',
         'js.foundation',
-        'js.process'
+        'js.process',
+        'copy.php'
     ),
     $.gulp.parallel(
         'watch',
@@ -45,4 +45,4 @@ $.gulp.task('default', $.gulp.series(
 
 $.gulp.task('clean', $.gulp.series('clean'));
 
-$.gulp.task('copy', $.gulp.parallel('copy.images'));
+$.gulp.task('copy', $.gulp.parallel('copy.tobuild'));

@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = [
-'./source/fonts/**/*.*'
+'./source/php/**/*.*'
 ];

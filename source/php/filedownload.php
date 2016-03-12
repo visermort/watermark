@@ -2,7 +2,7 @@
 
 header("content-type: application/json");
 
-include ('lib/abeautifulsite/SimpleImage.php');
+include('lib/abeautifulsite/SimpleImage.php');
 
 //получить данные из пост
 
