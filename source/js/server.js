@@ -67,7 +67,7 @@ $(document).ready(function (){
             } )
             .fail ( function(response) {
                 $('.preloader').hide();
-                console.log(response['message']); //вывести в popup сообщение  - ошибка работы с удалённым сервером
+                console.log(response); //вывести в popup сообщение  - ошибка работы с удалённым сервером
                 popup.show('error', messageLang.getMessage('message6'));//ошибка работы с удалённым сервером
             } );
     });
