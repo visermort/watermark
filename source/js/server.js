@@ -26,20 +26,22 @@ $(document).ready(function (){
             watermarkImg = $('.main-bar__watermark'),//main-bar__watermark
             positionBottom = $('.position__bottom'),
             mainImage = $('.main-bar__main-img'),
-            tiled = (positionBottom.hasClass('view__custom')? 1 : 0);
-        var jsonData = {//данные для создания watermark - прозрачность, размеры, отступы, и т.д.
-            top: parseInt(watermarkImgDiv.css('top'))+parseInt(watermarkImgDiv.css('padding-top')),
-            left: parseInt(watermarkImgDiv.css('left'))+parseInt(watermarkImgDiv.css('padding-left')),
-            opacity: watermarkImg.css('opacity'),
-            watemarkWidth:  watermarkImg[0].width,
-            imgWidth: mainImage[0].width,
-            watermarkPath: watermarkImg.attr('src'),
-            imgPath: mainImage.attr('src'),
-            intervalHor : $('.axis__y-input')[0].value ,
-            intervalVert : $('.axis__x-input')[0].value,
-            tiled: tiled,
-            lang: messageLang.getLanguage()  //текущий язык в бек
+            tiled = (positionBottom.hasClass('view__custom')? 1 : 0),
+            jsonData = {//данные для создания watermark - прозрачность, размеры, отступы, и т.д.
+                top: parseInt(watermarkImgDiv.css('top'))+parseInt(watermarkImgDiv.css('padding-top')),
+                left: parseInt(watermarkImgDiv.css('left'))+parseInt(watermarkImgDiv.css('padding-left')),
+                opacity: watermarkImg.css('opacity'),
+                watemarkWidth:  watermarkImg[0].width,
+                imgWidth: mainImage[0].width,
+                watermarkPath: watermarkImg.attr('src'),
+                imgPath: mainImage.attr('src'),
+                intervalHor : $('.axis__y-input')[0].value ,
+                intervalVert : $('.axis__x-input')[0].value,
+                tiled: tiled,
+                lang: messageLang.getLanguage()  //текущий язык в бек
     };
+//        console.log(watermarkImg);
+//        console.log(jsonData);
         $.ajax({
             url : 'assets/php/filedownload.php',
             type:"POST",
@@ -54,6 +56,7 @@ $(document).ready(function (){
                 var url = response['url'];
                 window.downloadFile(url);
                 if (response['status']) {
+//                    console.log(response);
                     popup.show('success', messageLang.getMessage('message4'));//файл передан на скачивание
                 } else {
                     console.log(response['message']);

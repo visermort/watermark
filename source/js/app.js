@@ -7,8 +7,8 @@ $('.social').hover(function(){
 //	console.log(el);
 	if($(this).css('margin-left') == '-43px') {
 		$(this).css({'margin-left':'0'});
-		console.log("margin-left is -43px");
-		console.log($(this).css('margin-left'));
+//		console.log("margin-left is -43px");
+//		console.log($(this).css('margin-left'));
 	} else {
 		$(this).css({'margin-left':'-43px'});
 	}
@@ -56,7 +56,7 @@ $('.social').hover(function(){
 		$('.lang__ru').addClass('lang__active');
 	}
 
-	console.log(langFromCookie);
+//	console.log(langFromCookie);
 
 
 	$('.lang__link').on('click', function(event){

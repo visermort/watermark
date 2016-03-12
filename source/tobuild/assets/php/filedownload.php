@@ -59,8 +59,8 @@ try {
 
 
     //разбираемся в вотермарком
-    $watermarkScale = 1;
-    if ($tiled and ($watermarkWidth > $frontWatermarkWidth)) $watermarkScale = $watermarkWidth / $frontWatermarkWidth; //коэффициент, насколько реальный больше, чем на экране
+    $watermarkScale = 1;//$tiled and
+    if (($watermarkWidth > $frontWatermarkWidth)) $watermarkScale = $watermarkWidth / $frontWatermarkWidth; //коэффициент, насколько реальный больше, чем на экране
 
     if ($mainImageScale != 1 or $watermarkScale != 1) {//  если нужно , то ресайзим
         $watermarkWidth = $mainImageScale * $watermarkWidth / $watermarkScale;
@@ -96,11 +96,15 @@ try {
     $mainImage->save($newFileName);
 
 } catch (Exception $e) {			//ошибка,
-    exit  (json_encode(array( 'status' => false , 'message' => 'Ошибка при выполнении '.$e -> getMessage())));
+    exit  (json_encode(array(
+        'status' => false ,
+        'message' => 'Ошибка при выполнении '.$e -> getMessage()
+    )));
 }
 
 
-exit( json_encode(array( 'status' => true ,
+exit( json_encode(array(
+    'status' => true ,
     'url' => $scriptPath.$newFileName, //$settings['phpPath'].$newFileName ,
     'message' => 'Склейка изображения выполнена', //далее это всё выводим для отладки
     'frontImage' => $mainImageFile,
