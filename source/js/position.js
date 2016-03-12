@@ -90,8 +90,8 @@ var module = (function () {
         mini.ondragstart = function () {
             return false;
         };
-
-        $('.watermark__img').resizable({
+        var resize = $(".watermark__img" );
+        resize.resizable({
             aspectRatio: true,
             containment: ".main-bar__main-img",
             minHeight: 50,
@@ -99,8 +99,12 @@ var module = (function () {
             resize: function (event,ui) {
                 event.preventDefault();
                 $('.main-bar__watermark').height(Math.round(ui.size.height));
+                $('.main-bar__watermark').width(Math.round(ui.size.width));
             }
         });
+        resize.on( "resizestart", function( e, ui ) {
+                    document.onmousemove = mini.onmouseup = null;
+        } );
         _showPosition();
     };
 
@@ -503,12 +507,18 @@ var module = (function () {
         _clearActive();
         var miniCont = $('.main-bar__watermark'),
             widthLine = $('.pos-div__y'),
-            heightLine = $('.pos-div__x');
+            heightLine = $('.pos-div__x'),
+            naturalWidth = miniCont.prop('naturalWidth'),
+            naturalHeight = miniCont.prop('naturalHeight');
         widthLine[0].style.width = widthLine.width() + 'px';
         heightLine[0].style.height = heightLine.height() + 'px';
 
         miniCont.css('margin-right', 0);
         miniCont.css('margin-bottom', 0);
+        if(naturalWidth > 0 && naturalHeight > 0){
+        miniCont.css('width', naturalWidth);
+        miniCont.css('height', naturalHeight);
+        }
         widthLine[0].style.width = '1px';
         heightLine[0].style.height = '1px';
         miniCont.css('opacity', 1);
@@ -525,7 +535,7 @@ var module = (function () {
         positionBottom.addClass('view__random');
         $('.view-2').addClass('active-custom');
         module.init();
-        $('.ui-resizable').css({'width': miniCont.width(), 'height': miniCont.height()});
+        $('.ui-resizable').css({'width': naturalWidth, 'height': naturalHeight});
         }
         _showPosition();
      };
