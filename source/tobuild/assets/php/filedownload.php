@@ -101,7 +101,8 @@ try {
         'message' => 'Ошибка при выполнении '.$e -> getMessage()
     )));
 }
-
+session_start(); //обращение к сессии
+$_SESSION['lastFile'] = $newFileName;
 
 exit( json_encode(array(
     'status' => true ,

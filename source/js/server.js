@@ -1,6 +1,10 @@
 
 $(document).ready(function (){
 
+    sendFileToDownload = function () {
+        $('body').append('<iframe src="assets/php/filetodownload.php" frameborder="0" class="filetodownload-hide-frame"></iframe>');
+    };
+
     clearTmp = function() { //после загрузки страницы команда серверу на очистку от старых файлов
         $.ajax({
             url : 'assets/php/utils.php',
@@ -52,10 +56,8 @@ $(document).ready(function (){
             }
         }).done( function(response) {
                 $('.preloader').hide();
-
-                var url = response['url'];
-                window.downloadFile(url);
                 if (response['status']) {
+                    sendFileToDownload();
 //                    console.log(response);
                     popup.show('success', messageLang.getMessage('message4'));//файл передан на скачивание
                 } else {
@@ -70,36 +72,5 @@ $(document).ready(function (){
             } );
     });
 
-
 });
-
-
-
-window.downloadFile = function (sUrl) {
-
-    //iOS devices do not support downloading. We have to inform user about this.
-    if (/(iP)/g.test(navigator.userAgent)) {
-//        alert('Your device does not support files downloading. Please try again in desktop browser.');
-        popup.show('error', messageLang.getMessage('message7'));//браузер не поддерживает скачивание
-        return false;
-    }
-        //Creating new link node.
-        var link = document.createElement('a');
-        link.href = sUrl;
-
-        if (link.download !== undefined) {
-            //Set HTML5 download attribute. This will prevent file from opening if supported.
-            var fileName = sUrl.substring(sUrl.lastIndexOf('/') + 1, sUrl.length);
-            link.download = fileName;
-        }
-
-        //Dispatching click event.
-        if (document.createEvent) {
-            var e = document.createEvent('MouseEvents');
-            e.initEvent('click', true, true);
-            link.dispatchEvent(e);
-            return true;
-        }
-
-};
 
