@@ -40,6 +40,13 @@ try {
 
     $mainImage = new abeautifulsite\SimpleImage($mainImageFile);
     $watermarkImage = new abeautifulsite\SimpleImage($watermarkImageFile);
+    //пнг сразу сконвертим в jpeg
+    $imageinfo = getimagesize($mainImageFile);
+    if ($imageinfo['mime'] == 'image/png') {
+        $tmpFileName = 'files/' . substr(md5(rand(1, 100000)), 0, 16) . '.jpg';
+        $mainImage -> save($tmpFileName);
+        $mainImage = new abeautifulsite\SimpleImage($tmpFileName);
+    }
 
 
     //далее  $watermarkImage нужно ресайзить в соответсвии с тем, что получили из POST
