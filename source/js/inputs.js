@@ -1,13 +1,14 @@
 (function () {
 	'use strict';
 
-    var module;
+    var module,
+        arr;
 
     init();
     publicInterface();
 
     function init() {
-    	var arr = [
+    	arr = [
 	    		['#image-upload','.image-upload__txt'],
 	    		['#watermark','.watermark__txt']
     		];
@@ -19,6 +20,7 @@
 
     function pasteValue(from, to) {
     	$(from).on('change', function() {
+            
             if (inputFile.valid === true) {
                 var 
                     input = $(this),

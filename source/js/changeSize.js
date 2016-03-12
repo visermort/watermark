@@ -4,9 +4,7 @@
 	init(); 
 	publicInterface();
     
-
-    function init() {
-    	
+    function init() {	
     }
 
     function publicInterface() {

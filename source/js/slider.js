@@ -11,26 +11,26 @@
     	module = {
 
     		sliderInit: function (slider, target, min, max, step, value) {
+	    		var 
+	    			$slider = $(slider),
+			    	min = min || $slider.data('min'),
+			    	max = max || $slider.data('max'),
+			    	step = step || .01,
+			    	value = value || -1,
+			    	opacity;
 
-    		var $slider = $(slider),
-		    	min = min || $slider.data('min'),
-		    	max = max || $slider.data('max'),
-		    	step = step || .01,
-		    	value = value || -1,
-		    	opacity;
+			    $slider.slider({
+			    	min: min,
+			    	max: max,
+			    	range: 'max',
+			    	value: value,
+			      	step: step,
 
-		    	$slider.slider({
-		    		min: min,
-		    		max: max,
-		    		range: 'max',
-		    		value: value,
-		      		step: step,
-
-		      		slide: function( event, ui ) {
-		      			opacity = -ui.value;
-		        		$('.main-bar__watermark').css('opacity', opacity);
-		      		}
-		    	});
+			    	slide: function( event, ui ) {
+			      		opacity = -ui.value;
+			        	$('.main-bar__watermark').css('opacity', opacity);
+			      	}
+			    });
 	    	}
     	}
     } 

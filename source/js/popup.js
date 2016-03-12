@@ -1,5 +1,4 @@
 (function () {
-	
 	'use strict';
 
 	var module,
@@ -50,5 +49,4 @@
     } 
 
     window.popup = module;
-
 })();
