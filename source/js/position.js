@@ -43,47 +43,46 @@ var module = (function () {
             function moveAt(e) {
                 var mainPictureTop = Math.floor(mainPicture[0].getBoundingClientRect().top),
                     mainPictureLeft = Math.floor(mainPicture[0].getBoundingClientRect().left);
-
-                if(Math.floor(e.pageX - mainPictureLeft -shiftX) <= 0){
-                    miniPicture.style.left = '0px';
-                    miniPicture.style.top = Math.floor(e.pageY - mainPictureTop - shiftY) + 'px';
-                    _showPosition()
-                    if(Math.floor(e.pageY - mainPictureTop - shiftY) <= 0){
+                if(e.target !== $('.ui-resizable-s')[0] && e.target !== $('.ui-resizable-e')[0] && e.target !== $('.ui-resizable-se')[0] && e.target && e.target !== $('.watermark__img.ui-resizable')[0] && e.target){
+                    if(Math.floor(e.pageX - mainPictureLeft -shiftX) <= 0){
+                        miniPicture.style.left = '0px';
+                        miniPicture.style.top = Math.floor(e.pageY - mainPictureTop - shiftY) + 'px';
+                        _showPosition();
+                        if(Math.floor(e.pageY - mainPictureTop - shiftY) <= 0){
+                            miniPicture.style.top = '0px';
+                            _showPosition();}
+                        if(Math.floor(e.pageY - mainPictureTop - shiftY) >= heightMainPicture - heightMiniPicture){
+                            miniPicture.style.top = heightMainPicture - heightMiniPicture + 'px';
+                            _showPosition();}
+                    } else if(Math.floor(e.pageY - mainPictureTop - shiftY) <= 0){
                         miniPicture.style.top = '0px';
-                        _showPosition();}
-                    if(Math.floor(e.pageY - mainPictureTop - shiftY) >= heightMainPicture - heightMiniPicture){
-                        miniPicture.style.top = heightMainPicture - heightMiniPicture + 'px';
-                        _showPosition();}
-                } else if(Math.floor(e.pageY - mainPictureTop - shiftY) <= 0){
-                    miniPicture.style.top = '0px';
-                    miniPicture.style.left = Math.floor(e.pageX - mainPictureLeft -shiftX) + 'px';
-                    _showPosition()
-                    if(Math.floor(e.pageX - mainPictureLeft -shiftX) >= widthMainPicture - widthMiniPicture){
+                        miniPicture.style.left = Math.floor(e.pageX - mainPictureLeft -shiftX) + 'px';
+                        _showPosition();
+                        if(Math.floor(e.pageX - mainPictureLeft -shiftX) >= widthMainPicture - widthMiniPicture){
+                            miniPicture.style.left = widthMainPicture-widthMiniPicture + 'px';
+                            _showPosition();}
+                    } else if(Math.floor(e.pageX - mainPictureLeft -shiftX) >= widthMainPicture - widthMiniPicture){
                         miniPicture.style.left = widthMainPicture-widthMiniPicture + 'px';
-                        _showPosition();}
-                } else if(Math.floor(e.pageX - mainPictureLeft -shiftX) >= widthMainPicture - widthMiniPicture){
-                    miniPicture.style.left = widthMainPicture-widthMiniPicture + 'px';
-                    miniPicture.style.top = Math.floor(e.pageY - mainPictureTop - shiftY) + 'px';
-                    _showPosition()
-                    if(Math.floor(e.pageY - mainPictureTop - shiftY) >= heightMainPicture - heightMiniPicture){
+                        miniPicture.style.top = Math.floor(e.pageY - mainPictureTop - shiftY) + 'px';
+                        _showPosition();
+                        if(Math.floor(e.pageY - mainPictureTop - shiftY) >= heightMainPicture - heightMiniPicture){
+                            miniPicture.style.top = heightMainPicture - heightMiniPicture + 'px';
+                            _showPosition();}
+                    } else if(Math.floor(e.pageY - mainPictureTop - shiftY) >= heightMainPicture - heightMiniPicture){
                         miniPicture.style.top = heightMainPicture - heightMiniPicture + 'px';
-                        _showPosition();}
-                } else if(Math.floor(e.pageY - mainPictureTop - shiftY) >= heightMainPicture - heightMiniPicture){
-                    miniPicture.style.top = heightMainPicture - heightMiniPicture + 'px';
-                    miniPicture.style.left = Math.floor(e.pageX - mainPictureLeft -shiftX) + 'px';
-                    _showPosition();
-                } else {
-                    miniPicture.style.left = Math.floor(e.pageX - mainPictureLeft -shiftX) + 'px';
-                    miniPicture.style.top = Math.floor(e.pageY - mainPictureTop - shiftY) + 'px';
-                    _showPosition();
+                        miniPicture.style.left = Math.floor(e.pageX - mainPictureLeft -shiftX) + 'px';
+                        _showPosition();
+                    } else {
+                        miniPicture.style.left = Math.floor(e.pageX - mainPictureLeft -shiftX) + 'px';
+                        miniPicture.style.top = Math.floor(e.pageY - mainPictureTop - shiftY) + 'px';
+                        _showPosition();
+                    }
                 }
-
             }
 
             document.onmousemove = function (e) {
                 moveAt(e);
-
-            }
+            };
             document.onmouseup = function () {
                 document.onmousemove = self.onmouseup = null;
             }
@@ -91,6 +90,17 @@ var module = (function () {
         mini.ondragstart = function () {
             return false;
         };
+
+        $('.watermark__img').resizable({
+            aspectRatio: true,
+            containment: ".main-bar__main-img",
+            minHeight: 50,
+            minWidth: 50,
+            resize: function (event,ui) {
+                event.preventDefault();
+                $('.main-bar__watermark').height(Math.round(ui.size.height));
+            }
+        });
         _showPosition();
     };
 
@@ -287,82 +297,6 @@ var module = (function () {
             }
         _showPosition();
     };
-    var _changeMarginOne = function (e) {
-
-        e.preventDefault();
-        var $this = $(this),
-            item = $this.attr("class"),
-            miniPicture = $('.main-bar__watermark'),
-            widthLine = $('.pos-div__y'),
-            heightLine = $('.pos-div__x'),
-            position = item.replace(/axis__link/g, '').trim();
-            widthLine[0].style.width = widthLine.width() + 'px';
-            heightLine[0].style.height = heightLine.height() + 'px';
-
-            switch (position) {
-                case 'arrow__y-up':
-                    if(widthLine.width() < 99){
-                        miniPicture.css('margin-right', '+=' + 5);
-                        widthLine[0].style.width = parseInt(widthLine[0].style.width) + 5 + 'px';
-                        _changeCont();
-                    } else {
-                        miniPicture.css({'margin-right': 100})
-                        widthLine[0].style.width = '100px';
-                        _changeCont();
-                    }
-                    break;
-                case 'arrow__y-down':
-                    if(widthLine.width() > 5){
-                        miniPicture.css('margin-right', '-=' + 5);
-                        widthLine[0].style.width = parseInt(widthLine[0].style.width) - 5 + 'px';
-                        _changeCont();
-                    } else {
-                        miniPicture.css({'margin-right': 0});
-                        widthLine[0].style.width = '1px';
-                        _changeCont();
-                    }
-                    break;
-                case 'arrow__x-up':
-                    if(heightLine.height() < 99){
-                        miniPicture.css('margin-bottom', '+=' + 5);
-                        heightLine[0].style.height = parseInt(heightLine[0].style.height) + 5 + 'px';
-                        _changeCont();
-                    } else {
-                        miniPicture.css({'margin-bottom': 100});
-                        heightLine[0].style.height = '100px';
-                        _changeCont();
-                    }
-                    break;
-                case 'arrow__x-down':
-                    if(heightLine.height() > 5){
-                        miniPicture.css('margin-bottom', '-=' + 5);
-                        heightLine[0].style.height = parseInt(heightLine[0].style.height) - 5 + 'px';
-                        _changeCont();
-                    } else {
-                        miniPicture.css({'margin-bottom': 0});
-                        heightLine[0].style.height ='1px';
-                        _changeCont();
-                    }
-                    break;
-                default:
-                    miniPicture.css({'top': 0, 'left': 0});
-            }
-        _showMargin();
-    };
-    var _changeCont = function () {
-        var contPicture = $('.watermark__img'),
-            mainPicture = $('.main-bar__main-img'),
-            heightMainPicture = mainPicture.height(),
-            widthMainPicture = mainPicture.width(),
-            heightMiniPicture = contPicture.find('img').height(),
-            widthMiniPicture = contPicture.find('img').width(),
-            waterImg = contPicture.find('img')[0],
-            marginBottom =  (waterImg.style.marginBottom == '') ? 0 : Number(waterImg.style.marginBottom.replace(/px/g, '')),
-            marginRight =  (waterImg.style.marginRight == '') ? 0 : Number(waterImg.style.marginRight.replace(/px/g, ''));
-
-        contPicture.css({'width': (Math.ceil(widthMainPicture/widthMiniPicture) + 1)*(widthMiniPicture+marginRight)+60, 'height': Math.ceil(heightMainPicture/heightMiniPicture + 1)*(heightMiniPicture+marginBottom)+60});
-
-    }
     var _changePositionInputTop = function () {
         _clearActive();
         var miniPicture = $('.watermark__img'),
@@ -409,6 +343,85 @@ var module = (function () {
         }
 
     };
+
+    var _changeMarginOne = function (e) {
+
+        e.preventDefault();
+        var $this = $(this),
+            item = $this.attr("class"),
+            miniPicture = $('.main-bar__watermark'),
+            widthLine = $('.pos-div__y'),
+            heightLine = $('.pos-div__x'),
+            position = item.replace(/axis__link/g, '').trim();
+        widthLine[0].style.width = widthLine.width() + 'px';
+        heightLine[0].style.height = heightLine.height() + 'px';
+
+        switch (position) {
+            case 'arrow__y-up':
+                if($('.axis__y-input')[0].value > 100){
+                    miniPicture.css('margin-right', '+=' + 5);
+                    widthLine[0].style.width = '100px';
+                    _changeCont();
+                } else if(widthLine.width() < 99){
+                    miniPicture.css('margin-right', '+=' + 5);
+                    widthLine[0].style.width = parseInt(widthLine[0].style.width) + 5 + 'px';
+                    _changeCont();
+                } else {
+                    miniPicture.css({'margin-right': 100})
+                    widthLine[0].style.width = '100px';
+                    _changeCont();
+                }
+                break;
+            case 'arrow__y-down':
+                if($('.axis__y-input')[0].value > 100) {
+                    miniPicture.css('margin-right', '-=' + 5);
+                    widthLine[0].style.width = '100px';
+                    _changeCont();
+                }else if(widthLine.width() > 5){
+                    miniPicture.css('margin-right', '-=' + 5);
+                    widthLine[0].style.width = parseInt(widthLine[0].style.width) - 5 + 'px';
+                    _changeCont();
+                } else {
+                    miniPicture.css({'margin-right': 0});
+                    widthLine[0].style.width = '1px';
+                    _changeCont();
+                }
+                break;
+            case 'arrow__x-up':
+                if($('.axis__x-input')[0].value > 100){
+                    miniPicture.css('margin-bottom', '+=' + 5);
+                    heightLine[0].style.height = '100px';
+                    _changeCont();
+                } else if(heightLine.height() < 99){
+                    miniPicture.css('margin-bottom', '+=' + 5);
+                    heightLine[0].style.height = parseInt(heightLine[0].style.height) + 5 + 'px';
+                    _changeCont();
+                } else {
+                    miniPicture.css({'margin-bottom': 100});
+                    heightLine[0].style.height = '100px';
+                    _changeCont();
+                }
+                break;
+            case 'arrow__x-down':
+                if($('.axis__x-input')[0].value > 100){
+                    miniPicture.css('margin-bottom', '-=' + 5);
+                    heightLine[0].style.height = '100px';
+                    _changeCont();
+                } else if(heightLine.height() > 5){
+                    miniPicture.css('margin-bottom', '-=' + 5);
+                    heightLine[0].style.height = parseInt(heightLine[0].style.height) - 5 + 'px';
+                    _changeCont();
+                } else {
+                    miniPicture.css({'margin-bottom': 0});
+                    heightLine[0].style.height ='1px';
+                    _changeCont();
+                }
+                break;
+            default:
+                miniPicture.css({'top': 0, 'left': 0});
+        }
+        _showMargin();
+    };
     var _changeMarginInputLeft = function () {
 
         var miniPic = $('.main-bar__watermark'),
@@ -441,7 +454,7 @@ var module = (function () {
             miniPic.css({'margin-bottom': parseInt(heightLine[0].style.height)});
             _changeCont();
         } else {
-            miniPic.css({'margin-bottom': marginBottom});
+            miniPic.css({'margin-bottom': parseInt(marginBottom)});
             heightLine[0].style.height = '100px';
             _changeCont();
         }
@@ -478,12 +491,13 @@ var module = (function () {
             widthLine[0].style.width = marginRight + 'px';
             miniPic.css({'margin-right': parseInt(widthLine[0].style.width)});
         } else {
-            miniPic.css({'margin-right': marginRight});
+            miniPic.css({'margin-right': parseInt(marginRight)});
             widthLine[0].style.width = '100px';
 
             _changeCont();
         }
     };
+
     var _reset = function () {
         var positionBottom = $('.position__bottom');
         _clearActive();
@@ -510,8 +524,25 @@ var module = (function () {
         $('.view-1').removeClass('active-random');
         positionBottom.addClass('view__random');
         $('.view-2').addClass('active-custom');
-        module.init();}
+        module.init();
+        $('.ui-resizable').css({'width': miniCont.width(), 'height': miniCont.height()});
+        }
+        _showPosition();
      };
+    var _changeCont = function () {
+        var contPicture = $('.watermark__img'),
+            mainPicture = $('.main-bar__main-img'),
+            heightMainPicture = mainPicture.height(),
+            widthMainPicture = mainPicture.width(),
+            heightMiniPicture = contPicture.find('img').height(),
+            widthMiniPicture = contPicture.find('img').width(),
+            waterImg = contPicture.find('img')[0],
+            marginBottom =  (waterImg.style.marginBottom == '') ? 0 : Number(waterImg.style.marginBottom.replace(/px/g, '')),
+            marginRight =  (waterImg.style.marginRight == '') ? 0 : Number(waterImg.style.marginRight.replace(/px/g, ''));
+
+        contPicture.css({'width': (Math.ceil(widthMainPicture/widthMiniPicture) + 1)*(widthMiniPicture+marginRight)+60, 'height': Math.ceil(heightMainPicture/heightMiniPicture + 1)*(heightMiniPicture+marginBottom)+60});
+
+    };
     var _showPosition = function() {
 
         var miniPicture = $('.watermark__img');
@@ -532,7 +563,8 @@ var module = (function () {
 
     return {
         init : init,
-        rem : rem
+        rem : rem,
+        reset : _reset
     };
 
 }) ();

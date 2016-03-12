@@ -87,35 +87,36 @@ $('.social').hover(function(){
 		console.log(url);
 	});
 //------------------------------------------------------------------------------------
-//----- переключатель режима позицианирование по осям x & y
+//----- переключатель режима позиционирование по осям x & y
 //------------------------------------------------------------------------------------
 	$('.view__link').on('click', function(event){
-
 		event.preventDefault();
+
 		var $this = $(this),
 			attr = $this.attr('attr'),
 			positionBottom = $('.position__bottom');
 
-		if(attr == 'random'){
+		var	miniPicture = $('.watermark__img'),
+			mainPicture = $('.main-bar__main-img'),
+			heightMainPicture = mainPicture.height(),
+			widthMainPicture = mainPicture.width(),
+			heightMiniPicture = miniPicture.find('img').height(),
+			widthMiniPicture = miniPicture.find('img').width(),
+			waterImg = miniPicture.find('img')[0],
+			srcImg = waterImg.src,
+			opacity = $('.main-bar__watermark')[0].style.opacity,
+			maxHeight = waterImg.style.maxHeight,
+			maxWidth = waterImg.style.maxWidth,
+			marginBottom = (waterImg.style.marginBottom == '') ? 0 : waterImg.style.marginBottom,
+			marginRight = (waterImg.style.marginRight == '') ? 0 : waterImg.style.marginRight,
+			maxCount = Math.ceil(heightMainPicture/heightMiniPicture + 1)*Math.ceil(widthMainPicture/widthMiniPicture + 1) - 1;
+
+		var _tiling = function() {
 			positionBottom.removeClass('view__random');
 			$('.view__link').removeClass('active-custom');
 			positionBottom.addClass('view__custom');
 			$($this).addClass('active-random');
 			module.rem();
-			var	miniPicture = $('.watermark__img'),
-				mainPicture = $('.main-bar__main-img'),
-				heightMainPicture = mainPicture.height(),
-				widthMainPicture = mainPicture.width(),
-				heightMiniPicture = miniPicture.find('img').height(),
-				widthMiniPicture = miniPicture.find('img').width(),
-				waterImg = miniPicture.find('img')[0],
-				srcImg = waterImg.src,
-				opacity = $('.main-bar__watermark')[0].style.opacity,
-				maxHeight = waterImg.style.maxHeight,
-				maxWidth = waterImg.style.maxWidth,
-				marginBottom = (waterImg.style.marginBottom == '') ? 0 : waterImg.style.marginBottom,
-				marginRight = (waterImg.style.marginRight == '') ? 0 : waterImg.style.marginRight,
-				maxCount = Math.ceil(heightMainPicture/heightMiniPicture + 1)*Math.ceil(widthMainPicture/widthMiniPicture + 1) - 1;
 			miniPicture[0].style.top = '-30px';
 			miniPicture[0].style.left = '-30px';
 			miniPicture[0].style.padding = '30px';
@@ -127,24 +128,37 @@ $('.social').hover(function(){
 				img.style.marginBottom = marginBottom;
 				img.style.maxWidth = maxWidth;
 				img.style.maxHeight = maxHeight;
+				img.style.height = heightMiniPicture + 'px';
 				img.style.opacity = opacity;
 				img.style.marginRight = marginRight;
 				img.className = 'main-bar__watermark copy';
 				miniPicture[0].appendChild(img);
-			}
 
-		} else {
-			var	miniPicture = $('.watermark__img')[0];
+			};
+		};
+		var _oneMode = function() {
+			var	miniPic = $('.watermark__img')[0];
 			$('img.copy').remove();
-			miniPicture.style.padding = '0px';
-			miniPicture.style.top = '0px';
-			miniPicture.style.left = '0px';
+			miniPic.style.padding = '0px';
+			miniPic.style.top = '0px';
+			miniPic.style.left = '0px';
 			module.init();
 			positionBottom.removeClass('view__custom');
 			$('.view__link').removeClass('active-random');
 			positionBottom.addClass('view__random');
 			$($this).addClass('active-custom');
-		}
+			miniPicture.css({'width': widthMiniPicture, 'height': heightMiniPicture});
+			$('.ui-resizable').css({'width': widthMiniPicture, 'height': heightMiniPicture});
+		};
+
+		if(attr == 'random'){
+			_tiling();
+		} else {
+			_oneMode();
+		};
+
+
+
 	});
 
 })();

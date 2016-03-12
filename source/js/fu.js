@@ -97,8 +97,7 @@
                         $('.watermark__form-disabled').removeClass('watermark__form-disabled');
                     } else {
                         watermark.show();
-                        $(".watermark__img")[0].style.top = '0px';
-                        $(".watermark__img")[0].style.left = '0px';
+
                         $(".watermark__img")[0].style.display = 'block';
                         watermarkContent.attr('src', upload.url);
                         watermarkContent.get(0).onload = function() {
@@ -109,7 +108,7 @@
                         $('.side-bar__position-disabled').removeClass('side-bar__position-disabled');
                         $('.inputs__download').removeAttr('disabled');
                         $('.inputs__reset').removeAttr('disabled');
-
+                        module.reset();
                     }
                 },
 
