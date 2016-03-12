@@ -2,7 +2,7 @@
 
 Сервис по созданию водяных знаков на изображениях.
 
-![Alt text](source/tobuild/assets/readme/pic/project.png)
+![Alt text](source/readme/pic/project.png)
 
 Перейти на [сайт](http://example.net/) проекта.
 Перейти на [GitHub](http://example.net/) проекта.
@@ -16,41 +16,41 @@
 
 >Перед началом работы активной будет только форма для загрузки исходного изображения, используйте форму:
 
->![Alt text](source/tobuild/assets/readme/pic/download_1.png)
+>![Alt text](source/readme/pic/download_1.png)
 
 >Следующим шагом будет загрузка картинки в качестве водяного знака, используйте форму:
 
->![Alt text](source/tobuild/assets/readme/pic/download_2.png)
+>![Alt text](source/readme/pic/download_2.png)
 
 ### Управление расположением
 
 >После загрузки обеих картинок, становятся доступными формы управления положением и степенью прозрачности водяного знака.
 С помощью кнопок, на рисунке ниже, можно выбрать метод размещения водяного знака. Справа - режим одиночной копии водяного знака. Слева - замощение с определенным расстоянием между копиями водяного знака.
 
->![Alt text](source/tobuild/assets/readme/pic/tiling_1.png)
+>![Alt text](source/readme/pic/tiling_1.png)
 
 ### Одиночный водяной знак
 
 >Для размещения одиночного водяного знака относительно исходного изображения, используйте кнопки управления:
 
->![Alt text](source/tobuild/assets/readme/pic/move_2.png)
+>![Alt text](source/readme/pic/move_2.png)
 
 >для более точного позиционирования:
 
->![Alt text](source/tobuild/assets/readme/pic/move_1.png)
+>![Alt text](source/readme/pic/move_1.png)
 
 ### Замощение водяного знака
 
 >Для замощения водяного знака относительно исходного изображения, используйте кнопки управления:
 
->![Alt text](source/tobuild/assets/readme/pic/tiling_2.png)
+>![Alt text](source/readme/pic/tiling_2.png)
 крестик будет отображать реальную толщину расстояния между копиями по горизонтали и вертикали.
 
 ### Сброс действий
 
 >Для отмены всех произведенных действий нажмите кнопку:
 
->![Alt text](source/tobuild/assets/readme/pic/reset.png)
+>![Alt text](source/readme/pic/reset.png)
 
 >В данном случае картинки вернутся в исходное положение, поля ввода значений очистятся.
 
@@ -58,7 +58,7 @@
 
 >Если результат Вас устраивает, нажмите кнопку:
 
->![Alt text](source/tobuild/assets/readme/pic/download.png)
+>![Alt text](source/readme/pic/download.png)
 
 >Картинка скачается на Ваш компьютер в папку для скачивания по умолчанию.
 
