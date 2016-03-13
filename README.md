@@ -87,7 +87,7 @@
 | :----------- | :----------: | :----------- | :----------: |
 | Андрей Спартак | TeamLead, PHP, JS| [visermort](https://github.com/visermort) |<oxygenn@list.ru> |
 | Стелиос Багларидис | HTML, CSS, JS | [steliosbox](https://github.com/steliosbox) |<s.baglaridis@gmail.com> |
-| Лейсан Гильфанова | JS | [Allarepossible](https://github.com/Allarepossible) |<allarepossible@gmail.com> |
+| Лейсан Гильфанова | JS - разработчик | [Allarepossible](https://github.com/Allarepossible) |<allarepossible@gmail.com> |
 | Тимофей Дяденко | HTML, CSS, JS | [tim44](https://github.com/tim44) |<tmtm69@yandex.ru> |
 | Алексей Егоров | HTML, CSS | [ego-web](https://github.com/ego-web) |<ego_web@mail.ru> |
 

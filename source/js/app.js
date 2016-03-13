@@ -110,7 +110,7 @@ $('.social').hover(function(){
 			marginBottom = (waterImg.style.marginBottom == '') ? 0 : waterImg.style.marginBottom,
 			marginRight = (waterImg.style.marginRight == '') ? 0 : waterImg.style.marginRight,
 			maxCount = Math.ceil(heightMainPicture/heightMiniPicture + 1)*Math.ceil(widthMainPicture/widthMiniPicture + 1) - 1;
-
+		//Функция, создающая режим замощение
 		var _tiling = function() {
 			positionBottom.removeClass('view__random');
 			$('.view__link').removeClass('active-custom');
@@ -121,7 +121,7 @@ $('.social').hover(function(){
 			miniPicture[0].style.left = '-30px';
 			miniPicture[0].style.padding = '30px';
 			miniPicture.css({'width': Math.ceil(widthMainPicture/widthMiniPicture + 1)*(widthMiniPicture+parseInt(marginRight))+60, 'height': Math.ceil(heightMainPicture/heightMiniPicture + 1)*(heightMiniPicture+parseInt(marginBottom))+60});
-
+			//Создание остальных картинок
 			for (var i =0; i<maxCount; i++){
 				var img = document.createElement('img');
 				img.src = srcImg;
@@ -137,6 +137,7 @@ $('.social').hover(function(){
 
 			};
 		};
+		//Функция, создающая режим одного watermark
 		var _oneMode = function() {
 			var	miniPic = $('.watermark__img')[0];
 			$('img.copy').remove();
