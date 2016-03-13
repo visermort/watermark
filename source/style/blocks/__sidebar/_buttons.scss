@@ -18,8 +18,11 @@
 	min-height: 42px;
 	background-color: #c1cfd9;
 	border-radius: 3px;
+	padding: 5px;
 	border: none;
 	outline: none;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	&:not(:disabled):hover{
 		background-image: linear-gradient(to top, #c1cfd9 0%, #9eaab3 100%);
 		border: 1px solid #a6b2bb;
@@ -31,11 +34,14 @@
 .inputs__download {
 	float: right;
 	width: 99px;
-	height: 42px;
+	min-height: 42px;
 	background-color: #f97e76;
 	border-radius: 3px;
+	padding: 5px;
 	border: none;
 	outline: none;
+	overflow: hidden;
+    text-overflow: ellipsis;
 	&:not(:disabled):hover {
 		background-image: linear-gradient(to top, #f97e76 0%, #e3736c 100%);
 		border: 1px solid #e3736c;

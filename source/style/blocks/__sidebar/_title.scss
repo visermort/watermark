@@ -1,7 +1,11 @@
 .side-bar__title {
-    font: 26px/26px $roboto_light;
+    width: 250px;
+    font: 26px/30px $roboto_light;
     color: #2e3641;
     margin: 25px 0;
+    padding: 0 20px;
     text-align: center;
     letter-spacing: 1px;
+	overflow: hidden;
+    text-overflow: ellipsis;
 }

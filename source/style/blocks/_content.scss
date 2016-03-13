@@ -1,8 +1,11 @@
 .main-bar__title {
+	width: $innerWidth - $sideBarWidth - 50px;
 	font: 36px/36px $roboto_light;
 	color: #fff;
 	margin: 17px 21px;
 	letter-spacing: -1.4px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .main-bar__content {
 	width: $innerWidth - $sideBarWidth - 50px;

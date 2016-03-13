@@ -13,6 +13,9 @@ $wrapSize: 102px;
   display: block;
   float: left;
   width: 180px;
+  overflow: hidden;
+      // white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .position__bottom {
   padding: 25px 16px;

@@ -7,12 +7,15 @@
     margin-top: 37px;
     position: relative;
     &__label {
-      font: 14px/14px $roboto_light;
+      width: 250px;
+      font: 14px/18px $roboto_light;
       color: #2e3641;
       letter-spacing: 1px;
       margin-bottom: 8px;
       display: block;
       cursor: pointer;
+      overflow: hidden;
+      text-overflow: ellipsis;
       @include clearfix();
     }
     &__wrapper {
@@ -32,10 +35,10 @@
       width: 181px;
       @include border-radius(3px 0 0 3px);
       overflow: hidden;
+      white-space: nowrap;
       text-overflow: ellipsis;
       color: rgb(158, 178, 192);
       padding-left: 10px;
-      white-space: nowrap;
       font: 12px/27px $roboto_light;
       border: 1px solid #9eb2c0;
       border-right: none;

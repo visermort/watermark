@@ -1,11 +1,15 @@
 .transparency {
-	&__header {
+	&__label {
+		display: block;
+		width: 250px;
 		font: 14px/15px $roboto_light;
 		color: #2e3641;
 		letter-spacing: 1px;
 		margin-bottom:9px;
 		padding: 17px 15px 20px;
-		display: block;
+		overflow: hidden;
+      	text-overflow: ellipsis;
+      // white-space: nowrap;
 	}
 	&__bottom {
 		padding: 0 20px;
