@@ -27,7 +27,7 @@ $.path.task.forEach(function(taskPath) {
   require(taskPath)($);
 });
 
-$.dev = true;
+$.dev = false;
 
 $.gulp.task('default', $.gulp.series(
     $.gulp.parallel(
