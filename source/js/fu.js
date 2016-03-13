@@ -93,7 +93,7 @@
                             .attr('src', upload.url)
                             .show()
                             .get(0).onload = function() {
-                                watermarkSize.change(mainImg, watermarkContent); //watermark);
+                             //   watermarkSize.change(mainImg, watermarkContent); //watermark);
                                 $('.inputs__reset').click();
                             };
                         $('.watermark__form-disabled').removeClass('watermark__form-disabled');
@@ -102,7 +102,7 @@
                         watermarkContent
                                         .attr('src', upload.url)
                                         .get(0).onload = function() {
-                                            watermarkSize.change(mainImg, watermarkContent); //watermark);
+                                //            watermarkSize.change(mainImg, watermarkContent); //watermark);
                                             $('.inputs__reset').click();
                                         };
 
