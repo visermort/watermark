@@ -509,33 +509,34 @@ var module = (function () {
             widthLine = $('.pos-div__y'),
             heightLine = $('.pos-div__x'),
             naturalWidth = miniCont.prop('naturalWidth'),
-            naturalHeight = miniCont.prop('naturalHeight');
+            naturalHeight = miniCont.prop('naturalHeight'),
+            miniPicture = $('.watermark__img')[0];
         widthLine[0].style.width = widthLine.width() + 'px';
         heightLine[0].style.height = heightLine.height() + 'px';
 
         miniCont.css('margin-right', 0);
         miniCont.css('margin-bottom', 0);
         if(naturalWidth > 0 && naturalHeight > 0){
-        miniCont.css('width', naturalWidth);
-        miniCont.css('height', naturalHeight);
+            miniCont.css('width', naturalWidth);
+            miniCont.css('height', naturalHeight);
         }
         widthLine[0].style.width = '1px';
         heightLine[0].style.height = '1px';
         miniCont.css('opacity', 1);
-        var miniPicture = $('.watermark__img')[0];
         $('img.copy').remove();
         miniPicture.style.padding = '0px';
         miniPicture.style.top = '0px';
         miniPicture.style.left = '0px';
         $('.ui-slider-range-max').css('width', '100%');
         $('.ui-slider-handle').css('left', '0%');
-        if($('.view-1').hasClass('active-random')){
-        positionBottom.removeClass('view__custom');
-        $('.view-1').removeClass('active-random');
-        positionBottom.addClass('view__random');
-        $('.view-2').addClass('active-custom');
-        module.init();
         $('.ui-resizable').css({'width': naturalWidth, 'height': naturalHeight});
+        if($('.view-1').hasClass('active-random')){
+            positionBottom.removeClass('view__custom');
+            $('.view-1').removeClass('active-random');
+            positionBottom.addClass('view__random');
+            $('.view-2').addClass('active-custom');
+            module.init();
+            //$('.ui-resizable').css({'width': naturalWidth, 'height': naturalHeight});
         }
         _showPosition();
      };

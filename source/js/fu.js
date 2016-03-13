@@ -94,6 +94,7 @@
                             .show()
                             .get(0).onload = function() {
                                 watermarkSize.change(mainImg, watermarkContent); //watermark);
+                                $('.inputs__reset').click();
                             };
                         $('.watermark__form-disabled').removeClass('watermark__form-disabled');
                     } else {
@@ -102,6 +103,7 @@
                                         .attr('src', upload.url)
                                         .get(0).onload = function() {
                                             watermarkSize.change(mainImg, watermarkContent); //watermark);
+                                            $('.inputs__reset').click();
                                         };
 
                         $('.side-bar__transparency-disabled').removeClass('side-bar__transparency-disabled');
