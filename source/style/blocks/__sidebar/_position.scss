@@ -2,30 +2,44 @@ $axisInputSize: 45px;
 $borderColor: #9eb2c0;
 $cellSize: 33px;
 $wrapSize: 102px;
-.view {
-  &__list {
-    float: right;
-    @include text-hide();
-  }
-  &__item {
-    @include inline-block(top);
-  }
+.position__top {
+  @include clearfix();
+}
+.position__label {
+  font: 14px/15px $roboto_light;
+  color: #2e3641;
+  letter-spacing: 1px;
+  padding: 13px 15px;
+  display: block;
+  float: left;
+  width: 190px;
+}
+.position__bottom {
+  padding: 25px 16px;
+  @include clearfix();
+}
+//-- Переключатель режима
+.view__list {
+  float: right;
+}
+.view__item {
+  @include inline-block(top);
+  @include text-hide();
 }
 .view__link {
   width: 29px;
   height: 29px;
   display: block;
   position: relative;
-  &:before {
-    content: '';
-    width: 19px;
-    height: 19px;
-    display: block;
-    @include transform-to-center();
-    background: url('../images/spritesheet.png') no-repeat;
-  }
 }
-
+.view__link:before {
+  content: '';
+  width: 19px;
+  height: 19px;
+  display: block;
+  @include transform-to-center();
+  background: url('../images/spritesheet.png') no-repeat;
+}
 .view-1:before,
 .active-custom:before {
   width: nth($view-1, 5);
@@ -58,26 +72,7 @@ $wrapSize: 102px;
   height: nth($view-2-hover, 6);
   background-position: nth($view-2-hover, 3) nth($view-2-hover, 4);
 }
-
-.position {
-      &__top {
-        @include clearfix();
-      }
-      &__label {
-        font: 14px/15px $roboto_light;
-        color: #2e3641;
-        letter-spacing: 1px;
-        padding: 13px 15px;
-        display: block;
-        float: left;
-        width: 190px;
-      }
-      &__bottom {
-        padding: 25px 16px;
-        @include clearfix();
-      }
-}
-
+//-- губ позиционирования картинок
 .position__wrap {
   float: left;
   width: $wrapSize;
@@ -114,7 +109,6 @@ $wrapSize: 102px;
   float: right;
   width: 106px;
   margin-left: 10px;
-  @include text-hide();
 }
 .position__axis-up,
 .position__axis-down {
@@ -136,7 +130,7 @@ $wrapSize: 102px;
 .position__axis_x-a,
 .position__axis_y-a {
   width: 29px;
-    height: 45px;
+  height: 45px;
   position: relative;
 }
 
@@ -147,6 +141,7 @@ $wrapSize: 102px;
   width: 13px;
   height: 45px;
   margin-left: 10px;
+  @include text-hide();
 }
 .position__axis_x-a:before,
 .position__axis_y-a:before {
@@ -178,14 +173,14 @@ $wrapSize: 102px;
   width: 13px;
   height: 8px;
   position: relative;
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    background-repeat: no-repeat;
-    @include transform-to-center();
-    background: url('../images/spritesheet.png');
-  }
+}
+.axis__link:before {
+  content: '';
+  display: block;
+  position: absolute;
+  background-repeat: no-repeat;
+  @include transform-to-center();
+  background: url('../images/spritesheet.png');
 }
 .axis__x_arrow-up,
 .axis__y_arrow-up {
@@ -217,125 +212,89 @@ $wrapSize: 102px;
 .axis__y_arrow-down:hover .arrow__y-down:before {
   background-position: nth($st-sd-hover, 3) nth($st-sd-hover, 4);
 }
-// ----- random -----
+//-------------------
+// ----- RANDOM -----
 .view__random {
-    .pos-div__axis {
-        display: none;
-    }
-    .position {
-        &__link {
-            width: 100%;
-            height: 100%;
-            display: block;
-            
-            &:hover {
-              background: #f97e76;
-            }
-        }
-        &__link-active {
-          background: #f97e76;
-        }
-    }
-
-    .axis__x-a:before,
-    .axis__y-a:before {
-        color: #333;
-        font-size: 16px;
-        font-family: $roboto_light;
-        right: 0;
-        bottom: 50%;
-        transform: translate(-50%, -50%);
-        position: absolute;
-    }
-    .axis__x-a:before {
-        content: 'X';
-    }
-
-    .axis__y-a:before {
-        content: 'Y';
-    }
+  .pos-div__axis {
+    display: none;
+  }
+  .position__link {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }        
+  .position__link:hover {
+    background: #f97e76;
+  }
+  .position__link-active {
+    background: #f97e76;
+  }
+  .axis__x-a,
+  .axis__y-a {
+    // position: relative;
+  }
+  .position__axis_x-a:before{
+    content: "X";
+  }
+  .position__axis_y-a:before {
+    content: "Y";
+    // right: 0;
+    // bottom: 50%;
+    // transform: translateY(-50%);
+    // position: absolute;
+    // display: block;
+  }
 }
-//----- VIEW RANDOM - END -----
-//-----------------------
+// ----- RANDOM - END
+//-------------------
 
+//-----------------------
 //----- VIEW CUSTOM -----
-//-----------------------
 .view__custom {
-  .pos-div {
+  .pos-div__axis {
     position: relative;
-    &__x,
-    &__y {
-      top: 50%;
-      left: 50%;
-      position: absolute;
-      background: #f97e76;
-      transform: translate(-50%, -50%);
-    }
-    &__x {
-      width: 103px;
-      height: 1px;
-    }
-    &__y {
-      width: 1px;
-      height: 103px;
-    }
-    .pos-div__axis {
-      display: none;
-    }
-    .position__link {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-    .position__cell:hover {
-      background: #f97e76;
-    }
-    .position__axis_x-a:before,
-    .position__axis_y-a:before {
-      content: '';
-      display: block;
-      position: absolute;
-      background-repeat: no-repeat;
-      background: url('../images/spritesheet.png');
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    .position__axis_x-a:before {
-      width: nth($arrows-vertical, 5);
-      height: nth($arrows-vertical, 6);
-      background-position: nth($arrows-vertical, 3) nth($arrows-vertical, 4);
-    }
-    .position__axis_y-a:before {
-      width: nth($arrows-horizontal, 5);
-      height: nth($arrows-horizontal, 6);
-      background-position: nth($arrows-horizontal, 3) nth($arrows-horizontal, 4);
-    }
   }
-  // ----- custom -----
-  .view__custom {
-    .position__wrap {
-      position: relative;
-    }
-    .pos-div__x {
-      position: absolute;
-      height: $cellSize * 3;
-      width: 5px;
-      background: #f97e76;
-      @include transform-to-center();
-    }
-    .pos-div__y {
-      position: absolute;
-      width: $cellSize * 3;
-      height: 5px;
-      background: #f97e76;
-      @include transform-to-center();
-    }
-    .position__axis_x-a:before {
-      content: 'X';
-    }
-    .position__axis_y-a:before {
-      content: 'Y';
-    }
+  .pos-div__x,
+  .pos-div__y {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    background: #f97e76;
+    transform: translate(-50%, -50%);
+  }
+  .pos-div__x {
+    width: 103px;
+    height: 1px;
+  }
+  .pos-div__y {
+    width: 1px;
+    height: 103px;
+  }
+  .position__axis_x-a,
+  .position__axis_y-a {
+    font-size: 0;
+  }
+  .position__axis_x-a:before,
+  .position__axis_y-a:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background-repeat: no-repeat;
+    background: url('../images/spritesheet.png');
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .position__axis_x-a:before {
+    width: nth($arrows-vertical, 5);
+    height: nth($arrows-vertical, 6);
+    background-position: nth($arrows-vertical, 3) nth($arrows-vertical, 4);
+  }
+  .position__axis_y-a:before {
+    width: nth($arrows-horizontal, 5);
+    height: nth($arrows-horizontal, 6);
+    background-position: nth($arrows-horizontal, 3) nth($arrows-horizontal, 4);
   }
 }
+//----- VIEW CUSTOM - END
+//-----------------------
