@@ -9,7 +9,7 @@ var module = (function () {
     var rem = function () {
         _setDownListeners();
     };
-
+    //Функция вызывает другие функции при событиях в режиме одного Watermarka
     var _setUpListeners = function () {
         $('.position__link').on('click', _changePosition);
         $('.inputs__reset').on('click', _reset);
@@ -19,6 +19,8 @@ var module = (function () {
         $('.axis__y-input').unbind("change keyup input click",_changeMarginInputTop);
         $('.axis__x-input').bind("change keyup input click",_changePositionInputLeft);
         $('.axis__y-input').bind("change keyup input click",_changePositionInputTop);
+
+        // Drag&drop watermark
         var mini = $('.watermark__img')[0];
         mini.onmousedown = function(e) {
             _clearActive();
@@ -39,10 +41,11 @@ var module = (function () {
 
             moveAt(e);
             e.preventDefault();
-
+            // Функция для перемещения watermark
             function moveAt(e) {
                 var mainPictureTop = Math.floor(mainPicture[0].getBoundingClientRect().top),
                     mainPictureLeft = Math.floor(mainPicture[0].getBoundingClientRect().left);
+                //если кликаем по элементам, котрые изменяют размер - не происходит drag&drop watermark
                 if(e.target !== $('.ui-resizable-s')[0] && e.target !== $('.ui-resizable-e')[0] && e.target !== $('.ui-resizable-se')[0] && e.target && e.target !== $('.watermark__img.ui-resizable')[0] && e.target){
                     if(Math.floor(e.pageX - mainPictureLeft -shiftX) <= 0){
                         miniPicture.style.left = '0px';
@@ -90,6 +93,8 @@ var module = (function () {
         mini.ondragstart = function () {
             return false;
         };
+
+        //Изменение размера watermark
         var resize = $(".watermark__img" );
         resize.resizable({
             aspectRatio: false,
@@ -105,9 +110,11 @@ var module = (function () {
         resize.on( "resizestart", function( e, ui ) {
                     document.onmousemove = mini.onmouseup = null;
         } );
+        //Изменяем показания в инпутах на текущее положение
         _showPosition();
     };
 
+    //Функция вызывает другие функции при событиях в режиме замощения
     var _setDownListeners = function () {
         $('.inputs__reset').on('click', _reset);
         $('.axis__link').off('click', _changePositionOne);
@@ -117,7 +124,7 @@ var module = (function () {
         $('.axis__x-input').bind("change keyup input click",_changeMarginInputLeft);
         $('.axis__y-input').bind("change keyup input click",_changeMarginInputTop);
         var mini = $('.watermark__img')[0];
-
+        // Drag&drop замощения watermark
         mini.onmousedown = function(e) {
             _clearActive();
             var miniPic = $('.watermark__img'),
@@ -137,12 +144,11 @@ var module = (function () {
                 mainPictureLeft = Math.floor(mainPicture[0].getBoundingClientRect().left),
                 containerTop = Math.floor(miniPicture.getBoundingClientRect().top),
                 containerLeft = Math.floor(miniPicture.getBoundingClientRect().left);
-
+            //если кликнули на один из watermark, в противном случае изменяем положение клика относительно родительского элемента
             if(e.target == e.currentTarget){
                 var shiftX = e.offsetX - 30,
                     shiftY = e.offsetY - 30;
             } else {
-
                 var shiftX = Math.floor((e.pageX - containerLeft - 30)/(widthMiniPicture + marginRight))*(widthMiniPicture + marginRight) + e.offsetX,
                     shiftY = Math.floor((e.pageY - containerTop - 30)/(heightMiniPicture + marginBottom))*(heightMiniPicture + marginBottom) + e.offsetY;
             }
@@ -152,6 +158,7 @@ var module = (function () {
             miniPicture.style.zIndex = 1000;
 
             moveAt(e);
+            // Функция для перемещения замощения
             function moveAt(e) {
                 e.preventDefault();
                 if (Math.floor(e.pageX - mainPictureLeft -shiftX) >= 30) {
@@ -198,74 +205,13 @@ var module = (function () {
         };
         _showMargin();
     };
+
+    //Функция для очищения активного положения
     var _clearActive = function() {
         $('.position__link').removeClass('position__link-active');
     };
-    var _changePosition = function (e) {
-        e.preventDefault();
 
-        var $this = $(this),
-            item = $this.attr("class"),
-            miniPicture = $('.watermark__img'),
-            mainPicture = $('.main-bar__main-img'),
-            position = item.replace(/position__link/g, '').trim(),
-            heightMainPicture = mainPicture.height(),
-            widthMainPicture = mainPicture.width(),
-            heightMiniPicture = miniPicture.find('img').height(),
-            widthMiniPicture = miniPicture.find('img').width();
-
-        //miniPicture.css({'top': 0, 'left': 0});
-        switch (position){
-            case 'top-left':
-                miniPicture.css({'top': 0, 'left': 0});
-                _clearActive();
-                $this.addClass('position__link-active');
-                break;
-            case 'top':
-                miniPicture.css({'top': 0, 'left': (widthMainPicture-widthMiniPicture)/2});
-                _clearActive();
-                $this.addClass('position__link-active');
-                break;
-            case 'top-right':
-                miniPicture.css({'top': 0, 'left': widthMainPicture-widthMiniPicture});
-                _clearActive();
-                $this.addClass('position__link-active');
-                break;
-            case 'center-left':
-                miniPicture.css({'top': (heightMainPicture-heightMiniPicture)/2, 'left': 0});
-                _clearActive();
-                $this.addClass('position__link-active');
-                break;
-            case 'center':
-                miniPicture.css({'top': (heightMainPicture-heightMiniPicture)/2, 'left': (widthMainPicture-widthMiniPicture)/2});
-                _clearActive();
-                $this.addClass('position__link-active');
-                break;
-            case 'center-right':
-                miniPicture.css({'top': (heightMainPicture-heightMiniPicture)/2, 'left': widthMainPicture-widthMiniPicture});
-                _clearActive();
-                $this.addClass('position__link-active');
-                break;
-            case 'bottom-left':
-                miniPicture.css({'top': heightMainPicture-heightMiniPicture, 'left': 0});
-                _clearActive();
-                $this.addClass('position__link-active');
-                break;
-            case 'bottom':
-                miniPicture.css({'top': heightMainPicture-heightMiniPicture, 'left': (widthMainPicture-widthMiniPicture)/2});
-                _clearActive();
-                $this.addClass('position__link-active');
-                break;
-            case 'bottom-right':
-                miniPicture.css({'top': heightMainPicture-heightMiniPicture, 'left': widthMainPicture-widthMiniPicture});
-                _clearActive();
-                $this.addClass('position__link-active');
-                break;
-            default: miniPicture.css({'top': miniPicture.position().top, 'left': miniPicture.position().left});
-        }
-
-        _showPosition();
-    };
+    //Функция изменения положения картинки при клике на соответствующую стрелку рядом с инпутами по оси X и Y
     var _changePositionOne = function (e) {
 
         e.preventDefault();
@@ -301,6 +247,8 @@ var module = (function () {
             }
         _showPosition();
     };
+
+    //Функция изменения положения картинки по оси Y при вводе значения в инпут
     var _changePositionInputTop = function () {
         _clearActive();
 
@@ -324,6 +272,8 @@ var module = (function () {
             this.value = this.value.replace(/[^0-9]/g, '');
         }
     };
+
+    //Функция изменения положения картинки по оси X при вводе значения в инпут
     var _changePositionInputLeft = function () {
         _clearActive();
 
@@ -349,6 +299,7 @@ var module = (function () {
 
     };
 
+    //Функция изменения величины отступов между картинками в режиме замощения при клике на соответствующую стрелку рядом с инпутами по вертикали и горизонтали
     var _changeMarginOne = function (e) {
 
         e.preventDefault();
@@ -427,6 +378,8 @@ var module = (function () {
         }
         _showMargin();
     };
+
+    //Функция изменения величины отступов между картинками по вертикали в режиме замощения при вводе значения в инпут
     var _changeMarginInputLeft = function () {
 
         var miniPic = $('.main-bar__watermark'),
@@ -464,6 +417,8 @@ var module = (function () {
             _changeCont();
         }
     };
+
+    //Функция изменения величины отступов между картинками по горизонтали в режиме замощения при вводе значения в инпут
     var _changeMarginInputTop = function () {
 
         var miniPic = $('.main-bar__watermark'),
@@ -503,6 +458,7 @@ var module = (function () {
         }
     };
 
+    //Функция очистки всех отступов, размеров и положений и возврат к режиму одного watermark
     var _reset = function () {
         var positionBottom = $('.position__bottom');
         _clearActive();
@@ -548,6 +504,75 @@ var module = (function () {
         }
         _showPosition();
      };
+
+    //Функция изменения положения картинки с присваиванием активного класса выбланной области
+    var _changePosition = function (e) {
+        e.preventDefault();
+
+        var $this = $(this),
+            item = $this.attr("class"),
+            miniPicture = $('.watermark__img'),
+            mainPicture = $('.main-bar__main-img'),
+            position = item.replace(/position__link/g, '').trim(),
+            heightMainPicture = mainPicture.height(),
+            widthMainPicture = mainPicture.width(),
+            heightMiniPicture = miniPicture.find('img').height(),
+            widthMiniPicture = miniPicture.find('img').width();
+
+        //miniPicture.css({'top': 0, 'left': 0});
+        switch (position){
+            case 'top-left':
+                miniPicture.css({'top': 0, 'left': 0});
+                _clearActive();
+                $this.addClass('position__link-active');
+                break;
+            case 'top':
+                miniPicture.css({'top': 0, 'left': (widthMainPicture-widthMiniPicture)/2});
+                _clearActive();
+                $this.addClass('position__link-active');
+                break;
+            case 'top-right':
+                miniPicture.css({'top': 0, 'left': widthMainPicture-widthMiniPicture});
+                _clearActive();
+                $this.addClass('position__link-active');
+                break;
+            case 'center-left':
+                miniPicture.css({'top': (heightMainPicture-heightMiniPicture)/2, 'left': 0});
+                _clearActive();
+                $this.addClass('position__link-active');
+                break;
+            case 'center':
+                miniPicture.css({'top': (heightMainPicture-heightMiniPicture)/2, 'left': (widthMainPicture-widthMiniPicture)/2});
+                _clearActive();
+                $this.addClass('position__link-active');
+                break;
+            case 'center-right':
+                miniPicture.css({'top': (heightMainPicture-heightMiniPicture)/2, 'left': widthMainPicture-widthMiniPicture});
+                _clearActive();
+                $this.addClass('position__link-active');
+                break;
+            case 'bottom-left':
+                miniPicture.css({'top': heightMainPicture-heightMiniPicture, 'left': 0});
+                _clearActive();
+                $this.addClass('position__link-active');
+                break;
+            case 'bottom':
+                miniPicture.css({'top': heightMainPicture-heightMiniPicture, 'left': (widthMainPicture-widthMiniPicture)/2});
+                _clearActive();
+                $this.addClass('position__link-active');
+                break;
+            case 'bottom-right':
+                miniPicture.css({'top': heightMainPicture-heightMiniPicture, 'left': widthMainPicture-widthMiniPicture});
+                _clearActive();
+                $this.addClass('position__link-active');
+                break;
+            default: miniPicture.css({'top': miniPicture.position().top, 'left': miniPicture.position().left});
+        }
+
+        _showPosition();
+    };
+
+    //Функция изменения размера блока с замощением при изменении отступов между картинками
     var _changeCont = function () {
         var contPicture = $('.watermark__img'),
             mainPicture = $('.main-bar__main-img'),
@@ -562,6 +587,8 @@ var module = (function () {
         contPicture.css({'width': (Math.ceil(widthMainPicture/widthMiniPicture) + 1)*(widthMiniPicture+marginRight)+60, 'height': Math.ceil(heightMainPicture/heightMiniPicture + 1)*(heightMiniPicture+marginBottom)+60});
 
     };
+
+    //Функция, отображающая реальное положение watermark в соответствующих инпутах
     var _showPosition = function() {
 
         var miniPicture = $('.watermark__img');
@@ -569,6 +596,8 @@ var module = (function () {
         $('.axis__x-input')[0].value = (miniPicture[0].style.left == '') ? 0 : miniPicture[0].style.left.replace(/px/g, '');
         $('.axis__y-input')[0].value = (miniPicture[0].style.top == '') ? 0 : miniPicture[0].style.top.replace(/px/g, '');
     };
+
+    //Функция, отображающая отступы watermark в режиме замощения в соответствующих инпутах
     var _showMargin = function() {
 
         var miniPicture = $('.main-bar__watermark');
@@ -577,8 +606,6 @@ var module = (function () {
         $('.axis__x-input')[0].value = (miniPicture[0].style.marginBottom == '') ? 0 : miniPicture[0].style.marginBottom.replace(/px/g, '');
 
     };
-
-
 
     return {
         init : init,
