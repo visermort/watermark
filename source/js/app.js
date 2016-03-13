@@ -129,6 +129,7 @@ $('.social').hover(function(){
 				img.style.maxWidth = maxWidth;
 				img.style.maxHeight = maxHeight;
 				img.style.height = heightMiniPicture + 'px';
+				img.style.width = widthMiniPicture + 'px';
 				img.style.opacity = opacity;
 				img.style.marginRight = marginRight;
 				img.className = 'main-bar__watermark copy';

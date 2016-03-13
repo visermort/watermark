@@ -99,8 +99,8 @@ try {
             $innerY += ($watermarkHeight + $intervalVert);
         for ($i = 0; $i < $countX; $i++) {
             for ($j = 0; $j < $countY; $j++) {
-                $currentLeft = $innerX + $i * ($watermarkWidth + $intervalHor);
-                $currentTop = $innerY + $j * ($watermarkHeight + $intervalVert);
+                $currentLeft = $innerX + $i * ($newWatermarkWidth + $intervalHor);
+                $currentTop = $innerY + $j * ($newWatermarkHeight + $intervalVert);
                 $mainImage->overlay($watermarkImage, 'top left', $opacity, $currentLeft, $currentTop);
             } //for j
         } //for i
