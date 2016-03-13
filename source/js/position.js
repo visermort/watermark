@@ -303,6 +303,7 @@ var module = (function () {
     };
     var _changePositionInputTop = function () {
         _clearActive();
+
         var miniPicture = $('.watermark__img'),
             self = miniPicture[0],
             mainPicture = $('.main-bar__main-img'),

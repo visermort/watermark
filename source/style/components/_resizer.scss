@@ -16,41 +16,43 @@
   cursor: n-resize;
   height: 7px;
   width: 100%;
-  top: -7px;
+  top: -4px;
   left: 0;
 }
 .ui-resizable-s {
   cursor: s-resize;
   height: 7px;
   width: 100%;
-  bottom: -5px;
+  bottom: -4px;
   left: 0;
 }
 .ui-resizable-e {
   cursor: e-resize;
   width: 7px;
-  right: -7px;
+  right: -4px;
   top: 0;
   height: 100%;
 }
 .ui-resizable-w {
   cursor: w-resize;
   width: 7px;
-  left: -5px;
+  left: -4px;
   top: 0;
   height: 100%;
 }
 .ui-resizable-se {
   cursor: se-resize;
-  width: 12px;
-  height: 12px;
-  right: -1px;
-  bottom: -1px;
+  width: 10px;
+  height: 10px;
+  right: -5px;
+  bottom: -5px;
 }
-.ui-resizable-e,
-.ui-resizable-s,
-.ui-resizable-se {
-  &:hover{
-    background-color: rgba(250, 98, 98, 0.5);
+.ui-resizable-e:hover{
+  border-right: 3px dashed rgba(0,0,0,0.6);
 }
+.ui-resizable-s:hover{
+  border-bottom: 3px dashed rgba(0,0,0,0.6);
+ }
+.ui-resizable-se:hover{
+  background-color: #000;
 }
