@@ -92,7 +92,7 @@ var module = (function () {
         };
         var resize = $(".watermark__img" );
         resize.resizable({
-            aspectRatio: true,
+            aspectRatio: false,
             containment: ".main-bar__main-img",
             minHeight: 50,
             minWidth: 50,

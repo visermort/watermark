@@ -47,3 +47,10 @@
   right: -1px;
   bottom: -1px;
 }
+.ui-resizable-e,
+.ui-resizable-s,
+.ui-resizable-se {
+  &:hover{
+    background-color: rgba(250, 98, 98, 0.5);
+}
+}

@@ -27,7 +27,7 @@ $(document).ready(function (){
     $('.inputs__download').on('click',function(e){
         e.preventDefault();
         var watermarkImgDiv = $('.watermark__img'),
-            watermarkImg = $('.main-bar__watermark'),//main-bar__watermark
+            watermarkImg = $('.main-bar__watermark'),
             positionBottom = $('.position__bottom'),
             mainImage = $('.main-bar__main-img'),
             tiled = (positionBottom.hasClass('view__custom')? 1 : 0),
@@ -36,6 +36,7 @@ $(document).ready(function (){
                 left: parseInt(watermarkImgDiv.css('left'))+parseInt(watermarkImgDiv.css('padding-left')),
                 opacity: watermarkImg.css('opacity'),
                 watemarkWidth:  watermarkImg[0].width,
+                watemarkHeight:  watermarkImg[0].height,
                 imgWidth: mainImage[0].width,
                 watermarkPath: watermarkImg.attr('src'),
                 imgPath: mainImage.attr('src'),
@@ -67,7 +68,7 @@ $(document).ready(function (){
             } )
             .fail ( function(response) {
                 $('.preloader').hide();
-                console.log(response); //вывести в popup сообщение  - ошибка работы с удалённым сервером
+                console.log(response); //вывести в консоль сообщение  - ошибка работы с удалённым сервером
                 popup.show('error', messageLang.getMessage('message6'));//ошибка работы с удалённым сервером
             } );
     });
