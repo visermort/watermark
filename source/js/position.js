@@ -510,10 +510,15 @@ var module = (function () {
             heightLine = $('.pos-div__x'),
             naturalWidth = miniCont.prop('naturalWidth'),
             naturalHeight = miniCont.prop('naturalHeight'),
-            miniPicture = $('.watermark__img')[0];
+            miniPicture = $('.watermark__img')[0],
+            mainImage = $('.main-bar__main-img'),
+            watermarkScale = 1,//коэффициент ресайза ватемарка задаём 1
+            watermarkScaleHor = mainImage[0].width / naturalWidth,
+            watermarkScaleVert = mainImage[0].height / naturalHeight;
+        if (watermarkScaleHor <  watermarkScale){watermarkScale = watermarkScaleHor * 0.9 ;}  //коэффициент ресайза ватемарка при необходимости уменьшаем
+        if (watermarkScaleVert <  watermarkScale){watermarkScale = watermarkScaleVert * 0.9 ;}     //делаем чуть меньше, чтобы удобнее было ресайзить
         widthLine[0].style.width = widthLine.width() + 'px';
         heightLine[0].style.height = heightLine.height() + 'px';
-
         miniCont.css('margin-right', 0);
         miniCont.css('margin-bottom', 0);
         if(naturalWidth > 0 && naturalHeight > 0){
@@ -529,7 +534,9 @@ var module = (function () {
         miniPicture.style.left = '0px';
         $('.ui-slider-range-max').css('width', '100%');
         $('.ui-slider-handle').css('left', '0%');
-        $('.ui-resizable').css({'width': naturalWidth, 'height': naturalHeight});
+        $('.ui-resizable').css({'width': naturalWidth * watermarkScale, 'height': naturalHeight * watermarkScale});//при необходимости уменьшаем и контейнер ватемарка
+        miniCont[0].style.width = naturalWidth * watermarkScale +'px';                         //и сам ватемарк
+        miniCont[0].style.height = naturalHeight * watermarkScale +'px';
         if($('.view-1').hasClass('active-random')){
             positionBottom.removeClass('view__custom');
             $('.view-1').removeClass('active-random');
