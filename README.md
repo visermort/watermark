@@ -4,8 +4,8 @@
 
 ![Alt text](source/readme/pic/project.png)
 
-Перейти на [сайт](http://example.net/) проекта.
-Перейти на [GitHub](http://example.net/) проекта.
+Перейти на [сайт](http://watermark.visermort.ru/) проекта.
+Перейти на [GitHub](https://github.com/visermort/watermark) проекта.
 <hr />
 
 ### Описание
