@@ -35,7 +35,7 @@ $(document).ready(function (){
                 top: parseInt(watermarkImgDiv.css('top'))+parseInt(watermarkImgDiv.css('padding-top')),
                 left: parseInt(watermarkImgDiv.css('left'))+parseInt(watermarkImgDiv.css('padding-left')),
                 opacity: watermarkImg.css('opacity'),
-                watemarkWidth:  watermarkImg[0].width,
+                watemarkWidth: watermarkImg[0].width,
                 watemarkHeight:  watermarkImg[0].height,
                 imgWidth: mainImage[0].width,
                 watermarkPath: watermarkImg.attr('src'),
@@ -59,9 +59,10 @@ $(document).ready(function (){
                 $('.preloader').hide();
                 if (response['status']) {
                     sendFileToDownload();
-//                    console.log(response);
+                    console.log(response);
                     popup.show('success', messageLang.getMessage('message4'));//файл передан на скачивание
                 } else {
+                    console.log(response);
                     console.log(response['message']);
                     popup.show('error', messageLang.getMessage('message5'));//ошибка при формировании файла
                 }
